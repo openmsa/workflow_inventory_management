@@ -31,8 +31,13 @@ if 	partOfCidrs == "no":
 	MSA_API.task_error('Entered address '+searchedip+' is not in any IP pool networks', context, True)
 
 		
-#Check if the ntered IP address is already allocated
-if searchedip in context['IPsInUse']:
+#Check if the entered IP address is already allocated
+freeIP=True
+for ipInUse in context['IPsInUse']:
+	if searchedip == ipInUse['address']:
+		freeIP=False
+		break
+if not freeIP:
   MSA_API.task_error('IP address '+searchedip+" is already in use", context, True)
 
 		

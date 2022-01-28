@@ -10,8 +10,8 @@ usedList=''
 
 if context.get('IPsInUse'):
 	for ip in context['IPsInUse']:
-		usedList=usedList+"\n"+ip
-
+		usedList=usedList+"\n"+ip['address']
+context['usedIPs']=usedList
 ret = MSA_API.process_content('ENDED', 'Used IP addresses:'+usedList, context, True)
 print(ret)
 

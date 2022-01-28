@@ -14,8 +14,8 @@ dev_var.add('cidrList.0.isSelected')
 context = Variables.task_call(dev_var)
 
 if not context.get('IPsInUse'):
-  context['IPsInUse'] = []
-
+	context['IPsInUse']=[]
+	
 newip=context['newip']
 
 SelectedCidr=""
@@ -33,14 +33,19 @@ if not SelectedCidr:
 if not newip:
 	#get new IP from the selected network (cidr)
 	for ip in list(ip_network(SelectedCidr).hosts()):
-		for usedIP in context['IPsInUse']:
-			if not ip == usedIP['address']:
+		if not context['IPsInUse']:
+			newip=str(ip)
+			break
+		else:
+			freeIP=True
+			for ipInUse in context['IPsInUse']:
+				if str(ip) == ipInUse['address']:
+					freeIP=False
+					break
+			if freeIP:
 				newip=str(ip)
 				break
-		else:
-	        continue
-	    break
-				
+
 	if not newip:
 		MSA_API.task_error('All IPs from '+SelectedCidr+' have been allocated', context, True)
 else:
@@ -51,9 +56,15 @@ else:
 	#Check if the ntered IP address is already allocated
 	for usedIP in context['IPsInUse']:
 		if newip == usedIP['address']:
-		  MSA_API.task_error('IP address '+newip+" is already in use", context, True)
+			MSA_API.task_error('IP address '+newip+" is already in use", context, True)
 
 context['IPsInUse'].append(dict(address=newip))
+
+if context.get('usedIPs'):
+	usedList=context['usedIPs']
+usedList=usedList+"\n"+newip
+context['usedIPs']=usedList
+
 ret = MSA_API.process_content('ENDED', 'New ip '+newip+" has been allocated", context, True)
 print(ret)
 
