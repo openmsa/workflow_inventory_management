@@ -3,6 +3,11 @@ from msa_sdk.variables import Variables
 
 context = Variables.task_call()
 
+if not context.get('poolStart'):
+	context['poolStart']=0
+if not context.get('poolEnd'):
+	context['poolEnd']=0
+	
 poolStart=int(context['poolStart'])
 poolEnd=int(context['poolEnd'])
 

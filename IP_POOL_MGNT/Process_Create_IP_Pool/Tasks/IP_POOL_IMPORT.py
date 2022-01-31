@@ -10,6 +10,9 @@ dev_var.add('pool.0.address', var_type='Composite')
 dev_var.add('pool.0.prefix', var_type='Integer')
 context = Variables.task_call(dev_var)
 
+if not context['device_id'] or not context['name'] :
+	MSA_API.task_error('Mandatory parameters required',context, True)
+	
 # read the ID of the selected managed entity
 device_id = context['device_id']
 

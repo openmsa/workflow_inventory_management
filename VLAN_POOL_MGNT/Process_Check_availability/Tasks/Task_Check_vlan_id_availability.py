@@ -7,6 +7,9 @@ dev_var.add('searchedVlanId', var_type='String')
 
 context = Variables.task_call(dev_var)
 
+if not context['device_id'] or not context['name'] or not context['poolStart'] or not context['poolEnd']:
+	MSA_API.task_error('Mandatory parameters required, please edit the VLAN pool',context, True)
+	
 if not context.get('VLANsInUse'):
   context['VLANsInUse'] = []
 

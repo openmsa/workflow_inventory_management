@@ -25,6 +25,9 @@ if not context.get('globaluniq'):
 if not context.get('description'):
 	context['description']=''
 
+if not context.get('object_id'):
+	context['object_id']=str(uuid.uuid4())
+	
 object_id=context['object_id']
 
 # build the Microservice JSON params

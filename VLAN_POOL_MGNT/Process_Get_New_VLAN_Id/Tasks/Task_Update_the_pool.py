@@ -15,6 +15,9 @@ devicelongid = device_id[3:]
 
 if not context.get('description'):
 	context['description']=''
+	
+if not context.get('object_id'):
+	context['object_id']=str(uuid.uuid4())
 
 object_id=context['object_id']
 

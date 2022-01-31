@@ -14,6 +14,9 @@ dev_var.add('cidrList.0.isSelected')
 
 context = Variables.task_call(dev_var)
 
+if not context['device_id'] or not context['name'] :
+	MSA_API.task_error('Mandatory parameters required',context, True)
+
 if not context.get('IPsInUse'):
 	context['IPsInUse']=[]
 	

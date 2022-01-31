@@ -5,6 +5,9 @@ from msa_sdk.msa_api import MSA_API
 dev_var = Variables()
 context = Variables.task_call(dev_var)
 
+if not context['device_id'] or not context['name'] or not context['poolStart'] or not context['poolEnd']:
+	MSA_API.task_error('Mandatory parameters required, please edit the VLAN pool',context, True)
+
 usedList=''
 
 if context.get('VLANsInUse'):

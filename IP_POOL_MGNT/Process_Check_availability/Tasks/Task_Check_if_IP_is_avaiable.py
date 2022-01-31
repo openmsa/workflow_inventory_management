@@ -11,6 +11,9 @@ dev_var.add('searchedip', var_type='String')
 
 context = Variables.task_call(dev_var)
 
+if not context['device_id'] or not context['name'] :
+	MSA_API.task_error('Mandatory parameters required',context, True)
+
 if not context.get('IPsInUse'):
   context['IPsInUse'] = []
 

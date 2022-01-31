@@ -25,7 +25,6 @@ devicelongid = device_id[3:]
 #{"Gateway":"0"}
 #micro_service_vars_array = {"object_id":object_id}
 object_id=context['object_id']
-
 object_parameters = {}
 object_parameters['IP_POOL'] = {}
 object_parameters['IP_POOL'] [object_id]={}
