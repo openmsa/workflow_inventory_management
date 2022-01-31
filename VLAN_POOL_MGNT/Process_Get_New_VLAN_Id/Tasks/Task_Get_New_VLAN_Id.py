@@ -1,0 +1,60 @@
+from msa_sdk.variables import Variables
+from msa_sdk.msa_api import MSA_API
+
+
+dev_var = Variables()
+dev_var.add('newVlanId', var_type='String')
+dev_var.add('newAssignmentDescription', var_type='String')
+
+context = Variables.task_call(dev_var)
+
+if not context.get('VLANsInUse'):
+	context['VLANsInUse']=[]
+if not context.get('newVlanId'):
+	context['newVlanId']=''
+if not context.get('newAssignmentDescription'):
+	context['newAssignmentDescription']=''
+	
+newVlanId=context['newVlanId']
+newAssignmentDescription=context['newAssignmentDescription']
+usedList=""
+
+if not newVlanId:
+	#get new VLAN Id from the given range
+	for i in range(int(context['poolStart']),int(context['poolEnd'])+1):
+		if not context['VLANsInUse']:
+			newVlanId=str(i)
+			break
+		else:
+			freeIP=True
+			for vlanInUse in context['VLANsInUse']:
+				if str(i) == vlanInUse['vlanId']:
+					freeIP=False
+					break
+			if freeIP:
+				newVlanId=str(i)
+				break
+
+	if not newVlanId:
+		MSA_API.task_error('All Vlan Ids from the range '+context['poolStart']+' - '+context['poolEnd']+' have been allocated', context, True)
+else:
+	# Check if given Vlan Id is include on the range
+	if int(context['poolStart']) > int(newVlanId) or int(newVlanId) > int(context['poolEnd']):
+		MSA_API.task_error('Vlan Id '+newVlanId+" not on the available range ("+context['poolStart']+" - "+context['poolEnd']+")", context, True)	
+	#Check if the given Vlan Id is already allocated
+	for usedVlan in context['VLANsInUse']:
+		if newVlanId == usedVlan['vlanId']:
+			MSA_API.task_error('Vlan Id '+newVlanId+" is already in use", context, True)
+
+context['VLANsInUse'].append(dict(vlanId=newVlanId,assignment_information=newAssignmentDescription))
+
+
+if context.get('usedVlanIds'):
+	usedList=context['usedVlanIds']
+usedList=usedList+"\n"+newVlanId
+context['usedVlanIds']=usedList
+
+ret = MSA_API.process_content('ENDED', 'New Vlan Id '+newVlanId+" has been allocated", context, True)
+print(ret)
+
+
