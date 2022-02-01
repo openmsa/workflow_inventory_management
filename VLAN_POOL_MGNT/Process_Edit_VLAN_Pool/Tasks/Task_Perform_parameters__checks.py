@@ -22,8 +22,8 @@ if poolStart > poolEnd:
 elif poolStart <= 0 or poolEnd <= 0:
 		MSA_API.task_error('Vlan ID range cannot have null or negative value',context, True)
 
-elif poolStart >= 4096 or poolEnd >= 4096:
-		MSA_API.task_error('Vlan ID range cannot exceed 4096 as value',context, True)
+elif poolStart > 4095 or poolEnd > 4095:
+		MSA_API.task_error('Vlan ID range cannot exceed the value of 4095',context, True)
 
 ret=MSA_API.process_content('ENDED','',context, True)
 print(ret)
