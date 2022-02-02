@@ -39,6 +39,9 @@ if not context.get('object_id'):
 
 object_id=context['object_id']
 
+if not context.get('IPsInUse'):
+	context['IPsInUse']=[]
+
 # build the Microservice JSON params
 #{"Gateway":"0"}
 #micro_service_vars_array = {"object_id":object_id}
@@ -52,6 +55,7 @@ object_parameters['IP_POOL'] [object_id]['globaluniq']=context['globaluniq']
 object_parameters['IP_POOL'] [object_id]['version']=context['version']
 object_parameters['IP_POOL'] [object_id]['description']=context['description']
 object_parameters['IP_POOL'] [object_id]['pool']=context['pool']
+object_parameters['IP_POOL'] [object_id]['IPsInUse']=context['IPsInUse']
 
 # call the CREATE for the specified MS for each device
 order = Order(devicelongid)

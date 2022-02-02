@@ -29,6 +29,9 @@ if not context.get('object_id'):
 
 object_id=context['object_id']
 
+if not context.get('vpcsInUse'):
+	context['vpcsInUse']=[]
+
 # build the Microservice JSON params
 #{"Gateway":"0"}
 #micro_service_vars_array = {"object_id":object_id}

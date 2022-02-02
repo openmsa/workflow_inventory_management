@@ -29,6 +29,9 @@ if not context.get('object_id'):
 
 object_id=context['object_id']
 
+if not context.get('vnisInUse'):
+	context['vnisInUse']=[]
+
 # build the Microservice JSON params
 #{"Gateway":"0"}
 #micro_service_vars_array = {"object_id":object_id}
@@ -40,6 +43,7 @@ object_parameters['VNI_POOL'] [object_id]['name']=context['name']
 object_parameters['VNI_POOL'] [object_id]['description']=context['description']
 object_parameters['VNI_POOL'] [object_id]['poolStart']=context['poolStart']
 object_parameters['VNI_POOL'] [object_id]['poolEnd']=context['poolEnd']
+object_parameters['VNI_POOL'] [object_id]['vnisInUse']=context['vnisInUse']
 
 
 # call the CREATE for the specified MS for each device
