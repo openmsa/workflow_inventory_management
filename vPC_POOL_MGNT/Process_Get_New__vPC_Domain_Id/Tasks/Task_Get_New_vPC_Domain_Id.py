@@ -13,8 +13,10 @@ if not context['device_id'] or not context['name'] or not context['poolStart'] o
 
 if not context.get('vpcsInUse'):
 	context['vpcsInUse']=[]
+	
 if not context.get('newVpcId'):
 	context['newVpcId']=''
+	
 if not context.get('newAssignmentDescription'):
 	context['newAssignmentDescription']=''
 	
@@ -44,6 +46,9 @@ else:
 	# Check if given vPC Id is include on the range
 	if int(context['poolStart']) > int(newVpcId) or int(newVpcId) > int(context['poolEnd']):
 		MSA_API.task_error('vPC Id '+newVpcId+" not on the available range ("+context['poolStart']+" - "+context['poolEnd']+")", context, True)	
+	# Check if given vPC Id is not starting with 0 (eg : 01)
+	if newVpcId.startswith('0'):
+		MSA_API.task_error('vPC Id '+newVpcId+" not valid, please retry", context, True)
 	#Check if the given vPC Id is already allocated
 	for usedVpc in context['vpcsInUse']:
 		if newVpcId == usedVpc['vpcDomainId']:

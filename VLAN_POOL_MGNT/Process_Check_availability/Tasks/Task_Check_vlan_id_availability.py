@@ -18,6 +18,10 @@ if not context.get('searchedVlanId'):
 	
 searchedVlanId=context['searchedVlanId']
 
+# Check if given VLAN Id is not starting with 0 (eg : 01)
+if searchedVlanId.startswith('0'):
+	MSA_API.task_error('VLAN Id '+searchedVlanId+" not valid, please retry", context, True)
+
 # Check if given Vlan Id is include on the range
 if int(context['poolStart']) > int(searchedVlanId) or int(searchedVlanId) > int(context['poolEnd']):
 	MSA_API.task_error('Vlan Id '+searchedVlanId+" not on the available range ("+context['poolStart']+" - "+context['poolEnd']+")", context, True)

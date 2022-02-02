@@ -14,8 +14,10 @@ if not context['device_id'] or not context['name'] or not context['poolStart'] o
 
 if not context.get('vnisInUse'):
 	context['vnisInUse']=[]
+	
 if not context.get('newVniId'):
 	context['newVniId']=''
+	
 if not context.get('newAssignmentDescription'):
 	context['newAssignmentDescription']=''
 	
@@ -49,10 +51,13 @@ else:
 	# Check if given VNI Id is include on the range
 	if int(context['poolStart']) > int(newVniId) or int(newVniId) > int(context['poolEnd']):
 		MSA_API.task_error('VNI Id '+newVniId+" not on the available range ("+context['poolStart']+" - "+context['poolEnd']+")", context, True)	
+	# Check if given VNI Id is not starting with 0 (eg : 01)
+	if newVniId.startswith('0'):
+		MSA_API.task_error('VNI Id '+newVniId+" not valid, please retry", context, True)
 	#Check if the given VNI Id is already allocated
 	for usedVni in context['vnisInUse']:
 		if newVniId == usedVni['vniId']:
-			MSA_API.task_error('Vlan Id '+newVlanId+" is already in use", context, True)
+			MSA_API.task_error('VNI Id '+newVniId+" is already in use", context, True)
 
 context['vnisInUse'].append(dict(vniId=newVniId,domainName=newDomainName,assignment_information=newAssignmentDescription))
 

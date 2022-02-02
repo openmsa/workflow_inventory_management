@@ -5,6 +5,7 @@ context = Variables.task_call()
 
 if not context.get('poolStart'):
 	context['poolStart']=0
+	
 if not context.get('poolEnd'):
 	context['poolEnd']=0
 	
@@ -17,7 +18,7 @@ if not context['poolStart'] or not context['poolEnd']:
 
 #check the range order
 if poolStart > poolEnd:
-	MSA_API.task_error('VNI ID Range start cannot be higher range end',context, True)
+	MSA_API.task_error('VNI ID start range value cannot be higher than end range value',context, True)
 
 elif poolStart < 4096 or poolEnd < 4096:
 		MSA_API.task_error('VNI ID range should have values starting from 4096',context, True)

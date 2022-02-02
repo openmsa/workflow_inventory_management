@@ -18,6 +18,10 @@ if not context.get('searchedVniId'):
 	
 searchedVniId=context['searchedVniId']
 
+# Check if given VNI Id is not starting with 0 (eg : 01)
+if searchedVniId.startswith('0'):
+	MSA_API.task_error('VNI Id '+searchedVniId+" not valid, please retry", context, True)
+
 # Check if given VNI Id is include on the range
 if int(context['poolStart']) > int(searchedVniId) or int(searchedVniId) > int(context['poolEnd']):
 	MSA_API.task_error('VNI Id '+searchedVniId+" not on the available range ("+context['poolStart']+" - "+context['poolEnd']+")", context, True)

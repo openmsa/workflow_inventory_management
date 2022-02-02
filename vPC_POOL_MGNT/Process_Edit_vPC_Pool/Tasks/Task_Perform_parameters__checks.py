@@ -5,6 +5,7 @@ context = Variables.task_call()
 
 if not context.get('poolStart'):
 	context['poolStart']=0
+	
 if not context.get('poolEnd'):
 	context['poolEnd']=0
 	
@@ -17,7 +18,7 @@ if not context['poolStart'] or not context['poolEnd']:
 
 #check the range order
 if poolStart > poolEnd:
-	MSA_API.task_error('vPC ID Range start cannot be higher range end',context, True)
+	MSA_API.task_error('vPC ID start range value cannot be higher than end range value',context, True)
 
 elif poolStart <= 0 or poolEnd <= 0:
 		MSA_API.task_error('vPC ID range cannot have null or negative value',context, True)

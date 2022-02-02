@@ -13,8 +13,10 @@ if not context['device_id'] or not context['name'] or not context['poolStart'] o
 
 if not context.get('vlansInUse'):
 	context['vlansInUse']=[]
+	
 if not context.get('newVlanId'):
 	context['newVlanId']=''
+	
 if not context.get('newAssignmentDescription'):
 	context['newAssignmentDescription']=''
 	
@@ -44,6 +46,9 @@ else:
 	# Check if given Vlan Id is include on the range
 	if int(context['poolStart']) > int(newVlanId) or int(newVlanId) > int(context['poolEnd']):
 		MSA_API.task_error('Vlan Id '+newVlanId+" not on the available range ("+context['poolStart']+" - "+context['poolEnd']+")", context, True)	
+	# Check if given VLAN Id is not starting with 0 (eg : 01)
+	if newVlanId.startswith('0'):
+		MSA_API.task_error('VLAN Id '+newVlanId+" not valid, please retry", context, True)
 	#Check if the given Vlan Id is already allocated
 	for usedVlan in context['vlansInUse']:
 		if newVlanId == usedVlan['vlanId']:

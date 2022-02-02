@@ -18,6 +18,10 @@ if not context.get('searchedVpcId'):
 	
 searchedVpcId=context['searchedVpcId']
 
+# Check if given vPC Id is not starting with 0 (eg : 01)
+if searchedVpcId.startswith('0'):
+	MSA_API.task_error('vPC Id '+searchedVpcId+" not valid, please retry", context, True)
+
 # Check if given vPC Id is include on the range
 if int(context['poolStart']) > int(searchedVpcId) or int(searchedVpcId) > int(context['poolEnd']):
 	MSA_API.task_error('vPC Id '+searchedVpcId+" not on the available range ("+context['poolStart']+" - "+context['poolEnd']+")", context, True)
