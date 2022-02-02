@@ -34,12 +34,12 @@ if not newVniId:
 			newVniId=str(i)
 			break
 		else:
-			freeIP=True
+			freeVNI=True
 			for vniInUse in context['vnisInUse']:
 				if str(i) == vniInUse['vniId']:
-					freeIP=False
+					freeVNI=False
 					break
-			if freeIP:
+			if freeVNI:
 				newVniId=str(i)
 				break
 

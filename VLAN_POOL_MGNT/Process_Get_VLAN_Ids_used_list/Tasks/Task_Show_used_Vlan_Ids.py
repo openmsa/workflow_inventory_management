@@ -10,8 +10,8 @@ if not context['device_id'] or not context['name'] or not context['poolStart'] o
 
 usedList=''
 
-if context.get('VLANsInUse'):
-	for vlanId in context['VLANsInUse']:
+if context.get('vlansInUse'):
+	for vlanId in context['vlansInUse']:
 		usedList=usedList+"\n"+vlanId['vlanId']
 context['usedVlanIds']=usedList
 ret = MSA_API.process_content('ENDED', 'Used Vlan Ids :'+usedList, context, True)

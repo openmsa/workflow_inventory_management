@@ -9,7 +9,7 @@ dev_var.add('Confirmation', var_type='String')
 context = Variables.task_call(dev_var)
 
 if not context['Confirmation'] == "Delete me":
-	ret=MSA_API.process_content('ERROR','You need to enter "Delete me" as a confirmation keyword',context, True)
+	ret=MSA_API.process_content('ERROR','You need to enter "Delete me" as a confirmation',context, True)
 	print(ret)
 
 

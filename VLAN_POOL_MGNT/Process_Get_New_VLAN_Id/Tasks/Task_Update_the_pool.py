@@ -33,7 +33,7 @@ object_parameters['VLAN_POOL'] [object_id]['name']=context['name']
 object_parameters['VLAN_POOL'] [object_id]['description']=context['description']
 object_parameters['VLAN_POOL'] [object_id]['poolStart']=context['poolStart']
 object_parameters['VLAN_POOL'] [object_id]['poolEnd']=context['poolEnd']
-object_parameters['VLAN_POOL'] [object_id]['VLANsInUse']=context['VLANsInUse']
+object_parameters['VLAN_POOL'] [object_id]['vlansInUse']=context['vlansInUse']
 
 # call the CREATE for the specified MS for each device
 order = Order(devicelongid)

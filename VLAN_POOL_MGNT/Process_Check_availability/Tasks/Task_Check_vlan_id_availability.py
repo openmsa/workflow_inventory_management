@@ -10,8 +10,8 @@ context = Variables.task_call(dev_var)
 if not context['device_id'] or not context['name'] or not context['poolStart'] or not context['poolEnd']:
 	MSA_API.task_error('Mandatory parameters required, please edit the VLAN pool',context, True)
 	
-if not context.get('VLANsInUse'):
-  context['VLANsInUse'] = []
+if not context.get('vlansInUse'):
+  context['vlansInUse'] = []
 
 if not context.get('searchedVlanId'):
 	MSA_API.task_error('Please enter an VLAN Id to search', context, True)
@@ -24,7 +24,7 @@ if int(context['poolStart']) > int(searchedVlanId) or int(searchedVlanId) > int(
 		
 #Check if the given Vlan Id is already allocated
 freeVlanId=True
-for vlanIdInUse in context['VLANsInUse']:
+for vlanIdInUse in context['vlansInUse']:
 	if searchedVlanId == vlanIdInUse['vlanId']:
 		freeVlanId=False
 		break
