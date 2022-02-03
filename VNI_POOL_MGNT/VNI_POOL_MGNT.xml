@@ -86,19 +86,13 @@
   </process>
   <process name="Process/workflows/VNI_POOL_MGNT/Process_Delete_VNI_Pool">
     <displayName>Delete VNI Pool</displayName>
-    <type>UPDATE</type>
+    <type>DELETE</type>
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Delete_VNI_Pool.py">
       <processPath>/opt/fmc_repository/Process/workflows/VNI_POOL_MGNT/Process_Delete_VNI_Pool/Tasks</processPath>
       <displayName>Delete VNI Pool</displayName>
     </task>
-  </process>
-  <process name="Process/workflows/VNI_POOL_MGNT/Process_Delete_Instance">
-    <displayName>Delete Instance</displayName>
-    <type>DELETE</type>
-    <visibility>5</visibility>
-    <allowSchedule/>
   </process>
   <information>
     <icon/>

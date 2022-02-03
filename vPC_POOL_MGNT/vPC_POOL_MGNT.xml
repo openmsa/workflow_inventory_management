@@ -85,19 +85,13 @@
   </process>
   <process name="Process/workflows/vPC_POOL_MGNT/Process_Delete_vPC_Pool">
     <displayName>Delete vPC Pool</displayName>
-    <type>UPDATE</type>
+    <type>DELETE</type>
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Delete_vPC_Pool.py">
       <processPath>/opt/fmc_repository/Process/workflows/vPC_POOL_MGNT/Process_Delete_vPC_Pool/Tasks</processPath>
       <displayName>Delete vPC Pool</displayName>
     </task>
-  </process>
-  <process name="Process/workflows/vPC_POOL_MGNT/Process_Delete_Instance">
-    <displayName>Delete Instance</displayName>
-    <type>DELETE</type>
-    <visibility>5</visibility>
-    <allowSchedule/>
   </process>
   <information>
     <icon/>
