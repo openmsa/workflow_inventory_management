@@ -8,8 +8,12 @@ from ipaddress import ip_network
 
 dev_var = Variables()
 dev_var.add('newip', var_type='String')
+dev_var.add('totalIpUsage', var_type='String')
 dev_var.add('newAssignmentDescription', var_type='String')
 dev_var.add('cidrList.0.cidr')
+dev_var.add('cidrList.0.totalIps', var_type='String')
+dev_var.add('cidrList.0.ipUsedNb', var_type='String')
+dev_var.add('cidrList.0.ipUsage', var_type='String')
 dev_var.add('cidrList.0.isSelected')
 
 context = Variables.task_call(dev_var)
@@ -66,7 +70,6 @@ else:
 			MSA_API.task_error('IP address '+newip+" is already in use", context, True)
 
 context['IPsInUse'].append(dict(address=newip,assignment_information=newAssignmentDescription))
-
 
 if context.get('usedIPs'):
 	usedList=context['usedIPs']

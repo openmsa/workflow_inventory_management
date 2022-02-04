@@ -1,7 +1,9 @@
 import json
+import uuid
 from msa_sdk.variables import Variables
 from msa_sdk.msa_api import MSA_API
 from msa_sdk.order import Order
+from statistics import mean
 
 # List all the parameters required by the task
 dev_var = Variables()
@@ -14,16 +16,30 @@ device_id = context['device_id']
 devicelongid = device_id[3:]
 
 cidrList=[]
+avgPercentList=[]
+
 for cidr in context['pool']:
-	my_dict = dict(cidr=cidr['address']+'/'+cidr['prefix'],isSelected='false')
+	if context['SelectedCidr'] == cidr['address']+'/'+cidr['prefix']:
+		cidr['ipUsedNb']+=1
+		percent = "{:.2%}".format((int(cidr['totalIps']-cidr['ipUsedNb']))/int(cidr['totalIps']))
+		percent=(float(100)-float(percent.strip('%')))
+		percent="{:.2f}".format(round(percent, 2))+"%"
+		cidr['ipUsage']=str(percent)
+	my_dict = dict(cidr=cidr['address']+'/'+cidr['prefix'],totalIps=cidr['totalIps'],ipUsage=cidr['ipUsage'],ipUsedNb=cidr['ipUsedNb'],isSelected='false')
 	cidrList.append(my_dict)
+	avgPercentList.append(float(cidr['ipUsage'].strip('%')))
+	
 context['cidrList'] = cidrList
+context['totalIpUsage']=str("{:.2f}".format(round(mean(avgPercentList))))+'%'
 
 if not context.get('globaluniq'):
 	context['globaluniq']=''
 
 if not context.get('description'):
 	context['description']=''
+	
+if not context.get('totalIpUsage'):
+	context['totalIpUsage']="0%"	
 
 if not context.get('object_id'):
 	context['object_id']=str(uuid.uuid4())
@@ -41,6 +57,7 @@ object_parameters['IP_POOL'] [object_id]['object_id']=object_id
 object_parameters['IP_POOL'] [object_id]['name']=context['name']
 object_parameters['IP_POOL'] [object_id]['globaluniq']=context['globaluniq']
 object_parameters['IP_POOL'] [object_id]['version']=context['version']
+object_parameters['IP_POOL'] [object_id]['totalIpUsage']=context['totalIpUsage']
 object_parameters['IP_POOL'] [object_id]['description']=context['description']
 object_parameters['IP_POOL'] [object_id]['pool']=context['pool']
 object_parameters['IP_POOL'] [object_id]['IPsInUse']=context['IPsInUse']
