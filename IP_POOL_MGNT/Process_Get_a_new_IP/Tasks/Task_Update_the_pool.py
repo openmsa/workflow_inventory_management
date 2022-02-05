@@ -20,8 +20,10 @@ avgPercentList=[]
 
 for cidr in context['pool']:
 	if context['SelectedCidr'] == cidr['address']+'/'+cidr['prefix']:
-		cidr['ipUsedNb']+=1
-		percent = "{:.2%}".format((int(cidr['totalIps']-cidr['ipUsedNb']))/int(cidr['totalIps']))
+		ipUsedNb=int(cidr['ipUsedNb'])
+		ipUsedNb+=1
+		cidr['ipUsedNb']=str(ipUsedNb)
+		percent = "{:.2%}".format((int(cidr['totalIps'])-int(cidr['ipUsedNb']))/int(cidr['totalIps']))
 		percent=(float(100)-float(percent.strip('%')))
 		percent="{:.2f}".format(round(percent, 2))+"%"
 		cidr['ipUsage']=str(percent)

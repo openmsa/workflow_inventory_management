@@ -30,13 +30,15 @@ device_id = context['device_id']
 devicelongid = device_id[3:]
 
 cidrList=[]
+
 for cidr in context['pool']:
-	cidr['totalIps']=len(cidr_to_range(cidr['address']+'/'+cidr['prefix']))
-	if not cidr['ipUsage']:
-		cidr['ipUsedNb']=str(0)
+	cidr['totalIps']=str(len(cidr_to_range(cidr['address']+'/'+cidr['prefix'])))
+	if not cidr['ipUsage'] or cidr['ipUsage'] == 'null':
+		cidr['ipUsedNb']="0"
 		cidr['ipUsage']='0%'
 	my_dict = dict(cidr=cidr['address']+'/'+cidr['prefix'],totalIps=cidr['totalIps'],ipUsage=cidr['ipUsage'],ipUsedNb=cidr['ipUsedNb'],isSelected='false')
 	cidrList.append(my_dict)
+	
 context['cidrList'] = cidrList
 
 if not context.get('globaluniq'):

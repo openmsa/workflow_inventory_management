@@ -37,11 +37,12 @@ context['object_id']=object_id
 
 cidrList=[]
 for cidr in context['pool']:
-	cidr['ipUsedNb']=str(0)
-	cidr['totalIps']=len(cidr_to_range(cidr['address']+'/'+cidr['prefix']))
+	cidr['ipUsedNb']="0"
+	cidr['totalIps']=str(len(cidr_to_range(cidr['address']+'/'+cidr['prefix'])))
 	cidr['ipUsage']='0%'
 	my_dict = dict(cidr=cidr['address']+'/'+cidr['prefix'],totalIps=cidr['totalIps'],ipUsage=cidr['ipUsage'],ipUsedNb=cidr['ipUsedNb'],isSelected='false')
 	cidrList.append(my_dict)
+
 context['cidrList'] = cidrList
 
 if not context.get('globaluniq'):
