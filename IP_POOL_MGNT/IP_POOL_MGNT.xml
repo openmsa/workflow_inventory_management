@@ -112,13 +112,25 @@
   </process>
   <process name="Process/workflows/IP_POOL_MGNT/Process_Delete_IP_Pool">
     <displayName>Delete IP Pool</displayName>
-    <type>DELETE</type>
+    <type>UPDATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="IP_POOL_DELETE.py">
       <processPath>/opt/fmc_repository/Process/workflows/IP_POOL_MGNT/Process_Delete_IP_Pool/Tasks</processPath>
       <displayName>Delete IP Pool</displayName>
     </task>
+  </process>
+  <process name="Process/workflows/IP_POOL_MGNT/Process_Release_an_IP">
+    <displayName>Release an IP</displayName>
+    <type>UPDATE</type>
+    <visibility>5</visibility>
+    <allowSchedule/>
+  </process>
+  <process name="Process/workflows/IP_POOL_MGNT/Process_Delete_Instance">
+    <displayName>Delete Instance</displayName>
+    <type>DELETE</type>
+    <visibility>5</visibility>
+    <allowSchedule/>
   </process>
   <information>
     <icon/>

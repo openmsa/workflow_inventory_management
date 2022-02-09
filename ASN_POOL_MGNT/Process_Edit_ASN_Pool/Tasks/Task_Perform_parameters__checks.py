@@ -3,28 +3,27 @@ from msa_sdk.variables import Variables
 
 context = Variables.task_call()
 
-if not context.get('poolStart'):
-	context['poolStart']=0
+#check that at least there is one ASN range pool  defined
+if not context.get('pool'):
+	MSA_API.task_error('You need to enter at least one ASN range pool',context, True)
 	
-if not context.get('poolEnd'):
-	context['poolEnd']=0
-	
-poolStart=int(context['poolStart'])
-poolEnd=int(context['poolEnd'])
-
-#check that at least there is one vlan range defined
-if not context['poolStart'] or not context['poolEnd']:
-	MSA_API.task_error('You need to enter the ASN Pool range',context, True)
+duplicateRangeCheck=[]
 
 #check the range order
-if poolStart > poolEnd:
-	MSA_API.task_error('ASN ID start range value cannot be higher than end range value',context, True)
-
-elif poolStart <= 0 or poolEnd <= 0:
+for asnRange in context.get('pool'):
+	poolStart=int(asnRange['poolStart'])
+	poolEnd=int(asnRange['poolEnd'])
+	duplicateRangeCheck.append(''+str(poolStart)+'-'+str(poolEnd)+'')
+	
+	if poolStart > poolEnd:
+		MSA_API.task_error('ASN ID start range value cannot be higher than end range value',context, True)
+	elif poolStart <= 0 or poolEnd <= 0:
 		MSA_API.task_error('ASN ID range cannot have null or negative value',context, True)
-
-elif poolStart > 64511 or poolEnd > 64511:
+	elif poolStart > 64511 or poolEnd > 64511:
 		MSA_API.task_error('ASN ID range cannot exceed the value of 64511',context, True)
 
+if len(duplicateRangeCheck) != len(set(duplicateRangeCheck)):
+	MSA_API.task_error('Duplicate of ASN range detected, please edit your ASN Pool',context, True)
+	
 ret=MSA_API.process_content('ENDED','',context, True)
 print(ret)

@@ -8,14 +8,20 @@ from ipaddress import ip_network
 dev_var = Variables()
 dev_var.add('searchedip', var_type='String')
 
-
 context = Variables.task_call(dev_var)
 
+if len(context['cidrList']) != len(context['cidrList_backup']):
+	context['cidrList']=context['cidrList_backup']
+	MSA_API.task_error('IP Pool update cannot be done from this process',context, True)
+	
 if not context['device_id'] or not context['name'] :
 	MSA_API.task_error('Mandatory parameters required',context, True)
 
 if not context.get('IPsInUse'):
   context['IPsInUse'] = []
+  
+if not context.get('cidrList'):
+  context['cidrList'] = []
 
 if not context.get('searchedip'):
 	MSA_API.task_error('Please enter an IP to search', context, True)

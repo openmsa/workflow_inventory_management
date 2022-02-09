@@ -12,7 +12,11 @@ if not context['Confirmation'] == "Delete me":
 	ret=MSA_API.process_content('ERROR','You need to enter "Delete me" as a confirmation',context, True)
 	print(ret)
 
+if not context.get('vpcsInUse'):
+  context['vpcsInUse'] = []
 
+if context.get('vpcsInUse'):
+	MSA_API.task_error('vPCs still in use, please release them before deleting',context, True)
 
 
 # read the ID of the selected managed entity

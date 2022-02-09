@@ -3,28 +3,29 @@ from msa_sdk.variables import Variables
 
 context = Variables.task_call()
 
-if not context.get('poolStart'):
-	context['poolStart']=0
-	
-if not context.get('poolEnd'):
-	context['poolEnd']=0
-	
-poolStart=int(context['poolStart'])
-poolEnd=int(context['poolEnd'])
+#check that at least there is one vPC range pool  defined
+if not context.get('pool'):
+	MSA_API.task_error('You need to enter at least one vPC range pool',context, True)
 
-#check that at least there is one vlan range defined
-if not context['poolStart'] or not context['poolEnd']:
-	MSA_API.task_error('You need to enter the vPC range',context, True)
+duplicateRangeCheck=[]
 
 #check the range order
-if poolStart > poolEnd:
-	MSA_API.task_error('vPC ID start range value cannot be higher than end range value',context, True)
+for vpcRange in context.get('pool'):
+	poolStart=int(vpcRange['poolStart'])
+	poolEnd=int(vpcRange['poolEnd'])
+	duplicateRangeCheck.append(''+str(poolStart)+'-'+str(poolEnd)+'')
 
-elif poolStart <= 0 or poolEnd <= 0:
+	if poolStart > poolEnd:
+		MSA_API.task_error('vPC ID start range value cannot be higher than end range value',context, True)
+
+	elif poolStart <= 0 or poolEnd <= 0:
 		MSA_API.task_error('vPC ID range cannot have null or negative value',context, True)
 
-elif poolStart > 1000 or poolEnd > 1000:
+	elif poolStart > 1000 or poolEnd > 1000:
 		MSA_API.task_error('vPC ID range cannot exceed the value of 1000',context, True)
 
+if len(duplicateRangeCheck) != len(set(duplicateRangeCheck)):
+	MSA_API.task_error('Duplicate of vPC range detected, please edit your vPC Pool',context, True)
+	
 ret=MSA_API.process_content('ENDED','',context, True)
 print(ret)

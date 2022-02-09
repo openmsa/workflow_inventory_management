@@ -9,8 +9,16 @@
     <variable displayName="Description" name="params.description" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
     <variable displayName="Please enter &quot;Delete me&quot; as  confirmation" name="params.Confirmation" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
     <variable displayName="New vPC Domain Id" name="params.newVpcId" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="vpcIdToRelease" name="params.vpcIdToRelease" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
     <variable displayName="New Assignment Description" name="params.newAssignmentDescription" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
     <variable displayName="Searched vPC Domain Id" name="params.searchedVpcId" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="poolStart" name="params.pool.0.poolStart" startIncrement="0" type="Integer" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="poolEnd" name="params.pool.0.poolEnd" startIncrement="0" type="Integer" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="vpcId" name="params.vpcsInUse.0.vpcId" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="assignment_information" name="params.vpcsInUse.0.assignment_information" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="poolStart" name="params.vpcRangeList.0.poolStart" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="poolEnd" name="params.vpcRangeList.0.poolEnd" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="isSelected" name="params.vpcRangeList.0.isSelected" startIncrement="0" type="Boolean" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
   </variables>
   <example/>
   <process name="Process/workflows/vPC_POOL_MGNT/Process_Create_vPC_Pool">
@@ -32,10 +40,14 @@
     </task>
   </process>
   <process name="Process/workflows/vPC_POOL_MGNT/Process_Get_New__vPC_Domain_Id">
-    <displayName>Get New  vPC Domain Id</displayName>
+    <displayName>Get New  vPC Id</displayName>
     <type>UPDATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
+    <task name="Process/workflows/vPC_POOL_MGNT/Process_Get_New__vPC_Domain_Id/Tasks/Task_Get_existing_vPC_Pools.py">
+      <processPath></processPath>
+      <displayName>Get existing vPC Pools</displayName>
+    </task>
     <task name="Task_Get_New_vPC_Domain_Id.py">
       <processPath>/opt/fmc_repository/Process/workflows/vPC_POOL_MGNT/Process_Get_New__vPC_Domain_Id/Tasks</processPath>
       <displayName>Get New vPC Domain Id</displayName>
@@ -46,7 +58,7 @@
     </task>
   </process>
   <process name="Process/workflows/vPC_POOL_MGNT/Process_Check_vPC_Domain_Id_Availability">
-    <displayName>Check vPC Domain Id Availability</displayName>
+    <displayName>Check vPC Id Availability</displayName>
     <type>UPDATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
@@ -56,7 +68,7 @@
     </task>
   </process>
   <process name="Process/workflows/vPC_POOL_MGNT/Process_Get_vPC_Domain_Ids_Used_List">
-    <displayName>Get vPC Domain Ids Used List</displayName>
+    <displayName>Get vPC Ids Used List</displayName>
     <type>UPDATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
@@ -83,15 +95,35 @@
       <displayName>Update vPC Pools</displayName>
     </task>
   </process>
+  <process name="Process/workflows/vPC_POOL_MGNT/Process_Release_a_vPC">
+    <displayName>Release a vPC</displayName>
+    <type>UPDATE</type>
+    <visibility>5</visibility>
+    <allowSchedule/>
+    <task name="Task_Release_a_vPC.py">
+      <processPath>/opt/fmc_repository/Process/workflows/vPC_POOL_MGNT/Process_Release_a_vPC/Tasks</processPath>
+      <displayName>Release a vPC</displayName>
+    </task>
+    <task name="Process/workflows/vPC_POOL_MGNT/Process_Get_New__vPC_Domain_Id/Tasks/Task_Update_the_pool.py">
+      <processPath></processPath>
+      <displayName>Update The Pool</displayName>
+    </task>
+  </process>
   <process name="Process/workflows/vPC_POOL_MGNT/Process_Delete_vPC_Pool">
     <displayName>Delete vPC Pool</displayName>
-    <type>DELETE</type>
+    <type>UPDATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Delete_vPC_Pool.py">
       <processPath>/opt/fmc_repository/Process/workflows/vPC_POOL_MGNT/Process_Delete_vPC_Pool/Tasks</processPath>
       <displayName>Delete vPC Pool</displayName>
     </task>
+  </process>
+  <process name="Process/workflows/vPC_POOL_MGNT/Process_Delete_Instance">
+    <displayName>Delete Instance</displayName>
+    <type>DELETE</type>
+    <visibility>5</visibility>
+    <allowSchedule/>
   </process>
   <information>
     <icon/>

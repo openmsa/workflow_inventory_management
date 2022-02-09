@@ -8,19 +8,6 @@ from msa_sdk.util import cidr_to_range
 
 # List all the parameters required by the task
 dev_var = Variables()
-dev_var.add('device_id', var_type='Device')
-dev_var.add('object_id', var_type='AutoIncrement')
-dev_var.add('name', var_type='String')
-dev_var.add('globaluniq', var_type='Boolean')
-dev_var.add('version', var_type='String')
-dev_var.add('totalIpUsage', var_type='String')
-dev_var.add('pool.0.address', var_type='Composite')
-dev_var.add('pool.0.prefix', var_type='Integer')
-dev_var.add('pool.0.totalIps', var_type='String')
-dev_var.add('pool.0.ipUsage', var_type='String')
-dev_var.add('pool.0.ipUsedNb', var_type='String')
-dev_var.add('description', var_type='String')
-
 context = Variables.task_call(dev_var)
 
 
@@ -44,6 +31,7 @@ for cidr in context['pool']:
 	cidrList.append(my_dict)
 
 context['cidrList'] = cidrList
+context['cidrList_backup']=cidrList
 
 if not context.get('globaluniq'):
 	context['globaluniq']=''

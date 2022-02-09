@@ -7,8 +7,11 @@ from msa_sdk.order import Order
 dev_var = Variables()
 dev_var.add('device_id', var_type='Device')
 dev_var.add('name', var_type='String')
-dev_var.add('poolStart', var_type='Integer')
-dev_var.add('poolEnd', var_type='Integer')
+dev_var.add('pool.0.poolStart', var_type='Integer')
+dev_var.add('pool.0.poolEnd', var_type='Integer')
+dev_var.add('asnsInUse.0.asnId', var_type='String')
+dev_var.add('asnsInUse.0.assignment_information', var_type='String')
+dev_var.add('description', var_type='String')
 context = Variables.task_call(dev_var)
 
 if not context['device_id'] or not context['name'] :
@@ -17,6 +20,7 @@ if not context['device_id'] or not context['name'] :
 # read the ID of the selected managed entity
 device_id = context['device_id']
 
+context['pool_backup']=context['pool']
 # extract the database ID
 devicelongid = device_id[3:]
 

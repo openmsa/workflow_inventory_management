@@ -6,7 +6,27 @@ from msa_sdk.order import Order
 # List all the parameters required by the task
 dev_var = Variables()
 dev_var.add('device_id', var_type='Device')
+dev_var.add('object_id', var_type='AutoIncrement')
+dev_var.add('name', var_type='String')
+dev_var.add('newip', var_type='String')
+dev_var.add('totalIpUsage', var_type='String')
+dev_var.add('newAssignmentDescription', var_type='String')
+dev_var.add('cidrList.0.cidr')
+dev_var.add('cidrList.0.totalIps', var_type='String')
+dev_var.add('cidrList.0.ipUsedNb', var_type='String')
+dev_var.add('cidrList.0.ipUsage', var_type='String')
+dev_var.add('cidrList.0.isSelected')
 context = Variables.task_call(dev_var)
+
+if len(context['cidrList']) != len(context['cidrList_backup']):
+	context['cidrList']=context['cidrList_backup']
+	MSA_API.task_error('IP Pool update cannot be done from this process',context, True)
+
+if not context.get('IPsInUse'):
+  context['IPsInUse'] = []
+
+if not context.get('cidrList'):
+  context['cidrList'] = []
 
 if not context['device_id'] or not context['name'] :
 	MSA_API.task_error('Mandatory parameters required',context, True)

@@ -3,13 +3,14 @@ from msa_sdk.msa_api import MSA_API
 
 
 dev_var = Variables()
-dev_var.add('newAsnId', var_type='String')
-dev_var.add('newAssignmentDescription', var_type='String')
 
 context = Variables.task_call(dev_var)
 
-if not context['device_id'] or not context['name'] or not context['poolStart'] or not context['poolEnd']:
+if not context['device_id'] or not context['name']:
 	MSA_API.task_error('Mandatory parameters required, please edit the ASN pool',context, True)
+	
+if not context.get('pool'):
+	MSA_API.task_error('You need to enter at least one ASN pool range',context, True)
 
 if not context.get('asnsInUse'):
 	context['asnsInUse']=[]
@@ -22,18 +23,39 @@ if not context.get('newAssignmentDescription'):
 	
 newAsnId=context['newAsnId']
 newAssignmentDescription=context['newAssignmentDescription']
-usedList=""
 
+SelectedAsnRangeStart=""
+SelectedAsnRangeEnd=""
+
+usedList=""
+nbSelected=0
+
+if context.get('asnRangeList'):
+	for asnRange in context['asnRangeList']:
+		if asnRange.get('isSelected'):
+			if not asnRange['isSelected']=='false':
+				SelectedAsnRangeStart= asnRange['poolStart']
+				SelectedAsnRangeEnd= asnRange['poolEnd']
+				nbSelected+=1
+
+if nbSelected == 0:
+	MSA_API.task_error( 'You need to select one of the avaiable pool range ', context, True)
+if nbSelected > 1:
+	MSA_API.task_error( 'You need to select only one pool range ', context, True)
+
+context['SelectedAsnRangeStart']=SelectedAsnRangeStart
+context['SelectedAsnRangeEnd']=SelectedAsnRangeEnd
+	
 if not newAsnId:
 	#get new ASN Id from the given range
-	for i in range(int(context['poolStart']),int(context['poolEnd'])+1):
+	for i in range(int(SelectedAsnRangeStart),int(SelectedAsnRangeEnd)+1):
 		if not context['asnsInUse']:
 			newAsnId=str(i)
 			break
 		else:
 			freeASN=True
 			for asnInUse in context['asnsInUse']:
-				if str(i) == asnInUse['asnId']:
+				if (str(i) == asnInUse['asnId']) and (str(asnInUse['assignment_information']) == 'From ASN Pool '+context['SelectedAsnRangeStart']+' - '+context['SelectedAsnRangeEnd']+''):
 					freeASN=False
 					break
 			if freeASN:
@@ -41,11 +63,11 @@ if not newAsnId:
 				break
 
 	if not newAsnId:
-		MSA_API.task_error('All ASN Ids from the range '+context['poolStart']+' - '+context['poolEnd']+' have been allocated', context, True)
+		MSA_API.task_error('All ASN Ids from the range '+SelectedAsnRangeStart+' - '+SelectedAsnRangeEnd+' have been allocated', context, True)
 else:
 	# Check if given ASN Id is included in the range
-	if int(context['poolStart']) > int(newAsnId) or int(newAsnId) > int(context['poolEnd']):
-		MSA_API.task_error('ASN Id '+newAsnId+" not on the available range ("+context['poolStart']+" - "+context['poolEnd']+")", context, True)	
+	if int(SelectedAsnRangeStart) > int(newAsnId) or int(newAsnId) > int(SelectedAsnRangeEnd):
+		MSA_API.task_error('ASN Id '+newAsnId+" not on the available range ("+SelectedAsnRangeStart+" - "+SelectedAsnRangeEnd+")", context, True)	
 	
 	# Check if given ASN Id is not starting with 0 (eg : 01)
 	if newAsnId.startswith('0'):
@@ -53,11 +75,11 @@ else:
 	
 	#Check if the given ASN Id is already allocated
 	for usedAsn in context['asnsInUse']:
-		if newAsnId == usedAsn['asnId']:
+		if (newAsnId == usedAsn['asnId']) and (str(usedAsn['assignment_information']) == 'From ASN Pool '+context['SelectedAsnRangeStart']+' - '+context['SelectedAsnRangeEnd']+''):
 			MSA_API.task_error('ASN Id '+newAsnId+" is already in use", context, True)
 
+newAssignmentDescription='From ASN Pool '+SelectedAsnRangeStart+' - '+SelectedAsnRangeEnd+''	
 context['asnsInUse'].append(dict(asnId=newAsnId,assignment_information=newAssignmentDescription))
-
 
 if context.get('usedAsnIds'):
 	usedList=context['usedAsnIds']

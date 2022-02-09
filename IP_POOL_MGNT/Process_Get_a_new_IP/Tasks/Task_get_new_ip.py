@@ -7,14 +7,6 @@ from msa_sdk.util import cidr_to_range
 from ipaddress import ip_network
 
 dev_var = Variables()
-dev_var.add('newip', var_type='String')
-dev_var.add('totalIpUsage', var_type='String')
-dev_var.add('newAssignmentDescription', var_type='String')
-dev_var.add('cidrList.0.cidr')
-dev_var.add('cidrList.0.totalIps', var_type='String')
-dev_var.add('cidrList.0.ipUsedNb', var_type='String')
-dev_var.add('cidrList.0.ipUsage', var_type='String')
-dev_var.add('cidrList.0.isSelected')
 
 context = Variables.task_call(dev_var)
 
@@ -29,13 +21,20 @@ newAssignmentDescription=context['newAssignmentDescription']
 
 SelectedCidr=""
 usedList=""
+nbSelected=0
 
 if context.get('cidrList'):
 	for cidr in context['cidrList']:
 		if cidr.get('isSelected'):
 			if  not cidr['isSelected']=='false':
 				SelectedCidr=cidr['cidr']
+				nbSelected+=1
 
+if nbSelected == 0:
+	MSA_API.task_error( 'You need to select one of the avaiable pool range ', context, True)
+if nbSelected > 1:
+	MSA_API.task_error( 'You need to select only one pool range ', context, True)
+	
 context['SelectedCidr']=SelectedCidr
 
 if not SelectedCidr:
@@ -69,8 +68,8 @@ else:
 		if newip == usedIP['address']:
 			MSA_API.task_error('IP address '+newip+" is already in use", context, True)
 
+newAssignmentDescription='From IP Pool '+SelectedCidr+''	
 context['IPsInUse'].append(dict(address=newip,assignment_information=newAssignmentDescription))
-
 if context.get('usedIPs'):
 	usedList=context['usedIPs']
 usedList=usedList+"\n"+newip

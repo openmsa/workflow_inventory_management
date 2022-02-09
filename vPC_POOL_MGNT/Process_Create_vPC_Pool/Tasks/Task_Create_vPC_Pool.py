@@ -6,13 +6,6 @@ from msa_sdk.order import Order
 
 # List all the parameters required by the task
 dev_var = Variables()
-dev_var.add('device_id', var_type='Device')
-dev_var.add('object_id', var_type='AutoIncrement')
-dev_var.add('name', var_type='String')
-dev_var.add('poolStart', var_type='Integer')
-dev_var.add('poolEnd', var_type='Integer')
-dev_var.add('description', var_type='String')
-
 context = Variables.task_call(dev_var)
 
 # read the ID of the selected managed entity
@@ -27,6 +20,16 @@ if not context.get('description'):
 context['object_id']=str(uuid.uuid4())
 object_id=context['object_id']
 
+
+vpcRangeList=[]
+
+for vpcRange in context['pool']:
+	my_dict = dict(poolStart=vpcRange['poolStart'],poolEnd=vpcRange['poolEnd'],isSelected='false')
+	vpcRangeList.append(my_dict)
+
+context['vpcRangeList'] = vpcRangeList
+context['vpcRangeList_backup']=vpcRangeList
+
 # build the Microservice JSON params
 #{"Gateway":"0"}
 #micro_service_vars_array = {"object_id":object_id}
@@ -36,8 +39,7 @@ object_parameters['vPC_POOL'] [object_id]={}
 object_parameters['vPC_POOL'] [object_id]['object_id']=object_id
 object_parameters['vPC_POOL'] [object_id]['name']=context['name']
 object_parameters['vPC_POOL'] [object_id]['description']=context['description']
-object_parameters['vPC_POOL'] [object_id]['poolStart']=context['poolStart']
-object_parameters['vPC_POOL'] [object_id]['poolEnd']=context['poolEnd']
+object_parameters['vPC_POOL'] [object_id]['pool']=context['pool']
 
 
 # call the CREATE for the specified MS for each device

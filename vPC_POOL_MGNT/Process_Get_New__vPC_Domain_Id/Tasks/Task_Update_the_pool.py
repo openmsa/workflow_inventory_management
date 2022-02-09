@@ -21,6 +21,15 @@ if not context.get('object_id'):
 
 object_id=context['object_id']
 
+vpcRangeList=[]
+
+for vpcRange in context['pool']:
+	my_dict = dict(poolStart=vpcRange['poolStart'],poolEnd=vpcRange['poolEnd'],isSelected='false')
+	vpcRangeList.append(my_dict)
+	
+context['vpcRangeList'] = vpcRangeList
+
+
 # build the Microservice JSON params
 #{"Gateway":"0"}
 #micro_service_vars_array = {"object_id":object_id}
@@ -31,8 +40,7 @@ object_parameters['vPC_POOL'] [object_id]={}
 object_parameters['vPC_POOL'] [object_id]['object_id']=object_id
 object_parameters['vPC_POOL'] [object_id]['name']=context['name']
 object_parameters['vPC_POOL'] [object_id]['description']=context['description']
-object_parameters['vPC_POOL'] [object_id]['poolStart']=context['poolStart']
-object_parameters['vPC_POOL'] [object_id]['poolEnd']=context['poolEnd']
+object_parameters['vPC_POOL'] [object_id]['pool']=context['pool']
 object_parameters['vPC_POOL'] [object_id]['vpcsInUse']=context['vpcsInUse']
 
 # call the CREATE for the specified MS for each device

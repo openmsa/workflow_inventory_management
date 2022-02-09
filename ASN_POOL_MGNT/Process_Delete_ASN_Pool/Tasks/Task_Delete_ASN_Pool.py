@@ -8,13 +8,16 @@ dev_var = Variables()
 dev_var.add('Confirmation', var_type='String')
 context = Variables.task_call(dev_var)
 
+if not context.get('asnsInUse'):
+  context['asnsInUse'] = []
+  
 if not context['Confirmation'] == "Delete me":
 	ret=MSA_API.process_content('ERROR','You need to enter "Delete me" as a confirmation',context, True)
 	print(ret)
 
-
-
-
+if context.get('asnsInUse'):
+	MSA_API.task_error('ASNs still in use, please release them before deleting',context, True)
+	
 # read the ID of the selected managed entity
 device_id = context['device_id']
 

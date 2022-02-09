@@ -6,9 +6,14 @@ from msa_sdk.order import Order
 # List all the parameters required by the task
 dev_var = Variables()
 dev_var.add('device_id', var_type='Device')
+dev_var.add('object_id', var_type='AutoIncrement')
 dev_var.add('name', var_type='String')
-dev_var.add('poolStart', var_type='Integer')
-dev_var.add('poolEnd', var_type='Integer')
+dev_var.add('pool.0.poolStart', var_type='Integer')
+dev_var.add('pool.0.poolEnd', var_type='Integer')
+dev_var.add('vlansInUse.0.vlanId', var_type='String')
+dev_var.add('vlansInUse.0.assignment_information', var_type='String')
+dev_var.add('description', var_type='String')
+
 context = Variables.task_call(dev_var)
 
 if not context['device_id'] or not context['name'] :
@@ -16,16 +21,12 @@ if not context['device_id'] or not context['name'] :
 
 # read the ID of the selected managed entity
 device_id = context['device_id']
-
+context['pool_backup']=context['pool']
 # extract the database ID
 devicelongid = device_id[3:]
 
-# build the Microservice JSON params
-#{"Gateway":"0"}
-#micro_service_vars_array = {"object_id":object_id}
 object_parameters = {}
 object_parameters['VLAN_POOL'] ={}
-
 
 # call the CREATE for the specified MS for each device
 order = Order(devicelongid)
@@ -47,6 +48,4 @@ else:
                                   f'Import failed \
                                   - {order.content}',
                                   context, True)
-
-
 print(ret)
