@@ -23,6 +23,7 @@ object_id=context['object_id']
 vniRangeList=[]
 
 for vniRange in context['pool']:
+	vniRange['poolInUse']=0
 	my_dict = dict(poolStart=vniRange['poolStart'],poolEnd=vniRange['poolEnd'],isSelected='false')
 	vniRangeList.append(my_dict)
 

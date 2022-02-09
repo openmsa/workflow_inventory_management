@@ -82,5 +82,11 @@ for vpcIdInUse in context['vpcsInUse']:
     vpcsInUseTemp.append(dict(vpcId=vpcIdInUse['vpcId'],assignment_information=vpcIdInUse['assignment_information']))
 
 context['vpcsInUse']=vpcsInUseTemp
+
+for vpcRange in context['pool']:
+	if (vpcRange['poolStart'] == SelectedVpcRangeStart) and (vpcRange['poolEnd'] == SelectedVpcRangeEnd):
+		vpcRange['poolInUse']-=1
+		break
+	
 ret = MSA_API.process_content('ENDED', 'The vPC Id '+vpcIdToRelease+' has been released from Pool range '+context['SelectedVpcRangeStart']+' - '+context['SelectedVpcRangeEnd']+'', context, True)
 print(ret)

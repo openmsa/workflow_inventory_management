@@ -35,7 +35,7 @@ context['assignment_information_Check']=assignment_information_Check
 if ( (len(context['pool']) < len(set(assignment_information_Check))) or ( (len(set(assignment_information_Check)) == 1) and ('From VLAN Pool '+context['pool'][0]['poolStart']+' - '+context['pool'][0]['poolEnd']+'' != context['assignment_information_Check'][0])) ):
 	context['pool']=context['pool_backup']
 	MSA_API.task_error('Range pool cannot be updated or deleted, ressource still in use, please release them',context, True)
-
+  
 context['pool_backup']=	context['pool']
 
 if not context['device_id'] or not context['name'] :

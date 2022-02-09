@@ -82,5 +82,11 @@ for vniIdInUse in context['vnisInUse']:
     vnisInUseTemp.append(dict(vniId=vniIdInUse['vniId'],assignment_information=vniIdInUse['assignment_information']))
 
 context['vnisInUse']=vnisInUseTemp
+
+for vniRange in context['pool']:
+	if (vniRange['poolStart'] == SelectedVniRangeStart) and (vniRange['poolEnd'] == SelectedVniRangeEnd):
+		vniRange['poolInUse']-=1
+		break
+	
 ret = MSA_API.process_content('ENDED', 'The VNI Id '+vniIdToRelease+' has been released from Pool range '+context['SelectedVniRangeStart']+' - '+context['SelectedVniRangeEnd']+'', context, True)
 print(ret)

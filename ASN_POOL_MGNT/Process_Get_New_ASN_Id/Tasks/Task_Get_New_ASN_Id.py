@@ -86,6 +86,11 @@ if context.get('usedAsnIds'):
 usedList=usedList+"\n"+newAsnId
 context['usedAsnIds']=usedList
 
+for asnRange in context['pool']:
+	if (asnRange['poolStart'] == SelectedAsnRangeStart) and (asnRange['poolEnd'] == SelectedAsnRangeEnd):
+		asnRange['poolInUse']+=1
+		break
+
 ret = MSA_API.process_content('ENDED', 'New ASN Id '+newAsnId+" has been allocated", context, True)
 print(ret)
 

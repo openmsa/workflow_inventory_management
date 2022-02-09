@@ -84,5 +84,10 @@ if context.get('usedVlanIds'):
 usedList=usedList+"\n"+newVlanId
 context['usedVlanIds']=usedList
 
+for vlanRange in context['pool']:
+	if (vlanRange['poolStart'] == SelectedVlanRangeStart) and (vlanRange['poolEnd'] == SelectedVlanRangeEnd):
+		vlanRange['poolInUse']+=1
+		break
+
 ret = MSA_API.process_content('ENDED', 'New Vlan Id '+newVlanId+" has been allocated", context, True)
 print(ret)

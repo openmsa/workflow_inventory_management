@@ -82,5 +82,11 @@ for asnIdInUse in context['asnsInUse']:
 		asnsInUseTemp.append(dict(asnId=asnIdInUse['asnId'],assignment_information=asnIdInUse['assignment_information']))
 
 context['asnsInUse']=asnsInUseTemp
+
+for asnRange in context['pool']:
+	if (asnRange['poolStart'] == SelectedAsnRangeStart) and (asnRange['poolEnd'] == SelectedAsnRangeEnd):
+		asnRange['poolInUse']-=1
+		break
+
 ret = MSA_API.process_content('ENDED', 'The ASN Id '+asnIdToRelease+' has been released from Pool range '+context['SelectedAsnRangeStart']+' - '+context['SelectedAsnRangeEnd']+'', context, True)
 print(ret)

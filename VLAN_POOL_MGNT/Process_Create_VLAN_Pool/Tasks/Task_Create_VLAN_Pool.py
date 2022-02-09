@@ -23,6 +23,7 @@ object_id=context['object_id']
 vlanRangeList=[]
 
 for vlanRange in context['pool']:
+	vlanRange['poolInUse']=0
 	my_dict = dict(poolStart=vlanRange['poolStart'],poolEnd=vlanRange['poolEnd'],isSelected='false')
 	vlanRangeList.append(my_dict)
 

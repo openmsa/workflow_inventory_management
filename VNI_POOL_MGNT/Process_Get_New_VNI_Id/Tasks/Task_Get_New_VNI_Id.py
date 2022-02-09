@@ -83,6 +83,11 @@ if context.get('usedVniIds'):
 usedList=usedList+"\n"+newVniId
 context['usedVniIds']=usedList
 
+for vniRange in context['pool']:
+	if (vniRange['poolStart'] == SelectedVniRangeStart) and (vniRange['poolEnd'] == SelectedVniRangeEnd):
+		vniRange['poolInUse']+=1
+		break
+	
 ret = MSA_API.process_content('ENDED', 'New VNI Id '+newVniId+" has been allocated", context, True)
 print(ret)
 

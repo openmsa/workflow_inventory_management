@@ -83,5 +83,10 @@ if context.get('usedVpcIds'):
 usedList=usedList+"\n"+newVpcId
 context['usedVpcIds']=usedList
 
+for vpcRange in context['pool']:
+	if (vpcRange['poolStart'] == SelectedVpcRangeStart) and (vpcRange['poolEnd'] == SelectedVpcRangeEnd):
+		vpcRange['poolInUse']+=1
+		break
+
 ret = MSA_API.process_content('ENDED', 'New vPC Id '+newVpcId+" has been allocated", context, True)
 print(ret)

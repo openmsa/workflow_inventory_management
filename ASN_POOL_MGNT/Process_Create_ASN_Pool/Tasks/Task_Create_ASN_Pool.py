@@ -23,6 +23,7 @@ object_id=context['object_id']
 asnRangeList=[]
 
 for asnRange in context['pool']:
+	asnRange['poolInUse']=0
 	my_dict = dict(poolStart=asnRange['poolStart'],poolEnd=asnRange['poolEnd'],isSelected='false')
 	asnRangeList.append(my_dict)
 
