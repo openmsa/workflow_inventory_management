@@ -21,8 +21,6 @@ if not context['device_id'] or not context['name'] :
 # read the ID of the selected managed entity
 device_id = context['device_id']
 
-context['pool_backup']=context['pool']
-
 # extract the database ID
 devicelongid = device_id[3:]
 

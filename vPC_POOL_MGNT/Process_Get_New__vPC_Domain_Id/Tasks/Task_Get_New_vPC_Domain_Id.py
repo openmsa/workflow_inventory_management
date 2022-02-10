@@ -88,5 +88,7 @@ for vpcRange in context['pool']:
 		vpcRange['poolInUse']+=1
 		break
 
+context['pool_backup']=context['pool']
+
 ret = MSA_API.process_content('ENDED', 'New vPC Id '+newVpcId+" has been allocated", context, True)
 print(ret)

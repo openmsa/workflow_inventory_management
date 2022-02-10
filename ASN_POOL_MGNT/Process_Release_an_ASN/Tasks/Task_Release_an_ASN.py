@@ -88,5 +88,7 @@ for asnRange in context['pool']:
 		asnRange['poolInUse']-=1
 		break
 
+context['pool_backup']=context['pool']
+
 ret = MSA_API.process_content('ENDED', 'The ASN Id '+asnIdToRelease+' has been released from Pool range '+context['SelectedAsnRangeStart']+' - '+context['SelectedAsnRangeEnd']+'', context, True)
 print(ret)

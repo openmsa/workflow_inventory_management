@@ -9,7 +9,7 @@ usedList=''
 
 if context.get('asnsInUse'):
 	for asnId in context['asnsInUse']:
-		usedList=usedList+"\n"+asnId['asnId']
+		usedList=usedList+"\n"+asnId['asnId']+' >> '+asnId['assignment_information']+''
 context['usedAsnIds']=usedList
 ret = MSA_API.process_content('ENDED', 'Used ASN Ids :'+usedList, context, True)
 print(ret)

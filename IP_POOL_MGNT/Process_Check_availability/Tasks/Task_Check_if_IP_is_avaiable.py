@@ -31,23 +31,25 @@ searchedip=context['searchedip']
 #check if the entered IP address is part of the IP pool networks (cidrs)
 context['loop']=''
 partOfCidrs="no"
+cidrFounded=""
 for cidr in context['pool']:
 	context['loop']=context['loop']+':'+cidr['address']
 	if address_is_in_network(searchedip,cidr['address']+"/"+cidr['prefix']):
 		partOfCidrs="yes"
+		cidrFounded=cidr['address']+"/"+cidr['prefix']
 		
 if 	partOfCidrs == "no":
-	MSA_API.task_error('Entered address '+searchedip+' is not in any IP pool networks', context, True)
+	MSA_API.task_error('Given address '+searchedip+' is not in any IP pool networks', context, True)
 
 		
 #Check if the entered IP address is already allocated
 freeIP=True
 for ipInUse in context['IPsInUse']:
-	if searchedip == ipInUse['address']:
+	if (searchedip == ipInUse['address']) and ('From IP Pool '+cidrFounded+'' == ipInUse['assignment_information']):
 		freeIP=False
 		break
 if not freeIP:
-  MSA_API.task_error('IP address '+searchedip+" is already in use", context, True)
+  MSA_API.task_error('IP address '+searchedip+' is already in use in Cidr '+cidrFounded+'', context, True)
 
 		
 ret = MSA_API.process_content('ENDED', 'The ip '+searchedip+" is available", context, True)

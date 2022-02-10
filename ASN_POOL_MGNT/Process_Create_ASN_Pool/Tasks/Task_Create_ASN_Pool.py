@@ -29,6 +29,7 @@ for asnRange in context['pool']:
 
 context['asnRangeList'] = asnRangeList
 context['asnRangeList_backup']=asnRangeList
+context['pool_backup']=context['pool']
 # build the Microservice JSON params
 #{"Gateway":"0"}
 #micro_service_vars_array = {"object_id":object_id}

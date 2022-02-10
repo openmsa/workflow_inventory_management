@@ -89,5 +89,7 @@ for vlanRange in context['pool']:
 		vlanRange['poolInUse']+=1
 		break
 
+context['pool_backup']=context['pool']
+
 ret = MSA_API.process_content('ENDED', 'New Vlan Id '+newVlanId+" has been allocated", context, True)
 print(ret)

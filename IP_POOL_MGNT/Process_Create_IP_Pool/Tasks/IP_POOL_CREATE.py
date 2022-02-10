@@ -32,6 +32,7 @@ for cidr in context['pool']:
 
 context['cidrList'] = cidrList
 context['cidrList_backup']=cidrList
+context['pool_backup']=context['pool']
 
 if not context.get('globaluniq'):
 	context['globaluniq']=''

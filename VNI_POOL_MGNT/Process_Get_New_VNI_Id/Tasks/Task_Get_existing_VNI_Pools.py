@@ -5,8 +5,6 @@ from msa_sdk.order import Order
 
 # List all the parameters required by the task
 dev_var = Variables()
-dev_var.add('device_id', var_type='Device')
-dev_var.add('name', var_type='String')
 dev_var.add('object_id', var_type='AutoIncrement')
 dev_var.add('newVniId', var_type='String')
 dev_var.add('newAssignmentDescription', var_type='String')

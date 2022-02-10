@@ -8,8 +8,8 @@ context = Variables.task_call(dev_var)
 usedList=''
 
 if context.get('vnisInUse'):
-	for vlanId in context['vnisInUse']:
-		usedList=usedList+"\n"+vlanId['vniId']
+	for vniId in context['vnisInUse']:
+		usedList=usedList+"\n"+vniId['vniId']+' >> '+vniId['assignment_information']+''
 context['usedVniIds']=usedList
 ret = MSA_API.process_content('ENDED', 'Used VNI Ids :'+usedList, context, True)
 print(ret)

@@ -8,7 +8,7 @@ usedList=''
 
 if context.get('vpcsInUse'):
 	for vpcId in context['vpcsInUse']:
-		usedList=usedList+"\n"+vpcId['vpcId']
+		usedList=usedList+"\n"+vpcId['vpcId']+' >> '+vpcId['assignment_information']+''
 context['usedVpcIds']=usedList
-ret = MSA_API.process_content('ENDED', 'Used vPC Domain Ids :'+usedList, context, True)
+ret = MSA_API.process_content('ENDED', 'Used vPC Ids :'+usedList, context, True)
 print(ret)

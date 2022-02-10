@@ -89,6 +89,8 @@ for vlanRange in context['pool']:
 	if (vlanRange['poolStart'] == SelectedVlanRangeStart) and (vlanRange['poolEnd'] == SelectedVlanRangeEnd):
 		vlanRange['poolInUse']-=1
 		break
-	
+
+context['pool_backup']=context['pool']
+
 ret = MSA_API.process_content('ENDED', 'The VLAN Id '+vlanIdToRelease+' has been released from Pool range '+context['SelectedVlanRangeStart']+' - '+context['SelectedVlanRangeEnd']+'', context, True)
 print(ret)

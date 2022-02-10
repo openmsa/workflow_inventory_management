@@ -87,6 +87,8 @@ for vpcRange in context['pool']:
 	if (vpcRange['poolStart'] == SelectedVpcRangeStart) and (vpcRange['poolEnd'] == SelectedVpcRangeEnd):
 		vpcRange['poolInUse']-=1
 		break
-	
+
+context['pool_backup']=context['pool']
+
 ret = MSA_API.process_content('ENDED', 'The vPC Id '+vpcIdToRelease+' has been released from Pool range '+context['SelectedVpcRangeStart']+' - '+context['SelectedVpcRangeEnd']+'', context, True)
 print(ret)

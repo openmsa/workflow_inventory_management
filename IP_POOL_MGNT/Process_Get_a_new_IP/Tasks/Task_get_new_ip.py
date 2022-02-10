@@ -31,14 +31,11 @@ if context.get('cidrList'):
 				nbSelected+=1
 
 if nbSelected == 0:
-	MSA_API.task_error( 'You need to select one of the avaiable pool range ', context, True)
+	MSA_API.task_error( 'You need to select one of the avaiable cidr pool', context, True)
 if nbSelected > 1:
-	MSA_API.task_error( 'You need to select only one pool range ', context, True)
+	MSA_API.task_error( 'You need to select only one cidr pool ', context, True)
 	
 context['SelectedCidr']=SelectedCidr
-
-if not SelectedCidr:
-	MSA_API.task_error( 'You need to select one of the avaiable networks '+SelectedCidr, context, True)
 
 if not newip:
 	#get new IP from the selected network (cidr)

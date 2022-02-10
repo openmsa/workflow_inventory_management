@@ -18,24 +18,35 @@ if not context.get('vnisInUse'):
 
 if not context.get('vniRangeList'):
   context['vniRangeList'] = []
+
+if not context.get('pool'):
+  context['pool'] = []
   
-assignment_information_Check=[]
 
-for vniInUse in context['vnisInUse']:
-	assignment_information_Check.append(vniInUse['assignment_information'])
+for vniRange in context['pool']:
+	if "poolInUse" not in vniRange:
+		vniRange['poolInUse']=0
+  
+vniPoolToBeDeleted=[]
+context['vniPoolToBeDeleted']=[]
+context['vniPoolToBeDeletedSum']=0
 
-context['assignment_information_Check']=assignment_information_Check
+for vniPool in context['pool_backup']:
+	if (vniPool not in context['pool']) and (len(context['pool_backup'])>len(context['pool'])):
+		vniPoolToBeDeleted.append(vniPool['poolInUse'])
+	else:
+		vniPoolToBeDeleted.append(0)
 
-#context['len_pool']=len(context['pool']	)
-#context['len_assignmentCheck']=len(set(assignment_information_Check))
+context['vniPoolToBeDeleted']=vniPoolToBeDeleted
+context['vniPoolToBeDeletedSum']=sum(context['vniPoolToBeDeleted'])
 
-#context['str_check']='From VNI Pool '+context['pool'][0]['poolStart']+' - '+context['pool'][0]['poolEnd']+''
 
-if ( (len(context['pool']) < len(set(assignment_information_Check))) or ( (len(set(assignment_information_Check)) == 1) and ('From VNI Pool '+context['pool'][0]['poolStart']+' - '+context['pool'][0]['poolEnd']+'' != context['assignment_information_Check'][0])) ):
+if context['vniPoolToBeDeletedSum'] == 0:
+	context['pool_backup']=context['pool']
+else:
 	context['pool']=context['pool_backup']
-	MSA_API.task_error('Range pool cannot be updated or deleted, ressource still in use, please release them',context, True)
+	MSA_API.task_error('Some range pool cannot be updated or deleted, ressource still in use, please release them',context, True)
 
-context['pool_backup']=	context['pool']
 
 if not context['device_id'] or not context['name'] :
 	MSA_API.task_error('Mandatory parameters required',context, True)

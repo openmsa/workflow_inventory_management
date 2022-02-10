@@ -30,7 +30,7 @@ for vpcRange in context['pool']:
 
 context['vpcRangeList'] = vpcRangeList
 context['vpcRangeList_backup']=vpcRangeList
-
+context['pool_backup']=context['pool']
 # build the Microservice JSON params
 #{"Gateway":"0"}
 #micro_service_vars_array = {"object_id":object_id}

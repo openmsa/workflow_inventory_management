@@ -19,24 +19,32 @@ if not context.get('vpcsInUse'):
 if not context.get('vpcRangeList'):
   context['vpcRangeList'] = []
   
-assignment_information_Check=[]
 
-for vpcInUse in context['vpcsInUse']:
-  assignment_information_Check.append(vpcInUse['assignment_information'])
+for vpcRange in context['pool']:
+	if not  vpcRange['poolInUse']:
+		vpcRange['poolInUse']=0
 
-context['assignment_information_Check']=assignment_information_Check
+vpcPoolToBeDeleted=[]
+context['vpcPoolToBeDeleted']=[]
+context['vpcPoolToBeDeletedSum']=0
 
-#context['len_pool']=len(context['pool']  )
-#context['len_assignmentCheck']=len(set(assignment_information_Check))
+for vpcPool in context['pool_backup']:
+	if (vpcPool not in context['pool']) and (len(context['pool_backup'])>len(context['pool'])):
+		vpcPoolToBeDeleted.append(vpcPool['poolInUse'])
+	else:
+		vpcPoolToBeDeleted.append(0)
 
-#context['str_check']='From vPC Pool '+context['pool'][0]['poolStart']+' - '+context['pool'][0]['poolEnd']+''
+context['vpcPoolToBeDeleted']=vpcPoolToBeDeleted
+context['vpcPoolToBeDeletedSum']=sum(context['vpcPoolToBeDeleted'])
 
-if ( (len(context['pool']) < len(set(assignment_information_Check))) or ( (len(set(assignment_information_Check)) == 1) and ('From vPC Pool '+context['pool'][0]['poolStart']+' - '+context['pool'][0]['poolEnd']+'' != context['assignment_information_Check'][0])) ):
-  context['pool']=context['pool_backup']
-  MSA_API.task_error('Range pool cannot be updated or deleted, ressource still in use, please release them',context, True)
+
+if context['vpcPoolToBeDeletedSum'] == 0:
+	context['pool_backup']=context['pool']
+else:
+	context['pool']=context['pool_backup']
+	MSA_API.task_error('Some range pool cannot be updated or deleted, ressource still in use, please release them',context, True)
+
 	
-context['pool_backup']= context['pool']
-
 if not context['device_id'] or not context['name'] :
 	MSA_API.task_error('Mandatory parameters required',context, True)
 

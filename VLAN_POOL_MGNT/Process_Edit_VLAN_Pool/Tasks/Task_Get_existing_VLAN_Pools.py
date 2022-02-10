@@ -19,25 +19,32 @@ if not context.get('vlansInUse'):
 
 if not context.get('vlanRangeList'):
   context['vlanRangeList'] = []
-  
-assignment_information_Check=[]
 
-for vlanInUse in context['vlansInUse']:
-	assignment_information_Check.append(vlanInUse['assignment_information'])
+for vlanRange in context['pool']:
+	if not vlanRange['poolInUse']:
+		vlanRange['poolInUse']=0
 
-context['assignment_information_Check']=assignment_information_Check
+vlanPoolToBeDeleted=[]
+context['vlanPoolToBeDeleted']=[]
+context['vlanPoolToBeDeletedSum']=0
 
-#context['len_pool']=len(context['pool']	)
-#context['len_assignmentCheck']=len(set(assignment_information_Check))
+for vlanPool in context['pool_backup']:
+	if (vlanPool not in context['pool']) and (len(context['pool_backup'])>len(context['pool'])):
+		vlanPoolToBeDeleted.append(vlanPool['poolInUse'])
+	else:
+		vlanPoolToBeDeleted.append(0)
 
-#context['str_check']='From VLAN Pool '+context['pool'][0]['poolStart']+' - '+context['pool'][0]['poolEnd']+''
+context['vlanPoolToBeDeleted']=vlanPoolToBeDeleted
+context['vlanPoolToBeDeletedSum']=sum(context['vlanPoolToBeDeleted'])
 
-if ( (len(context['pool']) < len(set(assignment_information_Check))) or ( (len(set(assignment_information_Check)) == 1) and ('From VLAN Pool '+context['pool'][0]['poolStart']+' - '+context['pool'][0]['poolEnd']+'' != context['assignment_information_Check'][0])) ):
+
+if context['vlanPoolToBeDeletedSum'] == 0:
+	context['pool_backup']=context['pool']
+else:
 	context['pool']=context['pool_backup']
-	MSA_API.task_error('Range pool cannot be updated or deleted, ressource still in use, please release them',context, True)
-  
-context['pool_backup']=	context['pool']
-
+	MSA_API.task_error('Some range pool cannot be updated or deleted, ressource still in use, please release them',context, True)
+	
+	
 if not context['device_id'] or not context['name'] :
 	MSA_API.task_error('Mandatory parameters required',context, True)
 

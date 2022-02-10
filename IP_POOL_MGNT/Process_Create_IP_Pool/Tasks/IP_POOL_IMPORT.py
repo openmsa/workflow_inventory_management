@@ -19,30 +19,17 @@ dev_var.add('pool.0.ipUsedNb', var_type='String')
 dev_var.add('description', var_type='String')
 context = Variables.task_call(dev_var)
 
-
 if not context.get('IPsInUse'):
   context['IPsInUse'] = []
 
 if not context.get('cidrList'):
   context['cidrList'] = []
 
-assignment_information_Check=[]
 
-for IPInUse in context['IPsInUse']:
-	assignment_information_Check.append(IPInUse['assignment_information'])
-
-context['assignment_information_Check']=assignment_information_Check
-
-#context['len_pool']=len(context['pool']	)
-#context['len_assignmentCheck']=len(set(assignment_information_Check))
-
-#context['str_check']='From VLAN Pool '+context['pool'][0]['poolStart']+' - '+context['pool'][0]['poolEnd']+''
-
-if ( (len(context['pool']) < len(set(assignment_information_Check))) or ( (len(set(assignment_information_Check)) == 1) and ('From IP Pool '+context['pool'][0]['address']+'/'+context['pool'][0]['prefix']+'' != context['assignment_information_Check'][0])) ):
-	context['pool']=context['pool_backup']
-	MSA_API.task_error('Range pool cannot be updated or deleted, ressource still in use, please release them',context, True)
-
-context['pool_backup']=context['pool']
+for ipRange in context['pool']:
+	if not ipRange['ipUsage'] or ipRange['ipUsage'] == 'null':
+		ipRange['ipUsedNb']="0"
+		ipRange['ipUsage']='0%'
 
 if not context['device_id'] or not context['name'] :
 	MSA_API.task_error('Mandatory parameters required',context, True)

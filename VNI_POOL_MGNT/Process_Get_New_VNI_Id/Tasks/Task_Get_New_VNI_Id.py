@@ -87,7 +87,9 @@ for vniRange in context['pool']:
 	if (vniRange['poolStart'] == SelectedVniRangeStart) and (vniRange['poolEnd'] == SelectedVniRangeEnd):
 		vniRange['poolInUse']+=1
 		break
-	
+
+context['pool_backup']=context['pool']	
+
 ret = MSA_API.process_content('ENDED', 'New VNI Id '+newVniId+" has been allocated", context, True)
 print(ret)
 

@@ -88,5 +88,7 @@ for vniRange in context['pool']:
 		vniRange['poolInUse']-=1
 		break
 	
+context['pool_backup']=context['pool']
+
 ret = MSA_API.process_content('ENDED', 'The VNI Id '+vniIdToRelease+' has been released from Pool range '+context['SelectedVniRangeStart']+' - '+context['SelectedVniRangeEnd']+'', context, True)
 print(ret)

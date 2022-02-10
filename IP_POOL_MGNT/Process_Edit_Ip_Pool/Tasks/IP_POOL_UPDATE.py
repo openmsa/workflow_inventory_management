@@ -17,17 +17,50 @@ device_id = context['device_id']
 # extract the database ID
 devicelongid = device_id[3:]
 
+if not context.get('IPsInUse'):
+  context['IPsInUse'] = []
+
+if not context.get('cidrList'):
+  context['cidrList'] = []
+
+#if len(context['cidrList']) != len(context['cidrList_backup']):
+#	context['cidrList']=context['cidrList_backup']
+#	MSA_API.task_error('IP Pool update cannot be done from this process',context, True)
+	
+for ipRange in context['pool']:
+	if not ipRange['ipUsage'] or ipRange['ipUsage'] == 'null':
+		ipRange['ipUsedNb']="0"
+		ipRange['ipUsage']='0%'
+
+ipPoolToBeDeleted=[]
+context['ipPoolToBeDeleted']=[]
+context['ipPoolToBeDeletedSum']=0
+
+for ipPool in context['pool_backup']:
+	if (ipPool not in context['pool']) and (len(context['pool_backup'])>len(context['pool'])):
+		ipPoolToBeDeleted.append(int(ipPool['ipUsedNb']))
+	else:
+		ipPoolToBeDeleted.append(0)
+
+context['ipPoolToBeDeleted']=ipPoolToBeDeleted
+context['ipPoolToBeDeletedSum']=sum(context['ipPoolToBeDeleted'])
+
+
+if context['ipPoolToBeDeletedSum'] == 0:
+	context['pool_backup']=context['pool']
+else:
+	context['pool']=context['pool_backup']
+	MSA_API.task_error('Some range pool cannot be updated or deleted, ressource still in use, please release them',context, True)
+
 cidrList=[]
 
 for cidr in context['pool']:
 	cidr['totalIps']=str(len(cidr_to_range(cidr['address']+'/'+cidr['prefix'])))
-	if not cidr['ipUsage'] or cidr['ipUsage'] == 'null':
-		cidr['ipUsedNb']="0"
-		cidr['ipUsage']='0%'
 	my_dict = dict(cidr=cidr['address']+'/'+cidr['prefix'],totalIps=cidr['totalIps'],ipUsage=cidr['ipUsage'],ipUsedNb=cidr['ipUsedNb'],isSelected='false')
 	cidrList.append(my_dict)
 	
 context['cidrList'] = cidrList
+context['cidrList_backup'] = cidrList
 
 if not context.get('globaluniq'):
 	context['globaluniq']=''
