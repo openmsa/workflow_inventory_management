@@ -1,0 +1,137 @@
+<ObjectDefinition>
+  <variables frozen="0">
+    <variable displayName="Managed Entity" name="params.device_id" startIncrement="0" type="Device" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="ASN Pool ID" name="params.object_id" startIncrement="0" type="AutoIncrement" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="true" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="Name" name="params.name" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="" name="params." startIncrement="0" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="Range - start" name="params.pool.0.poolStart" startIncrement="0" type="Integer" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="Range - end" name="params.pool.0.poolEnd" startIncrement="0" type="Integer" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="Range In Use" name="params.pool.0.poolInUse" startIncrement="0" type="Integer" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="true" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="Description" name="params.description" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="Please enter &quot;Delete me&quot; as  confirmation" name="params.Confirmation" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="New ASN Id" name="params.newAsnId" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="New Assignment Description" name="params.newAssignmentDescription" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="true" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="Searched ASN Id" name="params.searchedAsnId" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="ASN Id to release" name="params.asnIdToRelease" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="Range - start" name="params.asnRangeList.0.poolStart" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="Range - end" name="params.asnRangeList.0.poolEnd" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="isSelected" name="params.asnRangeList.0.isSelected" startIncrement="0" type="Boolean" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="In use ASN Id" name="params.asnsInUse.0.asnId" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="true" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="assignment_information" name="params.asnsInUse.0.assignment_information" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="true" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+  </variables>
+  <example/>
+  <process name="Process/workflows/ASN_POOL_MGNT/Process_Create_ASN_Pool">
+    <displayName>Create ASN Pool</displayName>
+    <type>CREATE</type>
+    <visibility>5</visibility>
+    <allowSchedule/>
+    <task name="Task_Get_existing_ASN_Pools.py">
+      <processPath>/opt/fmc_repository/Process/workflows/ASN_POOL_MGNT/Process_Create_ASN_Pool/Tasks</processPath>
+      <displayName>Get existing ASN Pools</displayName>
+    </task>
+    <task name="Task_Perform_parameters_checks.py">
+      <processPath>/opt/fmc_repository/Process/workflows/ASN_POOL_MGNT/Process_Create_ASN_Pool/Tasks</processPath>
+      <displayName>Perform parameters checks</displayName>
+    </task>
+    <task name="Task_Create_ASN_Pool.py">
+      <processPath>/opt/fmc_repository/Process/workflows/ASN_POOL_MGNT/Process_Create_ASN_Pool/Tasks</processPath>
+      <displayName>Create ASN Pool</displayName>
+    </task>
+  </process>
+  <process name="Process/workflows/ASN_POOL_MGNT/Process_Get_New_ASN_Id">
+    <displayName>Get New ASN Id</displayName>
+    <type>UPDATE</type>
+    <visibility>5</visibility>
+    <allowSchedule/>
+    <task name="Task_Get_existing_ASN_Pools.py">
+      <processPath>/opt/fmc_repository/Process/workflows/ASN_POOL_MGNT/Process_Get_New_ASN_Id/Tasks</processPath>
+      <displayName>Get existing ASN Pools</displayName>
+    </task>
+    <task name="Task_Get_New_ASN_Id.py">
+      <processPath>/opt/fmc_repository/Process/workflows/ASN_POOL_MGNT/Process_Get_New_ASN_Id/Tasks</processPath>
+      <displayName>Get New ASN Id</displayName>
+    </task>
+    <task name="Task_Update_the_pool.py">
+      <processPath>/opt/fmc_repository/Process/workflows/ASN_POOL_MGNT/Process_Get_New_ASN_Id/Tasks</processPath>
+      <displayName>Update the pool</displayName>
+    </task>
+  </process>
+  <process name="Process/workflows/ASN_POOL_MGNT/Process_Check_ASN_Id_Availability">
+    <displayName>Check ASN Id Availability</displayName>
+    <type>UPDATE</type>
+    <visibility>5</visibility>
+    <allowSchedule/>
+    <task name="Task_Check_ASN_id_availability.py">
+      <processPath>/opt/fmc_repository/Process/workflows/ASN_POOL_MGNT/Process_Check_ASN_Id_Availability/Tasks</processPath>
+      <displayName>Check ASN id availability</displayName>
+    </task>
+  </process>
+  <process name="Process/workflows/ASN_POOL_MGNT/Process_Get_ASN_Ids_Used_List">
+    <displayName>Get ASN Ids Used List</displayName>
+    <type>UPDATE</type>
+    <visibility>5</visibility>
+    <allowSchedule/>
+    <task name="Task_Show_used_ASN_Ids.py">
+      <processPath>/opt/fmc_repository/Process/workflows/ASN_POOL_MGNT/Process_Get_ASN_Ids_Used_List/Tasks</processPath>
+      <displayName>Show used ASN Ids</displayName>
+    </task>
+  </process>
+  <process name="Process/workflows/ASN_POOL_MGNT/Process_Edit_ASN_Pool">
+    <displayName>Edit ASN Pool</displayName>
+    <type>UPDATE</type>
+    <visibility>5</visibility>
+    <allowSchedule/>
+    <task name="Task_Get_existing_ASN_Pools.py">
+      <processPath>/opt/fmc_repository/Process/workflows/ASN_POOL_MGNT/Process_Edit_ASN_Pool/Tasks</processPath>
+      <displayName>Get existing ASN Pools</displayName>
+    </task>
+    <task name="Task_Perform_parameters__checks.py">
+      <processPath>/opt/fmc_repository/Process/workflows/ASN_POOL_MGNT/Process_Edit_ASN_Pool/Tasks</processPath>
+      <displayName>Perform parameters  checks</displayName>
+    </task>
+    <task name="Task_Update_ASN_Pools.py">
+      <processPath>/opt/fmc_repository/Process/workflows/ASN_POOL_MGNT/Process_Edit_ASN_Pool/Tasks</processPath>
+      <displayName>Update ASN Pools</displayName>
+    </task>
+  </process>
+  <process name="Process/workflows/ASN_POOL_MGNT/Process_Release_an_ASN">
+    <displayName>Release an ASN</displayName>
+    <type>UPDATE</type>
+    <visibility>5</visibility>
+    <allowSchedule/>
+    <task name="Task_Release_an_ASN.py">
+      <processPath>/opt/fmc_repository/Process/workflows/ASN_POOL_MGNT/Process_Release_an_ASN/Tasks</processPath>
+      <displayName>Release an ASN</displayName>
+    </task>
+    <task name="Task_Update_The_Pool.py">
+      <processPath>/opt/fmc_repository/Process/workflows/ASN_POOL_MGNT/Process_Release_an_ASN/Tasks</processPath>
+      <displayName>Update The Pool</displayName>
+    </task>
+  </process>
+  <process name="Process/workflows/ASN_POOL_MGNT/Process_Delete_ASN_Pool">
+    <displayName>Delete ASN Pool</displayName>
+    <type>UPDATE</type>
+    <visibility>5</visibility>
+    <allowSchedule/>
+    <task name="Task_Delete_ASN_Pool.py">
+      <processPath>/opt/fmc_repository/Process/workflows/ASN_POOL_MGNT/Process_Delete_ASN_Pool/Tasks</processPath>
+      <displayName>Delete ASN Pool</displayName>
+    </task>
+  </process>
+  <process name="Process/workflows/ASN_POOL_MGNT/Process_Delete_Instance">
+    <displayName>Delete Instance</displayName>
+    <type>DELETE</type>
+    <visibility>5</visibility>
+    <allowSchedule/>
+  </process>
+  <information>
+    <icon/>
+    <description/>
+    <displayField>name</displayField>
+    <serviceTaskType>python</serviceTaskType>
+    <order>10000</order>
+    <visibility>5</visibility>
+    <name>ASN POOL MGNT</name>
+    <group/>
+  </information>
+</ObjectDefinition>
