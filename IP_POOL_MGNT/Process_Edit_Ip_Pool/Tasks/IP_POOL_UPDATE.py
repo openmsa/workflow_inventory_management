@@ -1,5 +1,6 @@
 import json
 import uuid
+import ipaddress
 from msa_sdk.variables import Variables
 from msa_sdk.msa_api import MSA_API
 from msa_sdk.order import Order
@@ -23,6 +24,8 @@ if not context.get('IPsInUse'):
 if not context.get('cidrList'):
   context['cidrList'] = []
 
+if not context.get('pool_backup'):
+	context['pool_backup']=[]
 #if len(context['cidrList']) != len(context['cidrList_backup']):
 #	context['cidrList']=context['cidrList_backup']
 #	MSA_API.task_error('IP Pool update cannot be done from this process',context, True)
@@ -55,6 +58,12 @@ else:
 cidrList=[]
 
 for cidr in context['pool']:
+	
+	try:
+		network = ipaddress.IPv4Network(cidr['address']+'/'+cidr['prefix'])
+	except ValueError:
+		MSA_API.task_error('address/netmask is invalid for IPv4:'+cidr['address']+'/'+cidr['prefix']+'',context, True)
+	
 	cidr['totalIps']=str(len(cidr_to_range(cidr['address']+'/'+cidr['prefix'])))
 	my_dict = dict(cidr=cidr['address']+'/'+cidr['prefix'],totalIps=cidr['totalIps'],ipUsage=cidr['ipUsage'],ipUsedNb=cidr['ipUsedNb'],isSelected='false')
 	cidrList.append(my_dict)

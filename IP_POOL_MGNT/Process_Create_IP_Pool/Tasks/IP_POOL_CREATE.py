@@ -1,11 +1,11 @@
 import json
 import uuid
+import ipaddress
 from msa_sdk.variables import Variables
 from msa_sdk.msa_api import MSA_API
 from msa_sdk.order import Order
 from msa_sdk.util import get_ip_range
 from msa_sdk.util import cidr_to_range
-
 # List all the parameters required by the task
 dev_var = Variables()
 context = Variables.task_call(dev_var)
@@ -24,7 +24,14 @@ context['object_id']=object_id
 
 cidrList=[]
 for cidr in context['pool']:
-	cidr['ipUsedNb']="0"
+	
+	try:
+		network = ipaddress.IPv4Network(cidr['address']+'/'+cidr['prefix'])
+	except ValueError:
+		MSA_API.task_error('address/netmask is invalid for IPv4:'+cidr['address']+'/'+cidr['prefix']+'',context, True)
+		
+	cidr['ipUsedNb']="0"	
+	cidr['totalIps']=str(len(cidr_to_range(cidr['address']+'/'+cidr['prefix'])))
 	cidr['totalIps']=str(len(cidr_to_range(cidr['address']+'/'+cidr['prefix'])))
 	cidr['ipUsage']='0%'
 	my_dict = dict(cidr=cidr['address']+'/'+cidr['prefix'],totalIps=cidr['totalIps'],ipUsage=cidr['ipUsage'],ipUsedNb=cidr['ipUsedNb'],isSelected='false')
