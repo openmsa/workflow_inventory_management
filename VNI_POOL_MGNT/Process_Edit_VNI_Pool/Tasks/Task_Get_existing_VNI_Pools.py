@@ -21,11 +21,9 @@ if not context.get('vniRangeList'):
 
 if not context.get('pool'):
   context['pool'] = []
-  
 
-for vniRange in context['pool']:
-	if "poolInUse" not in vniRange:
-		vniRange['poolInUse']=0
+if not context.get('pool_backup'):
+  context['pool_backup'] = []
   
 vniPoolToBeDeleted=[]
 context['vniPoolToBeDeleted']=[]

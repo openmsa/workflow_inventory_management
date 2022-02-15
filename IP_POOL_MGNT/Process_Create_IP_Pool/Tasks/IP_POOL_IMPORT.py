@@ -49,7 +49,8 @@ object_parameters['IP_POOL'] ={}
 
 # call the CREATE for the specified MS for each device
 order = Order(devicelongid)
-order.command_execute('IMPORT', object_parameters)
+
+context['import_content']=order.command_execute('IMPORT', object_parameters)
 
 # convert dict object into json
 content = json.loads(order.content)
