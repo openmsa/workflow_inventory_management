@@ -24,6 +24,9 @@ if not context.get('IPsInUse'):
 
 if not context.get('cidrList'):
   context['cidrList'] = []
+  
+if not context.get('globaluniq'):
+  context['globaluniq'] = 0
 
 
 for ipRange in context['pool']:
@@ -50,13 +53,14 @@ object_parameters['IP_POOL'] ={}
 # call the CREATE for the specified MS for each device
 order = Order(devicelongid)
 
-context['import_content']=order.command_execute('IMPORT', object_parameters)
+order.command_execute('IMPORT', object_parameters)
 
 # convert dict object into json
 content = json.loads(order.content)
 
 context['import_result']=content
-
+import_result_message=json.loads(context['import_result']['message'])
+context['import_result_ip_pool']=import_result_message['IP_POOL']
 # check if the response is OK
 if order.response.ok:
     ret = MSA_API.process_content('ENDED',
