@@ -19,9 +19,6 @@ device_id = context['device_id']
 # extract the database ID
 devicelongid = device_id[3:]
 
-object_id=str(uuid.uuid4())
-context['object_id']=object_id
-
 cidrList=[]
 for cidr in context['pool']:
 	
