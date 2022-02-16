@@ -20,13 +20,12 @@ if not context.get('vlansInUse'):
 if not context.get('vlanRangeList'):
   context['vlanRangeList'] = []
 
-for vlanRange in context['pool']:
-	if not vlanRange['poolInUse']:
-		vlanRange['poolInUse']=0
-
 vlanPoolToBeDeleted=[]
 context['vlanPoolToBeDeleted']=[]
 context['vlanPoolToBeDeletedSum']=0
+
+if not context.get('pool_backup'):
+  context['pool_backup'] = []
 
 for vlanPool in context['pool_backup']:
 	if (vlanPool not in context['pool']) and (len(context['pool_backup'])>len(context['pool'])):

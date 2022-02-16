@@ -20,9 +20,8 @@ if not context.get('vpcRangeList'):
   context['vpcRangeList'] = []
   
 
-for vpcRange in context['pool']:
-	if not  vpcRange['poolInUse']:
-		vpcRange['poolInUse']=0
+if not context.get('pool_backup'):
+  context['pool_backup'] = []
 
 vpcPoolToBeDeleted=[]
 context['vpcPoolToBeDeleted']=[]

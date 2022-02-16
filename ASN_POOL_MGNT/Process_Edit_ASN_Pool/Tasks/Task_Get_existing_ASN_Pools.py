@@ -20,23 +20,28 @@ if not context.get('asnsInUse'):
 if not context.get('asnRangeList'):
   context['asnRangeList'] = []
   
-assignment_information_Check=[]
+if not context.get('pool_backup'):
+  context['pool_backup'] = []
+  
+asnPoolToBeDeleted=[]
+context['asnPoolToBeDeleted']=[]
+context['asnPoolToBeDeletedSum']=0
 
-for asnInUse in context['asnsInUse']:
-	assignment_information_Check.append(asnInUse['assignment_information'])
+for asnPool in context['pool_backup']:
+	if (asnPool not in context['pool']) and (len(context['pool_backup'])>len(context['pool'])):
+		asnPoolToBeDeleted.append(asnPool['poolInUse'])
+	else:
+		asnPoolToBeDeleted.append(0)
 
-context['assignment_information_Check']=assignment_information_Check
+context['asnPoolToBeDeleted']=asnPoolToBeDeleted
+context['asnPoolToBeDeletedSum']=sum(context['asnPoolToBeDeleted'])
 
-#context['len_pool']=len(context['pool']	)
-#context['len_assignmentCheck']=len(set(assignment_information_Check))
 
-#context['str_check']='From ASN Pool '+context['pool'][0]['poolStart']+' - '+context['pool'][0]['poolEnd']+''		
-
-if ( (len(context['pool']) < len(set(assignment_information_Check))) or ( (len(set(assignment_information_Check)) == 1) and ('From ASN Pool '+context['pool'][0]['poolStart']+' - '+context['pool'][0]['poolEnd']+'' != context['assignment_information_Check'][0])) ):
+if context['asnPoolToBeDeletedSum'] == 0:
+	context['pool_backup']=context['pool']
+else:
 	context['pool']=context['pool_backup']
-	MSA_API.task_error('Range pool cannot be updated or deleted, ressource still in use, please release them',context, True)
-
-context['pool_backup']=	context['pool']
+	MSA_API.task_error('Some range pool cannot be updated or deleted, ressource still in use, please release them',context, True)
 
 if not context['device_id'] or not context['name'] :
 	MSA_API.task_error('Mandatory parameters required',context, True)
