@@ -1,3 +1,4 @@
+import uuid
 import json
 from msa_sdk.variables import Variables
 from msa_sdk.msa_api import MSA_API
@@ -28,6 +29,8 @@ if not context.get('cidrList'):
 if not context.get('globaluniq'):
   context['globaluniq'] = 0
 
+object_id=str(uuid.uuid4())
+context['object_id']=object_id
 
 for ipRange in context['pool']:
 	if not ipRange['ipUsage'] or ipRange['ipUsage'] == 'null':
@@ -60,7 +63,10 @@ content = json.loads(order.content)
 
 context['import_result']=content
 import_result_message=json.loads(context['import_result']['message'])
-context['import_result_ip_pool']=import_result_message['IP_POOL']
+if "IP_POOL" not in import_result_message:
+	context['import_result_ip_pool']=[]
+else:
+	context['import_result_ip_pool']=import_result_message['IP_POOL']
 # check if the response is OK
 if order.response.ok:
     ret = MSA_API.process_content('ENDED',
