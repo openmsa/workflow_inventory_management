@@ -44,6 +44,7 @@ if not context.get('globaluniq'):
 if not context.get('description'):
 	context['description']=''
 
+object_id=context['object_id']
 
 # build the Microservice JSON params
 #{"Gateway":"0"}
