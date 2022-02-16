@@ -31,6 +31,8 @@ if not context.get('vniRangeList'):
 vniRangeList=[]
 
 for vniRange in context['pool']:
+    if not vniRange['poolInUse']:
+        vniRange['poolInUse']=0
 	my_dict = dict(poolStart=vniRange['poolStart'],poolEnd=vniRange['poolEnd'],isSelected='false')
 	vniRangeList.append(my_dict)
 	

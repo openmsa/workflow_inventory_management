@@ -25,6 +25,8 @@ object_id=context['object_id']
 vpcRangeList=[]
 
 for vpcRange in context['pool']:
+    if not vpcRange['poolInUse']:
+        vpcRange['poolInUse']=0
 	my_dict = dict(poolStart=vpcRange['poolStart'],poolEnd=vpcRange['poolEnd'],isSelected='false')
 	vpcRangeList.append(my_dict)
 	
