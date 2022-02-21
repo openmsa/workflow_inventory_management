@@ -20,105 +20,105 @@
     <variable displayName="isSelected" name="params.vniRangeList.0.isSelected" startIncrement="0" type="Boolean" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
   </variables>
   <example/>
-  <process name="Process/workflows/VNI_POOL_MGNT/Process_Create_VNI_Pool">
+  <process name="Process/workflows/workflow_inventory_management/VNI_POOL_MGNT/Process_Create_VNI_Pool">
     <displayName>Create VNI Pool</displayName>
     <type>CREATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Get_existing_VNI_Pools.py">
-      <processPath>/opt/fmc_repository/Process/workflows/VNI_POOL_MGNT/Process_Create_VNI_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/VNI_POOL_MGNT/Process_Create_VNI_Pool/Tasks</processPath>
       <displayName>Get existing VNI Pools</displayName>
     </task>
     <task name="Task_Perform_parameters_checks.py">
-      <processPath>/opt/fmc_repository/Process/workflows/VNI_POOL_MGNT/Process_Create_VNI_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/VNI_POOL_MGNT/Process_Create_VNI_Pool/Tasks</processPath>
       <displayName>Perform parameters checks</displayName>
     </task>
     <task name="Task_Create_VNI_Pool.py">
-      <processPath>/opt/fmc_repository/Process/workflows/VNI_POOL_MGNT/Process_Create_VNI_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/VNI_POOL_MGNT/Process_Create_VNI_Pool/Tasks</processPath>
       <displayName>Create VNI Pool</displayName>
     </task>
   </process>
-  <process name="Process/workflows/VNI_POOL_MGNT/Process_Get_New_VNI_Id">
+  <process name="Process/workflows/workflow_inventory_management/VNI_POOL_MGNT/Process_Get_New_VNI_Id">
     <displayName>Get New VNI Id</displayName>
     <type>UPDATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Get_existing_VNI_Pools.py">
-      <processPath>/opt/fmc_repository/Process/workflows/VNI_POOL_MGNT/Process_Get_New_VNI_Id/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/VNI_POOL_MGNT/Process_Get_New_VNI_Id/Tasks</processPath>
       <displayName>Get existing VNI Pools</displayName>
     </task>
     <task name="Task_Get_New_VNI_Id.py">
-      <processPath>/opt/fmc_repository/Process/workflows/VNI_POOL_MGNT/Process_Get_New_VNI_Id/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/VNI_POOL_MGNT/Process_Get_New_VNI_Id/Tasks</processPath>
       <displayName>Get New VNI Id</displayName>
     </task>
     <task name="Task_Update_the_pool.py">
-      <processPath>/opt/fmc_repository/Process/workflows/VNI_POOL_MGNT/Process_Get_New_VNI_Id/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/VNI_POOL_MGNT/Process_Get_New_VNI_Id/Tasks</processPath>
       <displayName>Update the pool</displayName>
     </task>
   </process>
-  <process name="Process/workflows/VNI_POOL_MGNT/Process_Check_VNI_Id_Availability">
+  <process name="Process/workflows/workflow_inventory_management/VNI_POOL_MGNT/Process_Check_VNI_Id_Availability">
     <displayName>Check VNI Id Availability</displayName>
     <type>UPDATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Check_VNI_id_availability.py">
-      <processPath>/opt/fmc_repository/Process/workflows/VNI_POOL_MGNT/Process_Check_VNI_Id_Availability/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/VNI_POOL_MGNT/Process_Check_VNI_Id_Availability/Tasks</processPath>
       <displayName>Check VNI id availability</displayName>
     </task>
   </process>
-  <process name="Process/workflows/VNI_POOL_MGNT/Process_Get_VNI_Ids_Used_List">
+  <process name="Process/workflows/workflow_inventory_management/VNI_POOL_MGNT/Process_Get_VNI_Ids_Used_List">
     <displayName>Get VNI Ids Used List</displayName>
     <type>UPDATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Show_used_VNI_Ids.py">
-      <processPath>/opt/fmc_repository/Process/workflows/VNI_POOL_MGNT/Process_Get_VNI_Ids_Used_List/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/VNI_POOL_MGNT/Process_Get_VNI_Ids_Used_List/Tasks</processPath>
       <displayName>Show used VNI Ids</displayName>
     </task>
   </process>
-  <process name="Process/workflows/VNI_POOL_MGNT/Process_Edit_VNI_Pool">
+  <process name="Process/workflows/workflow_inventory_management/VNI_POOL_MGNT/Process_Edit_VNI_Pool">
     <displayName>Edit VNI Pool</displayName>
     <type>UPDATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Get_existing_VNI_Pools.py">
-      <processPath>/opt/fmc_repository/Process/workflows/VNI_POOL_MGNT/Process_Edit_VNI_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/VNI_POOL_MGNT/Process_Edit_VNI_Pool/Tasks</processPath>
       <displayName>Get existing VNI Pools</displayName>
     </task>
     <task name="Task_Perform_parameters__checks.py">
-      <processPath>/opt/fmc_repository/Process/workflows/VNI_POOL_MGNT/Process_Edit_VNI_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/VNI_POOL_MGNT/Process_Edit_VNI_Pool/Tasks</processPath>
       <displayName>Perform parameters  checks</displayName>
     </task>
     <task name="Task_Update_VNI_Pools.py">
-      <processPath>/opt/fmc_repository/Process/workflows/VNI_POOL_MGNT/Process_Edit_VNI_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/VNI_POOL_MGNT/Process_Edit_VNI_Pool/Tasks</processPath>
       <displayName>Update VNI Pools</displayName>
     </task>
   </process>
-  <process name="Process/workflows/VNI_POOL_MGNT/Process_Release_a_VNI">
+  <process name="Process/workflows/workflow_inventory_management/VNI_POOL_MGNT/Process_Release_a_VNI">
     <displayName>Release a VNI</displayName>
     <type>UPDATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Release_a_VNI.py">
-      <processPath>/opt/fmc_repository/Process/workflows/VNI_POOL_MGNT/Process_Release_a_VNI/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/VNI_POOL_MGNT/Process_Release_a_VNI/Tasks</processPath>
       <displayName>Release a VNI</displayName>
     </task>
     <task name="Task_Update_The_Pool.py">
-      <processPath>/opt/fmc_repository/Process/workflows/VNI_POOL_MGNT/Process_Release_a_VNI/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/VNI_POOL_MGNT/Process_Release_a_VNI/Tasks</processPath>
       <displayName>Update The Pool</displayName>
     </task>
   </process>
-  <process name="Process/workflows/VNI_POOL_MGNT/Process_Delete_VNI_Pool">
+  <process name="Process/workflows/workflow_inventory_management/VNI_POOL_MGNT/Process_Delete_VNI_Pool">
     <displayName>Delete VNI Pool</displayName>
     <type>UPDATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Delete_VNI_Pool.py">
-      <processPath>/opt/fmc_repository/Process/workflows/VNI_POOL_MGNT/Process_Delete_VNI_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/VNI_POOL_MGNT/Process_Delete_VNI_Pool/Tasks</processPath>
       <displayName>Delete VNI Pool</displayName>
     </task>
   </process>
-  <process name="Process/workflows/VNI_POOL_MGNT/Process_Delete_Instance">
+  <process name="Process/workflows/workflow_inventory_management/VNI_POOL_MGNT/Process_Delete_Instance">
     <displayName>Delete Instance</displayName>
     <type>DELETE</type>
     <visibility>5</visibility>
