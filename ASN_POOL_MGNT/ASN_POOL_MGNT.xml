@@ -20,105 +20,105 @@
     <variable displayName="assignment_information" name="params.asnsInUse.0.assignment_information" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="true" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
   </variables>
   <example/>
-  <process name="Process/workflows/ASN_POOL_MGNT/Process_Create_ASN_Pool">
+  <process name="Process/workflows/workflow_inventory_management/ASN_POOL_MGNT/Process_Create_ASN_Pool">
     <displayName>Create ASN Pool</displayName>
     <type>CREATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Get_existing_ASN_Pools.py">
-      <processPath>/opt/fmc_repository/Process/workflows/ASN_POOL_MGNT/Process_Create_ASN_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/ASN_POOL_MGNT/Process_Create_ASN_Pool/Tasks</processPath>
       <displayName>Get existing ASN Pools</displayName>
     </task>
     <task name="Task_Perform_parameters_checks.py">
-      <processPath>/opt/fmc_repository/Process/workflows/ASN_POOL_MGNT/Process_Create_ASN_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/ASN_POOL_MGNT/Process_Create_ASN_Pool/Tasks</processPath>
       <displayName>Perform parameters checks</displayName>
     </task>
     <task name="Task_Create_ASN_Pool.py">
-      <processPath>/opt/fmc_repository/Process/workflows/ASN_POOL_MGNT/Process_Create_ASN_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/ASN_POOL_MGNT/Process_Create_ASN_Pool/Tasks</processPath>
       <displayName>Create ASN Pool</displayName>
     </task>
   </process>
-  <process name="Process/workflows/ASN_POOL_MGNT/Process_Get_New_ASN_Id">
+  <process name="Process/workflows/workflow_inventory_management/ASN_POOL_MGNT/Process_Get_New_ASN_Id">
     <displayName>Get New ASN Id</displayName>
     <type>UPDATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Get_existing_ASN_Pools.py">
-      <processPath>/opt/fmc_repository/Process/workflows/ASN_POOL_MGNT/Process_Get_New_ASN_Id/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/ASN_POOL_MGNT/Process_Get_New_ASN_Id/Tasks</processPath>
       <displayName>Get existing ASN Pools</displayName>
     </task>
     <task name="Task_Get_New_ASN_Id.py">
-      <processPath>/opt/fmc_repository/Process/workflows/ASN_POOL_MGNT/Process_Get_New_ASN_Id/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/ASN_POOL_MGNT/Process_Get_New_ASN_Id/Tasks</processPath>
       <displayName>Get New ASN Id</displayName>
     </task>
     <task name="Task_Update_the_pool.py">
-      <processPath>/opt/fmc_repository/Process/workflows/ASN_POOL_MGNT/Process_Get_New_ASN_Id/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/ASN_POOL_MGNT/Process_Get_New_ASN_Id/Tasks</processPath>
       <displayName>Update the pool</displayName>
     </task>
   </process>
-  <process name="Process/workflows/ASN_POOL_MGNT/Process_Check_ASN_Id_Availability">
+  <process name="Process/workflows/workflow_inventory_management/ASN_POOL_MGNT/Process_Check_ASN_Id_Availability">
     <displayName>Check ASN Id Availability</displayName>
     <type>UPDATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Check_ASN_id_availability.py">
-      <processPath>/opt/fmc_repository/Process/workflows/ASN_POOL_MGNT/Process_Check_ASN_Id_Availability/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/ASN_POOL_MGNT/Process_Check_ASN_Id_Availability/Tasks</processPath>
       <displayName>Check ASN id availability</displayName>
     </task>
   </process>
-  <process name="Process/workflows/ASN_POOL_MGNT/Process_Get_ASN_Ids_Used_List">
+  <process name="Process/workflows/workflow_inventory_management/ASN_POOL_MGNT/Process_Get_ASN_Ids_Used_List">
     <displayName>Get ASN Ids Used List</displayName>
     <type>UPDATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Show_used_ASN_Ids.py">
-      <processPath>/opt/fmc_repository/Process/workflows/ASN_POOL_MGNT/Process_Get_ASN_Ids_Used_List/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/ASN_POOL_MGNT/Process_Get_ASN_Ids_Used_List/Tasks</processPath>
       <displayName>Show used ASN Ids</displayName>
     </task>
   </process>
-  <process name="Process/workflows/ASN_POOL_MGNT/Process_Edit_ASN_Pool">
+  <process name="Process/workflows/workflow_inventory_management/ASN_POOL_MGNT/Process_Edit_ASN_Pool">
     <displayName>Edit ASN Pool</displayName>
     <type>UPDATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Get_existing_ASN_Pools.py">
-      <processPath>/opt/fmc_repository/Process/workflows/ASN_POOL_MGNT/Process_Edit_ASN_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/ASN_POOL_MGNT/Process_Edit_ASN_Pool/Tasks</processPath>
       <displayName>Get existing ASN Pools</displayName>
     </task>
     <task name="Task_Perform_parameters__checks.py">
-      <processPath>/opt/fmc_repository/Process/workflows/ASN_POOL_MGNT/Process_Edit_ASN_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/ASN_POOL_MGNT/Process_Edit_ASN_Pool/Tasks</processPath>
       <displayName>Perform parameters  checks</displayName>
     </task>
     <task name="Task_Update_ASN_Pools.py">
-      <processPath>/opt/fmc_repository/Process/workflows/ASN_POOL_MGNT/Process_Edit_ASN_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/ASN_POOL_MGNT/Process_Edit_ASN_Pool/Tasks</processPath>
       <displayName>Update ASN Pools</displayName>
     </task>
   </process>
-  <process name="Process/workflows/ASN_POOL_MGNT/Process_Release_an_ASN">
+  <process name="Process/workflows/workflow_inventory_management/ASN_POOL_MGNT/Process_Release_an_ASN">
     <displayName>Release an ASN</displayName>
     <type>UPDATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Release_an_ASN.py">
-      <processPath>/opt/fmc_repository/Process/workflows/ASN_POOL_MGNT/Process_Release_an_ASN/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/ASN_POOL_MGNT/Process_Release_an_ASN/Tasks</processPath>
       <displayName>Release an ASN</displayName>
     </task>
     <task name="Task_Update_The_Pool.py">
-      <processPath>/opt/fmc_repository/Process/workflows/ASN_POOL_MGNT/Process_Release_an_ASN/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/ASN_POOL_MGNT/Process_Release_an_ASN/Tasks</processPath>
       <displayName>Update The Pool</displayName>
     </task>
   </process>
-  <process name="Process/workflows/ASN_POOL_MGNT/Process_Delete_ASN_Pool">
+  <process name="Process/workflows/workflow_inventory_management/ASN_POOL_MGNT/Process_Delete_ASN_Pool">
     <displayName>Delete ASN Pool</displayName>
     <type>UPDATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Delete_ASN_Pool.py">
-      <processPath>/opt/fmc_repository/Process/workflows/ASN_POOL_MGNT/Process_Delete_ASN_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/ASN_POOL_MGNT/Process_Delete_ASN_Pool/Tasks</processPath>
       <displayName>Delete ASN Pool</displayName>
     </task>
   </process>
-  <process name="Process/workflows/ASN_POOL_MGNT/Process_Delete_Instance">
+  <process name="Process/workflows/workflow_inventory_management/ASN_POOL_MGNT/Process_Delete_Instance">
     <displayName>Delete Instance</displayName>
     <type>DELETE</type>
     <visibility>5</visibility>

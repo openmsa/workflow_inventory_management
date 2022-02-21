@@ -20,105 +20,105 @@
     <variable displayName="Assignment Information" name="params.vlansInUse.0.assignment_information" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="true" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
   </variables>
   <example/>
-  <process name="Process/workflows/VLAN_POOL_MGNT/Process_Create_VLAN_Pool">
+  <process name="Process/workflows/workflow_inventory_management/VLAN_POOL_MGNT/Process_Create_VLAN_Pool">
     <displayName>Create VLAN Pool</displayName>
     <type>CREATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Get_existing_VLAN_Pools.py">
-      <processPath>/opt/fmc_repository/Process/workflows/VLAN_POOL_MGNT/Process_Create_VLAN_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/VLAN_POOL_MGNT/Process_Create_VLAN_Pool/Tasks</processPath>
       <displayName>Get existing VLAN Pools</displayName>
     </task>
     <task name="Task_Perform_parameters_checks.py">
-      <processPath>/opt/fmc_repository/Process/workflows/VLAN_POOL_MGNT/Process_Create_VLAN_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/VLAN_POOL_MGNT/Process_Create_VLAN_Pool/Tasks</processPath>
       <displayName>Perform parameters checks</displayName>
     </task>
     <task name="Task_Create_VLAN_Pool.py">
-      <processPath>/opt/fmc_repository/Process/workflows/VLAN_POOL_MGNT/Process_Create_VLAN_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/VLAN_POOL_MGNT/Process_Create_VLAN_Pool/Tasks</processPath>
       <displayName>Create VLAN Pool</displayName>
     </task>
   </process>
-  <process name="Process/workflows/VLAN_POOL_MGNT/Process_Get_New_VLAN_Id">
+  <process name="Process/workflows/workflow_inventory_management/VLAN_POOL_MGNT/Process_Get_New_VLAN_Id">
     <displayName>Get New VLAN Id</displayName>
     <type>UPDATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Get_existing_VLAN_Pools.py">
-      <processPath>/opt/fmc_repository/Process/workflows/VLAN_POOL_MGNT/Process_Get_New_VLAN_Id/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/VLAN_POOL_MGNT/Process_Get_New_VLAN_Id/Tasks</processPath>
       <displayName>Get existing VLAN Pools</displayName>
     </task>
     <task name="Task_Get_New_VLAN_Id.py">
-      <processPath>/opt/fmc_repository/Process/workflows/VLAN_POOL_MGNT/Process_Get_New_VLAN_Id/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/VLAN_POOL_MGNT/Process_Get_New_VLAN_Id/Tasks</processPath>
       <displayName>Get New VLAN Id</displayName>
     </task>
     <task name="Task_Update_the_pool.py">
-      <processPath>/opt/fmc_repository/Process/workflows/VLAN_POOL_MGNT/Process_Get_New_VLAN_Id/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/VLAN_POOL_MGNT/Process_Get_New_VLAN_Id/Tasks</processPath>
       <displayName>Update the pool</displayName>
     </task>
   </process>
-  <process name="Process/workflows/VLAN_POOL_MGNT/Process_Check_availability">
+  <process name="Process/workflows/workflow_inventory_management/VLAN_POOL_MGNT/Process_Check_availability">
     <displayName>Check VLAN Id Availability</displayName>
     <type>UPDATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Check_vlan_id_availability.py">
-      <processPath>/opt/fmc_repository/Process/workflows/VLAN_POOL_MGNT/Process_Check_availability/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/VLAN_POOL_MGNT/Process_Check_availability/Tasks</processPath>
       <displayName>Check vlan id availability</displayName>
     </task>
   </process>
-  <process name="Process/workflows/VLAN_POOL_MGNT/Process_Get_VLAN_Ids_used_list">
+  <process name="Process/workflows/workflow_inventory_management/VLAN_POOL_MGNT/Process_Get_VLAN_Ids_used_list">
     <displayName>Get VLAN Ids Used List</displayName>
     <type>UPDATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Show_used_Vlan_Ids.py">
-      <processPath>/opt/fmc_repository/Process/workflows/VLAN_POOL_MGNT/Process_Get_VLAN_Ids_used_list/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/VLAN_POOL_MGNT/Process_Get_VLAN_Ids_used_list/Tasks</processPath>
       <displayName>Show used Vlan Ids</displayName>
     </task>
   </process>
-  <process name="Process/workflows/VLAN_POOL_MGNT/Process_Edit_VLAN_Pool">
+  <process name="Process/workflows/workflow_inventory_management/VLAN_POOL_MGNT/Process_Edit_VLAN_Pool">
     <displayName>Edit VLAN Pool</displayName>
     <type>UPDATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Get_existing_VLAN_Pools.py">
-      <processPath>/opt/fmc_repository/Process/workflows/VLAN_POOL_MGNT/Process_Edit_VLAN_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/VLAN_POOL_MGNT/Process_Edit_VLAN_Pool/Tasks</processPath>
       <displayName>Get existing VLAN Pools</displayName>
     </task>
     <task name="Task_Perform_parameters__checks.py">
-      <processPath>/opt/fmc_repository/Process/workflows/VLAN_POOL_MGNT/Process_Edit_VLAN_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/VLAN_POOL_MGNT/Process_Edit_VLAN_Pool/Tasks</processPath>
       <displayName>Perform parameters  checks</displayName>
     </task>
     <task name="Task_Update_VLAN_Pools.py">
-      <processPath>/opt/fmc_repository/Process/workflows/VLAN_POOL_MGNT/Process_Edit_VLAN_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/VLAN_POOL_MGNT/Process_Edit_VLAN_Pool/Tasks</processPath>
       <displayName>Update VLAN Pools</displayName>
     </task>
   </process>
-  <process name="Process/workflows/VLAN_POOL_MGNT/Process_Release_a_Vlan">
+  <process name="Process/workflows/workflow_inventory_management/VLAN_POOL_MGNT/Process_Release_a_Vlan">
     <displayName>Release a Vlan</displayName>
     <type>UPDATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Release_a_Vlan.py">
-      <processPath>/opt/fmc_repository/Process/workflows/VLAN_POOL_MGNT/Process_Release_a_Vlan/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/VLAN_POOL_MGNT/Process_Release_a_Vlan/Tasks</processPath>
       <displayName>Release a Vlan</displayName>
     </task>
     <task name="Task_Update_The_Pool.py">
-      <processPath>/opt/fmc_repository/Process/workflows/VLAN_POOL_MGNT/Process_Release_a_Vlan/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/VLAN_POOL_MGNT/Process_Release_a_Vlan/Tasks</processPath>
       <displayName>Update The Pool</displayName>
     </task>
   </process>
-  <process name="Process/workflows/VLAN_POOL_MGNT/Process_Delete_VLAN_Pool">
+  <process name="Process/workflows/workflow_inventory_management/VLAN_POOL_MGNT/Process_Delete_VLAN_Pool">
     <displayName>Delete VLAN Pool</displayName>
     <type>UPDATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Delete_VLAN_Pool.py">
-      <processPath>/opt/fmc_repository/Process/workflows/VLAN_POOL_MGNT/Process_Delete_VLAN_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/VLAN_POOL_MGNT/Process_Delete_VLAN_Pool/Tasks</processPath>
       <displayName>Delete VLAN Pool</displayName>
     </task>
   </process>
-  <process name="Process/workflows/VLAN_POOL_MGNT/Process_Delete_Instance">
+  <process name="Process/workflows/workflow_inventory_management/VLAN_POOL_MGNT/Process_Delete_Instance">
     <displayName>Delete Instance</displayName>
     <type>DELETE</type>
     <visibility>5</visibility>
