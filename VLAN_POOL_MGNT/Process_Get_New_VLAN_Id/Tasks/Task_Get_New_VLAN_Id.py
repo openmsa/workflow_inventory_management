@@ -23,6 +23,7 @@ if not context.get('newAssignmentDescription'):
 	
 newVlanId=context['newVlanId']
 newAssignmentDescription=context['newAssignmentDescription']
+newUsageInformation=context['newUsageInformation']
 
 SelectedVlanRangeStart=""
 SelectedVlanRangeEnd=""
@@ -78,7 +79,7 @@ else:
 			MSA_API.task_error('Vlan Id '+newVlanId+" is already in use", context, True)
 
 newAssignmentDescription='From VLAN Pool '+SelectedVlanRangeStart+' - '+SelectedVlanRangeEnd+''					
-context['vlansInUse'].append(dict(vlanId=newVlanId,assignment_information=newAssignmentDescription))
+context['vlansInUse'].append(dict(vlanId=newVlanId,assignment_information=newAssignmentDescription,usage_information=newUsageInformation))
 if context.get('usedVlanIds'):
 	usedList=context['usedVlanIds']
 usedList=usedList+"\n"+newVlanId

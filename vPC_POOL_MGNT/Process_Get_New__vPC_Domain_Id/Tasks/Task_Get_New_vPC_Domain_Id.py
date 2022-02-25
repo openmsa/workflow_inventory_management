@@ -22,6 +22,7 @@ if not context.get('newAssignmentDescription'):
   
 newVpcId=context['newVpcId']
 newAssignmentDescription=context['newAssignmentDescription']
+newUsageInformation=context['newUsageInformation']
 
 SelectedVpcRangeStart=""
 SelectedVpcRangeEnd=""
@@ -76,7 +77,7 @@ else:
       MSA_API.task_error('vPC Id '+newVpcId+" is already in use", context, True)
 
 newAssignmentDescription='From vPC Pool '+SelectedVpcRangeStart+' - '+SelectedVpcRangeEnd+''
-context['vpcsInUse'].append(dict(vpcId=newVpcId,assignment_information=newAssignmentDescription))
+context['vpcsInUse'].append(dict(vpcId=newVpcId,assignment_information=newAssignmentDescription,usage_information=newUsageInformation))
 
 if context.get('usedVpcIds'):
   usedList=context['usedVpcIds']

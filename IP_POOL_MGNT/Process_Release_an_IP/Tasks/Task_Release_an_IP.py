@@ -64,7 +64,7 @@ ipReleased=False
 for ipInUse in context['IPsInUse']:
   if (ipToRelease == ipInUse['address']) and (str(ipInUse['assignment_information']) == 'From IP Pool '+context['SelectedCidr']+''):
     ipReleased=True
-    iptoRelease.append(dict(address=ipInUse['address'],assignment_information=ipInUse['assignment_information']))
+    iptoRelease.append(dict(address=ipInUse['address'],assignment_information=ipInUse['assignment_information'],usage_information=ipInUse['usage_information']))
     break
   
 context['iptoRelease']=iptoRelease
@@ -75,7 +75,7 @@ if not ipReleased:
 IPsInUseTemp=[]
 for ipInUse in context['IPsInUse']:
   if ipInUse not in context['iptoRelease']:   
-    IPsInUseTemp.append(dict(address=ipInUse['address'],assignment_information=ipInUse['assignment_information']))
+    IPsInUseTemp.append(dict(address=ipInUse['address'],assignment_information=ipInUse['assignment_information'],usage_information=ipInUse['usage_information']))
 
 context['IPsInUse']=IPsInUseTemp
 

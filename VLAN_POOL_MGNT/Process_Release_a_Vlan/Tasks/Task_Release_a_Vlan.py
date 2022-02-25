@@ -69,7 +69,7 @@ vlanReleased=False
 for vlanIdInUse in context['vlansInUse']:
 	if (vlanIdToRelease == vlanIdInUse['vlanId']) and (str(vlanIdInUse['assignment_information']) == 'From VLAN Pool '+context['SelectedVlanRangeStart']+' - '+context['SelectedVlanRangeEnd']+''):
 		vlanReleased=True
-		vlantoRelease.append(dict(vlanId=vlanIdInUse['vlanId'],assignment_information=vlanIdInUse['assignment_information']))
+		vlantoRelease.append(dict(vlanId=vlanIdInUse['vlanId'],assignment_information=vlanIdInUse['assignment_information'],usage_information=vlanIdInUse['usage_information']))
 		break
 	
 context['vlantoRelease']=vlantoRelease
@@ -81,7 +81,7 @@ vlansInUseTemp=[]
 for vlanIdInUse in context['vlansInUse']:
 	#if ((context['vlantoRelease'][0]['vlanId'] != vlanIdInUse['vlanId']) and (str(vlanIdInUse['assignment_information']) != str(context['vlantoRelease'][0]['assignment_information']))):
 	if vlanIdInUse not in context['vlantoRelease']:		
-		vlansInUseTemp.append(dict(vlanId=vlanIdInUse['vlanId'],assignment_information=vlanIdInUse['assignment_information']))
+		vlansInUseTemp.append(dict(vlanId=vlanIdInUse['vlanId'],assignment_information=vlanIdInUse['assignment_information'],usage_information=vlanIdInUse['usage_information']))
 
 context['vlansInUse']=vlansInUseTemp
 

@@ -68,7 +68,7 @@ asnReleased=False
 for asnIdInUse in context['asnsInUse']:
 	if (asnIdToRelease == asnIdInUse['asnId']) and (str(asnIdInUse['assignment_information']) == 'From ASN Pool '+context['SelectedAsnRangeStart']+' - '+context['SelectedAsnRangeEnd']+''):
 		asnReleased=True
-		asntoRelease.append(dict(asnId=asnIdInUse['asnId'],assignment_information=asnIdInUse['assignment_information']))
+		asntoRelease.append(dict(asnId=asnIdInUse['asnId'],assignment_information=asnIdInUse['assignment_information'],usage_information=asnIdInUse['usage_information']))
 		break
 	
 context['asntoRelease']=asntoRelease
@@ -79,7 +79,7 @@ if not asnReleased:
 asnsInUseTemp=[]
 for asnIdInUse in context['asnsInUse']:
 	if asnIdInUse not in context['asntoRelease']:		
-		asnsInUseTemp.append(dict(asnId=asnIdInUse['asnId'],assignment_information=asnIdInUse['assignment_information']))
+		asnsInUseTemp.append(dict(asnId=asnIdInUse['asnId'],assignment_information=asnIdInUse['assignment_information'],usage_information=asnIdInUse['usage_information']))
 
 context['asnsInUse']=asnsInUseTemp
 
