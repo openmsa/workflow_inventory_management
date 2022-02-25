@@ -23,6 +23,7 @@ if not context.get('newAssignmentDescription'):
 	
 newAsnId=context['newAsnId']
 newAssignmentDescription=context['newAssignmentDescription']
+newUsageInformation=context['newUsageInformation']
 
 SelectedAsnRangeStart=""
 SelectedAsnRangeEnd=""
@@ -79,7 +80,7 @@ else:
 			MSA_API.task_error('ASN Id '+newAsnId+" is already in use", context, True)
 
 newAssignmentDescription='From ASN Pool '+SelectedAsnRangeStart+' - '+SelectedAsnRangeEnd+''	
-context['asnsInUse'].append(dict(asnId=newAsnId,assignment_information=newAssignmentDescription))
+context['asnsInUse'].append(dict(asnId=newAsnId,assignment_information=newAssignmentDescription,usage_information=newUsageInformation))
 
 if context.get('usedAsnIds'):
 	usedList=context['usedAsnIds']

@@ -22,6 +22,8 @@ if not context.get('newAssignmentDescription'):
 	
 newVniId=context['newVniId']
 newAssignmentDescription=context['newAssignmentDescription']
+newUsageInformation=context['newUsageInformation']
+
 
 SelectedVniRangeStart=""
 SelectedVniRangeEnd=""
@@ -76,7 +78,7 @@ else:
 			MSA_API.task_error('VNI Id '+newVniId+" is already in use", context, True)
 
 newAssignmentDescription='From VNI Pool '+SelectedVniRangeStart+' - '+SelectedVniRangeEnd+''
-context['vnisInUse'].append(dict(vniId=newVniId,assignment_information=newAssignmentDescription))
+context['vnisInUse'].append(dict(vniId=newVniId,assignment_information=newAssignmentDescription,usage_information=newUsageInformation))
 
 if context.get('usedVniIds'):
 	usedList=context['usedVniIds']

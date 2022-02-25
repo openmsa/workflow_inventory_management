@@ -68,7 +68,7 @@ vpcReleased=False
 for vpcIdInUse in context['vpcsInUse']:
   if (vpcIdToRelease == vpcIdInUse['vpcId']) and (str(vpcIdInUse['assignment_information']) == 'From vPC Pool '+context['SelectedVpcRangeStart']+' - '+context['SelectedVpcRangeEnd']+''):
     vpcReleased=True
-    vpctoRelease.append(dict(vpcId=vpcIdInUse['vpcId'],assignment_information=vpcIdInUse['assignment_information']))
+    vpctoRelease.append(dict(vpcId=vpcIdInUse['vpcId'],assignment_information=vpcIdInUse['assignment_information'],usage_information=vpcIdInUse['usage_information']))
     break
   
 context['vpctoRelease']=vpctoRelease
@@ -79,7 +79,7 @@ if not vpcReleased:
 vpcsInUseTemp=[]
 for vpcIdInUse in context['vpcsInUse']:
   if vpcIdInUse not in context['vpctoRelease']:   
-    vpcsInUseTemp.append(dict(vpcId=vpcIdInUse['vpcId'],assignment_information=vpcIdInUse['assignment_information']))
+    vpcsInUseTemp.append(dict(vpcId=vpcIdInUse['vpcId'],assignment_information=vpcIdInUse['assignment_information'],usage_information=vpcIdInUse['usage_information']))
 
 context['vpcsInUse']=vpcsInUseTemp
 

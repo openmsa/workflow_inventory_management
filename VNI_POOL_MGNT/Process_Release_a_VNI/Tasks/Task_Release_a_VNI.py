@@ -68,7 +68,7 @@ vniReleased=False
 for vniIdInUse in context['vnisInUse']:
   if (vniIdToRelease == vniIdInUse['vniId']) and (str(vniIdInUse['assignment_information']) == 'From VNI Pool '+context['SelectedVniRangeStart']+' - '+context['SelectedVniRangeEnd']+''):
     vniReleased=True
-    vnitoRelease.append(dict(vniId=vniIdInUse['vniId'],assignment_information=vniIdInUse['assignment_information']))
+    vnitoRelease.append(dict(vniId=vniIdInUse['vniId'],assignment_information=vniIdInUse['assignment_information'],usage_information=vniIdInUse['usage_information']))
     break
   
 context['vnitoRelease']=vnitoRelease
@@ -79,7 +79,7 @@ if not vniReleased:
 vnisInUseTemp=[]
 for vniIdInUse in context['vnisInUse']:
   if vniIdInUse not in context['vnitoRelease']:   
-    vnisInUseTemp.append(dict(vniId=vniIdInUse['vniId'],assignment_information=vniIdInUse['assignment_information']))
+    vnisInUseTemp.append(dict(vniId=vniIdInUse['vniId'],assignment_information=vniIdInUse['assignment_information'],usage_information=vniIdInUse['usage_information']))
 
 context['vnisInUse']=vnisInUseTemp
 

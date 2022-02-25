@@ -18,6 +18,7 @@ if not context.get('IPsInUse'):
 	
 newip=context['newip']
 newAssignmentDescription=context['newAssignmentDescription']
+newUsageInformation=context['newUsageInformation']
 
 SelectedCidr=""
 usedList=""
@@ -66,7 +67,7 @@ else:
 			MSA_API.task_error('IP address '+newip+" is already in use", context, True)
 
 newAssignmentDescription='From IP Pool '+SelectedCidr+''	
-context['IPsInUse'].append(dict(address=newip,assignment_information=newAssignmentDescription))
+context['IPsInUse'].append(dict(address=newip,assignment_information=newAssignmentDescription,usage_information=newUsageInformation))
 if context.get('usedIPs'):
 	usedList=context['usedIPs']
 usedList=usedList+"\n"+newip
