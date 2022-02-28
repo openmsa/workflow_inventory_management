@@ -12,10 +12,8 @@ duplicateRangeCheck=[]
 
 #check the range order
 for vlanRange in context.get('pool'):
-
-    if not vlanRange['poolStart'] or not vlanRange['poolEnd']:
-        MSA_API.task_error('Invalid input in your pool list, please check',context, True)
-
+	if not vlanRange['poolStart'] or not vlanRange['poolEnd']:
+		MSA_API.task_error('Invalid input in your pool list, please check',context, True)
 	poolStart=int(vlanRange['poolStart'])
 	poolEnd=int(vlanRange['poolEnd'])
 	duplicateRangeCheck.append(''+str(poolStart)+'-'+str(poolEnd)+'')	

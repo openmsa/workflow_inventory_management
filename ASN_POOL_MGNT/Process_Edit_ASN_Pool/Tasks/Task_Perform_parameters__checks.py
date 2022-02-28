@@ -12,10 +12,8 @@ duplicateRangeCheck=[]
 
 #check the range order
 for asnRange in context.get('pool'):
-
-    if not asnRange['poolStart'] or not asnRange['poolEnd']:
-        MSA_API.task_error('Invalid input in your pool list, please check',context, True)
-
+	if not asnRange['poolStart'] or not asnRange['poolEnd']:
+		MSA_API.task_error('Invalid input in your pool list, please check',context, True)
 	poolStart=int(asnRange['poolStart'])
 	poolEnd=int(asnRange['poolEnd'])
 	duplicateRangeCheck.append(''+str(poolStart)+'-'+str(poolEnd)+'')
