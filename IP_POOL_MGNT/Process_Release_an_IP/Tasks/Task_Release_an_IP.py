@@ -20,7 +20,7 @@ dev_var.add('cidrList.0.isSelected')
 context = Variables.task_call(dev_var)
 
 if "cidrList" not in context:
-	MSA_API.task_error('No IP Pool exist',context, True)
+	MSA_API.task_error('No IP Pool found',context, True)
 
 if len(context['cidrList']) != len(context['cidrList_backup']):
   context['cidrList']=context['cidrList_backup']

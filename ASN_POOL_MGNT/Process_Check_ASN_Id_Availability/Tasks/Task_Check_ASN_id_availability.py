@@ -10,7 +10,7 @@ dev_var.add('asnRangeList.0.isSelected',var_type='Boolean')
 context = Variables.task_call(dev_var)
 
 if "asnRangeList" not in context:
-	MSA_API.task_error('No IP Pool exist',context, True)
+	MSA_API.task_error('No ASN Pool found',context, True)
 
 if len(context['asnRangeList']) != len(context['asnRangeList_backup']):
 	context['asnRangeList']=context['asnRangeList_backup']

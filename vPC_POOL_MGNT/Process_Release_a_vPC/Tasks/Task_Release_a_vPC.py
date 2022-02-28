@@ -10,7 +10,7 @@ dev_var.add('vpcRangeList.0.isSelected',var_type='Boolean')
 context = Variables.task_call(dev_var)
 
 if "vpcRangeList" not in context:
-	MSA_API.task_error('No IP Pool exist',context, True)
+	MSA_API.task_error('No vPC Pool found',context, True)
 
 if len(context['vpcRangeList']) != len(context['vpcRangeList_backup']):
   context['vpcRangeList']=context['vpcRangeList_backup']
