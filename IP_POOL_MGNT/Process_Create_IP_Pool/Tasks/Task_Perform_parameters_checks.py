@@ -8,6 +8,11 @@ context = Variables.task_call()
 if not context.get('pool'):
 	MSA_API.task_error('You need to enter at least one network',context, True)
 
+for ipRange in context['pool']:
+	if not ipRange['ipUsage'] or ipRange['ipUsage'] == 'null':
+		ipRange['ipUsedNb']="0"
+		ipRange['ipUsage']='0%'
+
 duplicateCidrCheck=[]	
 
 #check if the prefix is coherent regarding the IP version
