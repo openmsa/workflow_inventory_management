@@ -27,7 +27,7 @@ if not context.get('cidrList'):
   context['cidrList'] = []
   
 if not context.get('globaluniq'):
-  context['globaluniq'] = 0
+  context['globaluniq'] = 'false'
 
 object_id=str(uuid.uuid4())
 context['object_id']=object_id
