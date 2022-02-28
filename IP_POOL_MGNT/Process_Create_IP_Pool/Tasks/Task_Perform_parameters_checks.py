@@ -17,8 +17,10 @@ duplicateCidrCheck=[]
 
 #check if the prefix is coherent regarding the IP version
 for cidr in context.get('pool'):
+
     if not cidr['address'] or not cidr['prefix']:
         MSA_API.task_error('Invalid input in your pool list, please check',context, True)
+
 	duplicateCidrCheck.append(''+cidr['address']+'/'+cidr['prefix']+'')
 	if context['version'] == "ipv4" and ((int(cidr['prefix']) > 32) or (int(cidr['prefix']) <= 0)):
 		MSA_API.task_error('Invalid prefix for CIDR '+cidr['address']+'/'+cidr['prefix']+'',context, True)
