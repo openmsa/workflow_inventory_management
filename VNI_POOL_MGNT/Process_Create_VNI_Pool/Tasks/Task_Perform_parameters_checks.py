@@ -12,6 +12,8 @@ duplicateRangeCheck=[]
 
 #check the range order
 for vniRange in context.get('pool'):
+    if not vniRange['poolStart'] or not vniRange['poolEnd']:
+        MSA_API.task_error('Invalid input in your pool list, please check',context, True)
 	poolStart=int(vniRange['poolStart'])
 	poolEnd=int(vniRange['poolEnd'])
 	duplicateRangeCheck.append(''+str(poolStart)+'-'+str(poolEnd)+'')
