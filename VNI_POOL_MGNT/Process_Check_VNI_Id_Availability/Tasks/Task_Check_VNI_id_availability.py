@@ -9,6 +9,9 @@ dev_var.add('vniRangeList.0.isSelected',var_type='Boolean')
 
 context = Variables.task_call(dev_var)
 
+if "vniRangeList" not in context:
+	MSA_API.task_error('No VNI Pool found',context, True)
+
 if len(context['vniRangeList']) != len(context['vniRangeList_backup']):
 	context['vniRangeList']=context['vniRangeList_backup']
 	MSA_API.task_error('VNI Pool update cannot be done from this process',context, True)
