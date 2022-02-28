@@ -32,8 +32,10 @@ if not context.get('vlanRangeList'):
 vlanRangeList=[]
 
 for vlanRange in context['pool']:
-    if not vlanRange['poolInUse']:
-        vlanRange['poolInUse']=0
+	if "poolInUse" not in vlanRange:
+		vlanRange['poolInUse']=0
+	if not vlanRange['poolInUse']:
+		vlanRange['poolInUse']=0
 	my_dict = dict(poolStart=vlanRange['poolStart'],poolEnd=vlanRange['poolEnd'],isSelected='false')
 	vlanRangeList.append(my_dict)
 	

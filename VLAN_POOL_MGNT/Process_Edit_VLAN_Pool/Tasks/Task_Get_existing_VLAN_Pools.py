@@ -14,6 +14,9 @@ dev_var.add('pool.0.poolEnd', var_type='Integer')
 dev_var.add('description', var_type='String')
 context = Variables.task_call(dev_var)
 
+if not context.get('pool'):
+	MSA_API.task_error('You need to enter at least one vlan range pool',context, True)
+	
 if not context.get('vlansInUse'):
   context['vlansInUse'] = []
 
