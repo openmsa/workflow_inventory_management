@@ -9,6 +9,9 @@ dev_var.add('vlanRangeList.0.isSelected',var_type='Boolean')
 
 context = Variables.task_call(dev_var)
 
+if "vlanRangeList" not in context:
+	MSA_API.task_error('No IP Pool exist',context, True)
+
 if len(context['vlanRangeList']) != len(context['vlanRangeList_backup']):
 	context['vlanRangeList']=context['vlanRangeList_backup']
 	MSA_API.task_error('Vlan Pool update cannot be done from this process',context, True)
