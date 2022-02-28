@@ -32,11 +32,6 @@ if not context.get('globaluniq'):
 object_id=str(uuid.uuid4())
 context['object_id']=object_id
 
-for ipRange in context['pool']:
-	if not ipRange['ipUsage'] or ipRange['ipUsage'] == 'null':
-		ipRange['ipUsedNb']="0"
-		ipRange['ipUsage']='0%'
-
 if not context['device_id'] or not context['name'] :
 	MSA_API.task_error('Mandatory parameters required',context, True)
 	
