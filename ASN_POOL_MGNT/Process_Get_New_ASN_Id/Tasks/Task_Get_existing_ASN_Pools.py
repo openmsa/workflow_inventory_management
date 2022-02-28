@@ -14,6 +14,10 @@ dev_var.add('asnRangeList.0.poolEnd', var_type='String')
 dev_var.add('asnRangeList.0.isSelected',var_type='Boolean')
 context = Variables.task_call(dev_var)
 
+#check that at least there is one ASN range pool  defined
+if not context.get('pool'):
+	MSA_API.task_error('You need to enter at least one ASN range pool',context, True)
+	
 if len(context['asnRangeList']) != len(context['asnRangeList_backup']):
 	context['asnRangeList']=context['asnRangeList_backup']
 	MSA_API.task_error('ASN Pool update cannot be done from this process',context, True)

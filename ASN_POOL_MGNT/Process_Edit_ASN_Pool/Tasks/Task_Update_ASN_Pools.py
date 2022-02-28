@@ -32,8 +32,10 @@ if not context.get('asnRangeList'):
 asnRangeList=[]
 
 for asnRange in context['pool']:
-    if not asnRange['poolInUse']:
-        asnRange['poolInUse']=0
+	if "poolInUse" not in asnRange:
+		asnRange['poolInUse']=0
+	if not asnRange['poolInUse']:
+		asnRange['poolInUse']=0
 	my_dict = dict(poolStart=asnRange['poolStart'],poolEnd=asnRange['poolEnd'],isSelected='false')
 	asnRangeList.append(my_dict)
 	
