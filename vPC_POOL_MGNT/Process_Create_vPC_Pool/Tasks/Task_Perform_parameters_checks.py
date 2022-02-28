@@ -12,6 +12,8 @@ duplicateRangeCheck=[]
 
 #check the range order
 for vpcRange in context.get('pool'):
+    if not vpcRange['poolStart'] or not vpcRange['poolEnd']:
+        MSA_API.task_error('Invalid input in your pool list, please check',context, True)
 	poolStart=int(vpcRange['poolStart'])
 	poolEnd=int(vpcRange['poolEnd'])
 	duplicateRangeCheck.append(''+str(poolStart)+'-'+str(poolEnd)+'')
