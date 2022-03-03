@@ -29,9 +29,6 @@ if not context.get('cidrList'):
 if not context.get('globaluniq'):
   context['globaluniq'] = 'false'
 
-object_id=str(uuid.uuid4())
-context['object_id']=object_id
-
 if not context['device_id'] or not context['name'] :
 	MSA_API.task_error('Mandatory parameters required',context, True)
 	
