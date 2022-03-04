@@ -31,7 +31,9 @@ context['asnPoolToBeDeleted']=[]
 context['asnPoolToBeDeletedSum']=0
 
 for asnPool in context['pool_backup']:
-	if (asnPool not in context['pool']) and (len(context['pool_backup'])>len(context['pool'])):
+	if (asnPool not in context['pool']) and ( (len(context['pool_backup'])>len(context['pool'])) or (len(context['pool_backup']) == len(context['pool'])) ):
+		if "poolInUse" not in asnPool:
+			asnPool['poolInUse']=0
 		asnPoolToBeDeleted.append(asnPool['poolInUse'])
 	else:
 		asnPoolToBeDeleted.append(0)
