@@ -40,7 +40,9 @@ context['ipPoolToBeDeleted']=[]
 context['ipPoolToBeDeletedSum']=0
 
 for ipPool in context['pool_backup']:
-	if (ipPool not in context['pool']) and (len(context['pool_backup'])>len(context['pool'])):
+	if (ipPool not in context['pool']) and ( (len(context['pool_backup'])>len(context['pool'])) or (len(context['pool_backup']) == len(context['pool'])) ):
+		if "ipUsedNb" not in ipPool:
+			ipPool['ipUsedNb']="0"
 		ipPoolToBeDeleted.append(int(ipPool['ipUsedNb']))
 	else:
 		ipPoolToBeDeleted.append(0)

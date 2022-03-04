@@ -32,7 +32,9 @@ context['vpcPoolToBeDeleted']=[]
 context['vpcPoolToBeDeletedSum']=0
 
 for vpcPool in context['pool_backup']:
-	if (vpcPool not in context['pool']) and (len(context['pool_backup'])>len(context['pool'])):
+	if (vpcPool not in context['pool']) and ( (len(context['pool_backup'])>len(context['pool'])) or (len(context['pool_backup']) == len(context['pool'])) ):
+		if "poolInUse" not in vpcPool:
+			vpcPool['poolInUse']=0
 		vpcPoolToBeDeleted.append(vpcPool['poolInUse'])
 	else:
 		vpcPoolToBeDeleted.append(0)

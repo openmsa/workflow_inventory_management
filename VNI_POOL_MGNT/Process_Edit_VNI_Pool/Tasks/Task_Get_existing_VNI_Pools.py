@@ -34,7 +34,9 @@ context['vniPoolToBeDeleted']=[]
 context['vniPoolToBeDeletedSum']=0
 
 for vniPool in context['pool_backup']:
-	if (vniPool not in context['pool']) and (len(context['pool_backup'])>len(context['pool'])):
+	if (vniPool not in context['pool']) and ( (len(context['pool_backup'])>len(context['pool'])) or (len(context['pool_backup']) == len(context['pool'])) ):
+		if "poolInUse" not in vniPool:
+			vniPool['poolInUse']=0
 		vniPoolToBeDeleted.append(vniPool['poolInUse'])
 	else:
 		vniPoolToBeDeleted.append(0)
