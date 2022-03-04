@@ -1,6 +1,7 @@
 from msa_sdk.msa_api import MSA_API
 from msa_sdk.variables import Variables
 import ipaddress
+import uuid
 
 context = Variables.task_call()
 
@@ -8,6 +9,9 @@ context = Variables.task_call()
 if not context.get('pool'):
 	MSA_API.task_error('You need to enter at least one network',context, True)
 
+if not context.get('object_id'):
+	context['object_id']=str(uuid.uuid4())
+	
 for ipRange in context['pool']:
 	if not ipRange['ipUsage'] or ipRange['ipUsage'] == 'null':
 		ipRange['ipUsedNb']="0"
@@ -50,23 +54,23 @@ context['all_ip_pools']=[]
 context['nbGlobaluniq']=0
 
 # only if globaluniq is checked on this current pool
-if context['globaluniq'] == True :
-	all_ip_pools=[]
-	extract_ip_pool=[]
-	nbGlobaluniq=0
+#if context['globaluniq'] == True :
+all_ip_pools=[]
+extract_ip_pool=[]
+nbGlobaluniq=0
 	
-	#Get all Pool Ids
-	for pools in context['import_result_ip_pool']:
-		extract_ip_pool.append(pools)	
-	context['extract_ip_pool']=extract_ip_pool
+#Get all Pool Ids
+for pools in context['import_result_ip_pool']:
+	extract_ip_pool.append(pools)	
+context['extract_ip_pool']=extract_ip_pool
 	
-	#Go on each external pool and add into table only if globaluniq is checked  
-	for index in extract_ip_pool:
-		if (context['import_result_ip_pool'][index]['globaluniq'] == '1') and (context['import_result_ip_pool'][index]['object_id'] != context['object_id']):
-			nbGlobaluniq+=1
-			all_ip_pools.append(dict(name=context['import_result_ip_pool'][index]['name'],object_id=context['import_result_ip_pool'][index]['object_id'],pool=context['import_result_ip_pool'][index]['pool']))
-	context['all_ip_pools']=all_ip_pools
-	context['nbGlobaluniq']=nbGlobaluniq
+#Go on each external pool and add into table only if globaluniq is checked  
+for index in extract_ip_pool:
+	if (context['import_result_ip_pool'][index]['globaluniq'] == '1') and (context['import_result_ip_pool'][index]['object_id'] != context['object_id']):
+		nbGlobaluniq+=1
+		all_ip_pools.append(dict(name=context['import_result_ip_pool'][index]['name'],object_id=context['import_result_ip_pool'][index]['object_id'],pool=context['import_result_ip_pool'][index]['pool']))
+context['all_ip_pools']=all_ip_pools
+context['nbGlobaluniq']=nbGlobaluniq
 
 # Loop to check the current pools against external pools
 for cidr in context.get('pool'):
