@@ -41,7 +41,8 @@ for vlanRange in context['pool']:
 	
 context['vlanRangeList'] = vlanRangeList
 context['vlanRangeList_backup']=vlanRangeList
-
+context['pool_backup']=context['pool']
+context['vlansInUse_backup']=context['vlansInUse']
 # build the Microservice JSON params
 #{"Gateway":"0"}
 #micro_service_vars_array = {"object_id":object_id}

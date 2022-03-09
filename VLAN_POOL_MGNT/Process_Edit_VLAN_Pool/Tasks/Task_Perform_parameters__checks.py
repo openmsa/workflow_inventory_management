@@ -19,10 +19,13 @@ for vlanRange in context.get('pool'):
 	poolEnd=int(vlanRange['poolEnd'])
 	duplicateRangeCheck.append(''+str(poolStart)+'-'+str(poolEnd)+'')	
 	if poolStart >= poolEnd:
+		context['pool']=context['pool_backup']
 		MSA_API.task_error('VLAN ID start range value cannot be higher or equals to end range value',context, True)
 	elif poolStart <= 0 or poolEnd <= 0:
+		context['pool']=context['pool_backup']
 		MSA_API.task_error('Vlan ID range cannot have null or negative value',context, True)
 	elif poolStart > 4095 or poolEnd > 4095:
+		context['pool']=context['pool_backup']
 		MSA_API.task_error('Vlan ID range cannot exceed the value of 4095',context, True)
 
 if len(duplicateRangeCheck) != len(set(duplicateRangeCheck)):
@@ -40,7 +43,30 @@ for vlanRange in context.get('pool'):
 		#context['overlaps_check']=i1.overlaps(i2)
 		if (i1.overlaps(i2) == True):
 			if (poolStart != poolStart2) or (poolEnd != poolEnd2):
+				context['pool']=context['pool_backup']
 				MSA_API.task_error('Overlaps detected between range '+str(poolStart)+'-'+str(poolEnd)+' and range '+str(poolStart2)+'-'+str(poolEnd2)+'',context, True)
-				
+
+## Check Range update and VlanInUse
+
+if context.get('vlansInUse'):
+	if len(context['pool_backup']) == len(context['pool']):
+		context['test']=1
+		i=0
+		error=0
+		for vlanPoolUpdate in context['pool']:
+			context['test']=2
+			for vlansInUse in context['vlansInUse']:
+				context['test']=3
+				if vlansInUse['assignment_information'] == 'From VLAN Pool '+context['pool_backup'][i]['poolStart']+' - '+context['pool_backup'][i]['poolEnd']+'':
+					context['test']=4
+					if (int(vlanPoolUpdate['poolStart']) <= int(vlansInUse['vlanId']) ) and (int(vlansInUse['vlanId']) <= int(vlanPoolUpdate['poolEnd'])):
+						context['test']=5
+						vlansInUse['assignment_information']='From VLAN Pool '+vlanPoolUpdate['poolStart']+' - '+vlanPoolUpdate['poolEnd']+''
+					else:
+						context['pool']=context['pool_backup']
+						context['vlansInUse']=context['vlansInUse_backup']
+						MSA_API.task_error('Vlan Id ' +vlansInUse['vlanId']+ ' in use is out of the new range ' +vlanPoolUpdate['poolStart']+'-'+ vlanPoolUpdate['poolEnd']+'',context, True)
+			i+=1			
+			
 ret=MSA_API.process_content('ENDED','',context, True)
 print(ret)
