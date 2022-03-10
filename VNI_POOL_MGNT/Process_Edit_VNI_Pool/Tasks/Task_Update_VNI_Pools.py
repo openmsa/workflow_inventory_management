@@ -40,6 +40,8 @@ for vniRange in context['pool']:
 	
 context['vniRangeList'] = vniRangeList
 context['vniRangeList_backup']=vniRangeList
+context['pool_backup']=context['pool']
+context['vnisInUse_backup']=context['vnisInUse']
 
 # build the Microservice JSON params
 #{"Gateway":"0"}

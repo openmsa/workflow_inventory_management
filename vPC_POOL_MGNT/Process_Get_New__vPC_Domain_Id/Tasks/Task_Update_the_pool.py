@@ -28,7 +28,7 @@ for vpcRange in context['pool']:
 	vpcRangeList.append(my_dict)
 	
 context['vpcRangeList'] = vpcRangeList
-
+context['vpcsInUse_backup']=context['vpcsInUse']
 
 # build the Microservice JSON params
 #{"Gateway":"0"}

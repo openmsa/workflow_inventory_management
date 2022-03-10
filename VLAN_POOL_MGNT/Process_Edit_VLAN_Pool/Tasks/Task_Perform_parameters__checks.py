@@ -50,22 +50,16 @@ for vlanRange in context.get('pool'):
 
 if context.get('vlansInUse'):
 	if len(context['pool_backup']) == len(context['pool']):
-		context['test']=1
 		i=0
-		error=0
 		for vlanPoolUpdate in context['pool']:
-			context['test']=2
 			for vlansInUse in context['vlansInUse']:
-				context['test']=3
 				if vlansInUse['assignment_information'] == 'From VLAN Pool '+context['pool_backup'][i]['poolStart']+' - '+context['pool_backup'][i]['poolEnd']+'':
-					context['test']=4
 					if (int(vlanPoolUpdate['poolStart']) <= int(vlansInUse['vlanId']) ) and (int(vlansInUse['vlanId']) <= int(vlanPoolUpdate['poolEnd'])):
-						context['test']=5
 						vlansInUse['assignment_information']='From VLAN Pool '+vlanPoolUpdate['poolStart']+' - '+vlanPoolUpdate['poolEnd']+''
 					else:
 						context['pool']=context['pool_backup']
 						context['vlansInUse']=context['vlansInUse_backup']
-						MSA_API.task_error('Vlan Id ' +vlansInUse['vlanId']+ ' in use is out of the new range ' +vlanPoolUpdate['poolStart']+'-'+ vlanPoolUpdate['poolEnd']+'',context, True)
+						MSA_API.task_error('VLAN Id ' +vlansInUse['vlanId']+ ' in use is out of the new range ' +vlanPoolUpdate['poolStart']+'-'+ vlanPoolUpdate['poolEnd']+'',context, True)
 			i+=1			
 			
 ret=MSA_API.process_content('ENDED','',context, True)
