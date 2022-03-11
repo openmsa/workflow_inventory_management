@@ -1,6 +1,11 @@
 from msa_sdk.msa_api import MSA_API
 from msa_sdk.variables import Variables
 import ipaddress
+from msa_sdk.util import address_is_in_network
+from msa_sdk.util import get_ip_range
+from msa_sdk.util import cidr_to_range
+from ipaddress import ip_network
+from statistics import mean
 import uuid
 
 context = Variables.task_call()
@@ -22,11 +27,17 @@ duplicateCidrCheck=[]
 #check if the prefix is coherent regarding the IP version
 for cidr in context.get('pool'):
 	if not cidr['address'] or not cidr['prefix']:
+		if context['create'] == "false":
+			context['pool']=context['pool_backup']
 		MSA_API.task_error('Invalid input in your pool list, please check',context, True)
 	duplicateCidrCheck.append(''+cidr['address']+'/'+cidr['prefix']+'')
 	if context['version'] == "ipv4" and ((int(cidr['prefix']) > 32) or (int(cidr['prefix']) <= 0)):
+		if context['create'] == "false":
+			context['pool']=context['pool_backup']
 		MSA_API.task_error('Invalid prefix for CIDR '+cidr['address']+'/'+cidr['prefix']+'',context, True)
 	elif context['version'] == "ipv6" and int(cidr['prefix']) > 128:
+		if context['create'] == "false":
+			context['pool']=context['pool_backup']
 		MSA_API.task_error('Prefix for ipv46 network '+cidr['address']+'/'+cidr['prefix']+' should not exceed 128',context, True)
 
 if len(duplicateCidrCheck) != len(set(duplicateCidrCheck)):
@@ -47,6 +58,8 @@ for cidr in context.get('pool'):
 		
 		if (ipaddress.IPv4Network(cidr['address']+'/'+cidr['prefix']).overlaps(ipaddress.IPv4Network(cidr2['address']+'/'+cidr2['prefix'])) == True):
 			if (cidr['address']+'/'+cidr['prefix'] != cidr2['address']+'/'+cidr2['prefix'] ):
+				if context['create'] == "false":
+					context['pool']=context['pool_backup']
 				MSA_API.task_error('Overlaps detected between cidr '+cidr['address']+'/'+cidr['prefix']+' and cidr '+cidr2['address']+'/'+cidr2['prefix']+'',context, True)
 
 ### Global Uniqueness check ###
@@ -80,8 +93,44 @@ for cidr in context.get('pool'):
 		i=0
 		for pool in all_ip_pools['pool']:
 			if (ipaddress.IPv4Network(cidr['address']+'/'+cidr['prefix']).overlaps(ipaddress.IPv4Network(all_ip_pools['pool'][str(i)]['address']+'/'+all_ip_pools['pool'][str(i)]['prefix'])) == True):
+				if context['create'] == "false":
+					context['pool']=context['pool_backup']
 				MSA_API.task_error('Overlaps detected from this current Pool Id: '+context['object_id']+' Name: '+context['name']+' and external Pool Id: '+object_id+' Name: '+name+ ', between cidr '+cidr['address']+'/'+cidr['prefix']+' and cidr '+all_ip_pools['pool'][str(i)]['address']+'/'+all_ip_pools['pool'][str(i)]['prefix']+'',context, True)
 			i+=1
-	
+
+if context['create'] == "false":
+	## Check Range update and IPsInUse
+	if context.get('IPsInUse'):
+		if len(context['pool_backup']) == len(context['pool']):
+			i=0
+			cidrList=[]
+			avgPercentList=[]
+			for ipPoolUpdate in context['pool']:
+				for IPsInUse in context['IPsInUse']:
+					if IPsInUse['assignment_information'] == 'From IP Pool '+context['pool_backup'][i]['address']+'/'+context['pool_backup'][i]['prefix']+'':
+						if address_is_in_network(IPsInUse['address'],ipPoolUpdate['address']+'/'+ipPoolUpdate['prefix']):
+							IPsInUse['assignment_information']='From IP Pool '+ipPoolUpdate['address']+'/'+ipPoolUpdate['prefix']+''
+							
+							ipPoolUpdate['totalIps']=str(len(cidr_to_range(ipPoolUpdate['address']+'/'+ipPoolUpdate['prefix'])))
+							ipUsedNb=int(ipPoolUpdate['ipUsedNb'])
+							ipPoolUpdate['ipUsedNb']=str(ipUsedNb)
+							percent = "{:.10%}".format((int(ipPoolUpdate['totalIps'])-int(ipPoolUpdate['ipUsedNb']))/int(ipPoolUpdate['totalIps']))
+							percent=(float(100)-float(percent.strip('%')))
+							percent="{:.10f}".format(round(percent, 10))+"%"
+							ipPoolUpdate['ipUsage']=str(percent)
+						
+						else:
+							context['pool']=context['pool_backup']
+							context['IPsInUse']=context['IPsInUse_backup']
+							MSA_API.task_error('IP address ' +IPsInUse['address']+ ' in use is out of the new range of Cidr ' +ipPoolUpdate['address']+'/'+ ipPoolUpdate['prefix']+'',context, True)
+				i+=1	
+				
+				my_dict = dict(cidr=ipPoolUpdate['address']+'/'+ipPoolUpdate['prefix'],totalIps=ipPoolUpdate['totalIps'],ipUsage=ipPoolUpdate['ipUsage'],ipUsedNb=ipPoolUpdate['ipUsedNb'],isSelected='false')
+				cidrList.append(my_dict)
+				avgPercentList.append(float(ipPoolUpdate['ipUsage'].strip('%')))
+			
+			context['cidrList'] = cidrList
+			context['totalIpUsage']=str("{:.10f}".format(mean(avgPercentList)))+'%'
+
 ret=MSA_API.process_content('ENDED','',context, True)
 print(ret)

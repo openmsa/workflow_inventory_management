@@ -20,6 +20,8 @@ dev_var.add('pool.0.ipUsedNb', var_type='String')
 dev_var.add('description', var_type='String')
 context = Variables.task_call(dev_var)
 
+context['create']="false"
+
 if not context.get('IPsInUse'):
   context['IPsInUse'] = []
 

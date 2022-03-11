@@ -31,7 +31,7 @@ context['asnPoolToBeDeleted']=[]
 context['asnPoolToBeDeletedSum']=0
 
 for asnPool in context['pool_backup']:
-	if (asnPool not in context['pool']) and ( (len(context['pool_backup'])>len(context['pool'])) or (len(context['pool_backup']) == len(context['pool'])) ):
+	if (asnPool not in context['pool']) and  (len(context['pool_backup'])>len(context['pool'])):
 		if "poolInUse" not in asnPool:
 			asnPool['poolInUse']=0
 		asnPoolToBeDeleted.append(asnPool['poolInUse'])
@@ -42,11 +42,9 @@ context['asnPoolToBeDeleted']=asnPoolToBeDeleted
 context['asnPoolToBeDeletedSum']=sum(context['asnPoolToBeDeleted'])
 
 
-if context['asnPoolToBeDeletedSum'] == 0:
-	context['pool_backup']=context['pool']
-else:
+if context['asnPoolToBeDeletedSum'] != 0:
 	context['pool']=context['pool_backup']
-	MSA_API.task_error('Some range pool cannot be updated or deleted, ressource still in use, please release them',context, True)
+	MSA_API.task_error('Some range pool cannot be deleted, resource still in use, please release them',context, True)
 
 if not context['device_id'] or not context['name'] :
 	MSA_API.task_error('Mandatory parameters required',context, True)

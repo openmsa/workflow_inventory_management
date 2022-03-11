@@ -19,10 +19,13 @@ for asnRange in context.get('pool'):
 	duplicateRangeCheck.append(''+str(poolStart)+'-'+str(poolEnd)+'')
 	
 	if poolStart >= poolEnd:
+		context['pool']=context['pool_backup']
 		MSA_API.task_error('ASN ID start range value cannot be higher or equals to end range value',context, True)
 	elif poolStart <= 0 or poolEnd <= 0:
+		context['pool']=context['pool_backup']
 		MSA_API.task_error('ASN ID range cannot have null or negative value',context, True)
 	elif poolStart > 64511 or poolEnd > 64511:
+		context['pool']=context['pool_backup']
 		MSA_API.task_error('ASN ID range cannot exceed the value of 64511',context, True)
 
 if len(duplicateRangeCheck) != len(set(duplicateRangeCheck)):
@@ -40,7 +43,24 @@ for asnRange in context.get('pool'):
 		#context['overlaps_check']=i1.overlaps(i2)
 		if (i1.overlaps(i2) == True):
 			if (poolStart != poolStart2) or (poolEnd != poolEnd2):
+				context['pool']=context['pool_backup']
 				MSA_API.task_error('Overlaps detected between range '+str(poolStart)+'-'+str(poolEnd)+' and range '+str(poolStart2)+'-'+str(poolEnd2)+'',context, True)
-				
+
+## Check Range update and asnsInUse
+
+if context.get('asnsInUse'):
+	if len(context['pool_backup']) == len(context['pool']):
+		i=0
+		for asnPoolUpdate in context['pool']:
+			for asnsInUse in context['asnsInUse']:
+				if asnsInUse['assignment_information'] == 'From ASN Pool '+context['pool_backup'][i]['poolStart']+' - '+context['pool_backup'][i]['poolEnd']+'':
+					if (int(asnPoolUpdate['poolStart']) <= int(asnsInUse['asnId']) ) and (int(asnsInUse['asnId']) <= int(asnPoolUpdate['poolEnd'])):
+						asnsInUse['assignment_information']='From ASN Pool '+asnPoolUpdate['poolStart']+' - '+asnPoolUpdate['poolEnd']+''
+					else:
+						context['pool']=context['pool_backup']
+						context['asnsInUse']=context['asnsInUse_backup']
+						MSA_API.task_error('ASN Id ' +asnsInUse['asnId']+ ' in use is out of the new range ' +asnPoolUpdate['poolStart']+'-'+ asnPoolUpdate['poolEnd']+'',context, True)
+			i+=1			
+			
 ret=MSA_API.process_content('ENDED','',context, True)
 print(ret)

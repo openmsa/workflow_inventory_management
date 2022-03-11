@@ -19,12 +19,15 @@ for vpcRange in context.get('pool'):
 	duplicateRangeCheck.append(''+str(poolStart)+'-'+str(poolEnd)+'')
 	
 	if poolStart >= poolEnd:
+		context['pool']=context['pool_backup']
 		MSA_API.task_error('vPC ID start range value cannot be higher or equals to end range value',context, True)
 
 	elif poolStart <= 0 or poolEnd <= 0:
+		context['pool']=context['pool_backup']
 		MSA_API.task_error('vPC ID range cannot have null or negative value',context, True)
 
 	elif poolStart > 1000 or poolEnd > 1000:
+		context['pool']=context['pool_backup']
 		MSA_API.task_error('vPC ID range cannot exceed the value of 1000',context, True)
 
 if len(duplicateRangeCheck) != len(set(duplicateRangeCheck)):
@@ -43,8 +46,24 @@ for vpcRange in context.get('pool'):
 		#if (poolStart != poolStart2) and (poolEnd != poolEnd2):
 		if (i1.overlaps(i2) == True):
 			if (poolStart != poolStart2) or (poolEnd != poolEnd2):
+				context['pool']=context['pool_backup']
 				MSA_API.task_error('Overlaps detected between range '+str(poolStart)+'-'+str(poolEnd)+' and range '+str(poolStart2)+'-'+str(poolEnd2)+'',context, True)
-			
+
+## Check Range update and vpcsInUse
+
+if context.get('vpcsInUse'):
+	if len(context['pool_backup']) == len(context['pool']):
+		i=0
+		for vpcPoolUpdate in context['pool']:
+			for vpcsInUse in context['vpcsInUse']:
+				if vpcsInUse['assignment_information'] == 'From vPC Pool '+context['pool_backup'][i]['poolStart']+' - '+context['pool_backup'][i]['poolEnd']+'':
+					if (int(vpcPoolUpdate['poolStart']) <= int(vpcsInUse['vpcId']) ) and (int(vpcsInUse['vpcId']) <= int(vpcPoolUpdate['poolEnd'])):
+						vpcsInUse['assignment_information']='From vPC Pool '+vpcPoolUpdate['poolStart']+' - '+vpcPoolUpdate['poolEnd']+''
+					else:
+						context['pool']=context['pool_backup']
+						context['vpcsInUse']=context['vpcsInUse_backup']
+						MSA_API.task_error('vPC Id ' +vpcsInUse['vpcId']+ ' in use is out of the new range ' +vpcPoolUpdate['poolStart']+'-'+ vpcPoolUpdate['poolEnd']+'',context, True)
+			i+=1			
 	
 ret=MSA_API.process_content('ENDED','',context, True)
 print(ret)

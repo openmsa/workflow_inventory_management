@@ -31,7 +31,7 @@ if not context.get('pool_backup'):
   context['pool_backup'] = []
 
 for vlanPool in context['pool_backup']:
-	if (vlanPool not in context['pool']) and ( (len(context['pool_backup'])>len(context['pool'])) or (len(context['pool_backup']) == len(context['pool'])) ):
+	if (vlanPool not in context['pool']) and (len(context['pool_backup'])>len(context['pool'])):
 		if "poolInUse" not in vlanPool:
 			vlanPool['poolInUse']=0
 		vlanPoolToBeDeleted.append(vlanPool['poolInUse'])
@@ -42,13 +42,12 @@ context['vlanPoolToBeDeleted']=vlanPoolToBeDeleted
 context['vlanPoolToBeDeletedSum']=sum(context['vlanPoolToBeDeleted'])
 
 
-if context['vlanPoolToBeDeletedSum'] == 0:
-	context['pool_backup']=context['pool']
-else:
+if context['vlanPoolToBeDeletedSum'] != 0:
+	#context['pool_backup']=context['pool']
+#else:
 	context['pool']=context['pool_backup']
-	MSA_API.task_error('Some range pool cannot be updated or deleted, ressource still in use, please release them',context, True)
-	
-	
+	MSA_API.task_error('Some range pool cannot be deleted, resource still in use, please release them',context, True)
+
 if not context['device_id'] or not context['name'] :
 	MSA_API.task_error('Mandatory parameters required',context, True)
 

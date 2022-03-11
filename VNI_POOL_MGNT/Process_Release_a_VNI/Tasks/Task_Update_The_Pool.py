@@ -28,7 +28,7 @@ for vniRange in context['pool']:
 	vniRangeList.append(my_dict)
 	
 context['vniRangeList'] = vniRangeList
-
+context['vnisInUse_backup']=context['vnisInUse']
 
 # build the Microservice JSON params
 #{"Gateway":"0"}

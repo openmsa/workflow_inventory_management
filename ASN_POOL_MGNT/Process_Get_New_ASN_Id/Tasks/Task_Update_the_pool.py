@@ -28,7 +28,7 @@ for asnRange in context['pool']:
 	asnRangeList.append(my_dict)
 	
 context['asnRangeList'] = asnRangeList
-
+context['asnsInUse_backup']=context['asnsInUse']
 # build the Microservice JSON params
 #{"Gateway":"0"}
 #micro_service_vars_array = {"object_id":object_id}

@@ -29,7 +29,7 @@ for vlanRange in context['pool']:
 	vlanRangeList.append(my_dict)
 	
 context['vlanRangeList'] = vlanRangeList
-
+context['vlansInUse_backup']=context['vlansInUse']
 
 # build the Microservice JSON params
 #{"Gateway":"0"}

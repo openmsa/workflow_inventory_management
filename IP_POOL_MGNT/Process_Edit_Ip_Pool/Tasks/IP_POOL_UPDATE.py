@@ -40,7 +40,7 @@ context['ipPoolToBeDeleted']=[]
 context['ipPoolToBeDeletedSum']=0
 
 for ipPool in context['pool_backup']:
-	if (ipPool not in context['pool']) and ( (len(context['pool_backup'])>len(context['pool'])) or (len(context['pool_backup']) == len(context['pool'])) ):
+	if (ipPool not in context['pool']) and (len(context['pool_backup'])>len(context['pool'])):
 		if "ipUsedNb" not in ipPool:
 			ipPool['ipUsedNb']="0"
 		ipPoolToBeDeleted.append(int(ipPool['ipUsedNb']))
@@ -51,11 +51,9 @@ context['ipPoolToBeDeleted']=ipPoolToBeDeleted
 context['ipPoolToBeDeletedSum']=sum(context['ipPoolToBeDeleted'])
 
 
-if context['ipPoolToBeDeletedSum'] == 0:
-	context['pool_backup']=context['pool']
-else:
+if context['ipPoolToBeDeletedSum'] != 0:
 	context['pool']=context['pool_backup']
-	MSA_API.task_error('Some range pool cannot be updated or deleted, ressource still in use, please release them',context, True)
+	MSA_API.task_error('Some range pool cannot be deleted, ressource still in use, please release them',context, True)
 
 cidrList=[]
 
@@ -72,6 +70,8 @@ for cidr in context['pool']:
 	
 context['cidrList'] = cidrList
 context['cidrList_backup'] = cidrList
+context['pool_backup']=context['pool']
+context['IPsInUse_backup']=context['IPsInUse']
 
 if not context.get('globaluniq'):
 	context['globaluniq']=''

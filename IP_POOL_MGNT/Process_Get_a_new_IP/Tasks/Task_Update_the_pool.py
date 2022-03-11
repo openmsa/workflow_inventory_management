@@ -23,17 +23,18 @@ for cidr in context['pool']:
 		ipUsedNb=int(cidr['ipUsedNb'])
 		ipUsedNb+=1
 		cidr['ipUsedNb']=str(ipUsedNb)
-		percent = "{:.2%}".format((int(cidr['totalIps'])-int(cidr['ipUsedNb']))/int(cidr['totalIps']))
+		percent = "{:.10%}".format((int(cidr['totalIps'])-int(cidr['ipUsedNb']))/int(cidr['totalIps']))
 		percent=(float(100)-float(percent.strip('%')))
-		percent="{:.2f}".format(round(percent, 2))+"%"
+		percent="{:.10f}".format(round(percent, 10))+"%"
 		cidr['ipUsage']=str(percent)
 	my_dict = dict(cidr=cidr['address']+'/'+cidr['prefix'],totalIps=cidr['totalIps'],ipUsage=cidr['ipUsage'],ipUsedNb=cidr['ipUsedNb'],isSelected='false')
 	cidrList.append(my_dict)
 	avgPercentList.append(float(cidr['ipUsage'].strip('%')))
 	
 context['cidrList'] = cidrList
-context['totalIpUsage']=str("{:.2f}".format(round(mean(avgPercentList))))+'%'
+context['totalIpUsage']=str("{:.10f}".format(mean(avgPercentList)))+'%'
 context['pool_backup']=context['pool']
+context['IPsInUse_backup']=context['IPsInUse']
 
 if not context.get('globaluniq'):
 	context['globaluniq']=''

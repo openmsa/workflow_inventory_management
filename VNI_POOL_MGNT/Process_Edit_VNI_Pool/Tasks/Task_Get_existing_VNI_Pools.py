@@ -34,7 +34,7 @@ context['vniPoolToBeDeleted']=[]
 context['vniPoolToBeDeletedSum']=0
 
 for vniPool in context['pool_backup']:
-	if (vniPool not in context['pool']) and ( (len(context['pool_backup'])>len(context['pool'])) or (len(context['pool_backup']) == len(context['pool'])) ):
+	if (vniPool not in context['pool']) and  (len(context['pool_backup'])>len(context['pool'])):
 		if "poolInUse" not in vniPool:
 			vniPool['poolInUse']=0
 		vniPoolToBeDeleted.append(vniPool['poolInUse'])
@@ -45,11 +45,9 @@ context['vniPoolToBeDeleted']=vniPoolToBeDeleted
 context['vniPoolToBeDeletedSum']=sum(context['vniPoolToBeDeleted'])
 
 
-if context['vniPoolToBeDeletedSum'] == 0:
-	context['pool_backup']=context['pool']
-else:
+if context['vniPoolToBeDeletedSum'] != 0:
 	context['pool']=context['pool_backup']
-	MSA_API.task_error('Some range pool cannot be updated or deleted, ressource still in use, please release them',context, True)
+	MSA_API.task_error('Some range pool cannot be deleted, resource still in use, please release them',context, True)
 
 
 if not context['device_id'] or not context['name'] :
