@@ -29,7 +29,6 @@ for cidr in context['pool']:
 		
 	cidr['ipUsedNb']="0"	
 	cidr['totalIps']=str(len(cidr_to_range(cidr['address']+'/'+cidr['prefix'])))
-	cidr['totalIps']=str(len(cidr_to_range(cidr['address']+'/'+cidr['prefix'])))
 	cidr['ipUsage']='0%'
 	my_dict = dict(cidr=cidr['address']+'/'+cidr['prefix'],totalIps=cidr['totalIps'],ipUsage=cidr['ipUsage'],ipUsedNb=cidr['ipUsedNb'],isSelected='false')
 	cidrList.append(my_dict)
@@ -48,7 +47,7 @@ if not context.get('object_id'):
 	context['object_id']=str(uuid.uuid4())
 
 object_id=context['object_id']
-
+context['create']="true"
 # build the Microservice JSON params
 #{"Gateway":"0"}
 #micro_service_vars_array = {"object_id":object_id}

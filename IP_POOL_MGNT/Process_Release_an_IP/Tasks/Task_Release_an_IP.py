@@ -90,18 +90,19 @@ for ip in context['pool']:
 		ipUsedNb=int(ip['ipUsedNb'])
 		ipUsedNb-=1
 		ip['ipUsedNb']=str(ipUsedNb)
-		percent = "{:.2%}".format((int(ip['totalIps'])-int(ip['ipUsedNb']))/int(ip['totalIps']))
+		percent = "{:.10%}".format((int(ip['totalIps'])-int(ip['ipUsedNb']))/int(ip['totalIps']))
 		percent=(float(100)-float(percent.strip('%')))
-		percent="{:.2f}".format(round(percent, 2))+"%"
+		percent="{:.10f}".format(round(percent, 10))+"%"
 		ip['ipUsage']=str(percent)
 	my_dict = dict(cidr=ip['address']+'/'+ip['prefix'],totalIps=ip['totalIps'],ipUsage=ip['ipUsage'],ipUsedNb=ip['ipUsedNb'],isSelected='false')
 	cidrList.append(my_dict)
 	avgPercentList.append(float(ip['ipUsage'].strip('%')))
 		
 context['cidrList'] = cidrList
-context['totalIpUsage']=str("{:.2f}".format(round(mean(avgPercentList))))+'%'
+context['totalIpUsage']=str("{:.10f}".format(mean(avgPercentList)))+'%'
 #context['totalIpUsage']="-11%"
 context['pool_backup']=context['pool']
+context['IPsInUse_backup']=context['IPsInUse']
 
 ret = MSA_API.process_content('ENDED', 'IP '+ipToRelease+' has been released from Cidr '+context['SelectedCidr']+'', context, True)
 print(ret)
