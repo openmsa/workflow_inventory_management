@@ -20,7 +20,12 @@ dev_var.add('pool.0.ipUsedNb', var_type='String')
 dev_var.add('description', var_type='String')
 context = Variables.task_call(dev_var)
 
+#check that at least there is one cidr/network defined
+if not context.get('pool'):
+	MSA_API.task_error('You need to enter at least one network',context, True)
+	
 context['create']="false"
+context['pool_backup']=context['pool']
 
 if not context.get('IPsInUse'):
   context['IPsInUse'] = []
