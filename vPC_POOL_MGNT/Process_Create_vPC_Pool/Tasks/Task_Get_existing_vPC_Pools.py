@@ -40,6 +40,12 @@ content = json.loads(order.content)
 
 context['import_result']=content
 
+import_result_message=json.loads(context['import_result']['message'])
+if "vPC_POOL" not in import_result_message:
+	context['import_result_vpc_pool']=[]
+else:
+	context['import_result_vpc_pool']=import_result_message['vPC_POOL']
+
 # check if the response is OK
 if order.response.ok:
     ret = MSA_API.process_content('ENDED',

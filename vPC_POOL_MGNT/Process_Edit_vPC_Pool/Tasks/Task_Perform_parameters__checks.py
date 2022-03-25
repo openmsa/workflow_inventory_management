@@ -8,6 +8,16 @@ context = Variables.task_call()
 if not context.get('pool'):
 	MSA_API.task_error('You need to enter at least one vPC range pool',context, True)
 
+#Get all Pool Ids
+extract_vpc_pool=[]
+for pools in context['import_result_vpc_pool']:
+	extract_vpc_pool.append(pools)	
+context['extract_vpc_pool']=extract_vpc_pool
+
+for index in extract_vpc_pool:
+	if context['import_result_vpc_pool'][index]['name'] == context['name'] and context['import_result_vpc_pool'][index]['object_id'] != context['object_id']:
+		MSA_API.task_error(''+context['name']+' already exist, please edit your Pool Name',context, True)
+
 duplicateRangeCheck=[]
 
 #check the range order
