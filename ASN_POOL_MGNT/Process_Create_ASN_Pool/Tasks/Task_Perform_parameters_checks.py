@@ -8,6 +8,16 @@ context = Variables.task_call()
 if not context.get('pool'):
 	MSA_API.task_error('You need to enter at least one ASN range pool',context, True)
 	
+#Get all Pool Ids
+extract_asn_pool=[]
+for pools in context['import_result_asn_pool']:
+	extract_asn_pool.append(pools)	
+context['extract_asn_pool']=extract_asn_pool
+
+for index in extract_asn_pool:
+	if context['import_result_asn_pool'][index]['name'] == context['name']:
+		MSA_API.task_error(''+context['name']+' already exist, please edit your Pool Name',context, True)
+	
 duplicateRangeCheck=[]
 
 #check the range order

@@ -8,6 +8,16 @@ context = Variables.task_call()
 if not context.get('pool'):
 	MSA_API.task_error('You need to enter at least one VNI range pool',context, True)
 	
+#Get all Pool Ids
+extract_vni_pool=[]
+for pools in context['import_result_vni_pool']:
+	extract_vni_pool.append(pools)	
+context['extract_vni_pool']=extract_vni_pool
+
+for index in extract_vni_pool:
+	if context['import_result_vni_pool'][index]['name'] == context['name']:
+		MSA_API.task_error(''+context['name']+' already exist, please edit your Pool Name',context, True)
+	
 duplicateRangeCheck=[]
 
 #check the range order

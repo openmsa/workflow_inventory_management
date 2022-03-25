@@ -8,6 +8,16 @@ context = Variables.task_call()
 if not context.get('pool'):
 	context['pool']=context['pool_backup']
 	MSA_API.task_error('You need to enter at least one vlan range pool',context, True)
+	
+#Get all Pool Ids
+extract_vlan_pool=[]
+for pools in context['import_result_vlan_pool']:
+	extract_vlan_pool.append(pools)	
+context['extract_vlan_pool']=extract_vlan_pool
+
+for index in extract_vlan_pool:
+	if context['import_result_vlan_pool'][index]['name'] == context['name'] and context['import_result_vlan_pool'][index]['object_id'] != context['object_id']:
+		MSA_API.task_error(''+context['name']+' already exist, please edit your Pool Name',context, True)
 
 duplicateRangeCheck=[]	
 

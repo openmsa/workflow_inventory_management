@@ -76,6 +76,15 @@ nbGlobaluniq=0
 for pools in context['import_result_ip_pool']:
 	extract_ip_pool.append(pools)	
 context['extract_ip_pool']=extract_ip_pool
+
+
+for index in extract_ip_pool:
+	if context['create'] == "true":
+		if context['import_result_ip_pool'][index]['name'] == context['name']:
+			MSA_API.task_error(''+context['name']+' already exist, please edit your Pool Name',context, True)
+	if context['create'] == "false":
+		if context['import_result_ip_pool'][index]['name'] == context['name'] and context['import_result_ip_pool'][index]['object_id'] != context['object_id']:
+			MSA_API.task_error(''+context['name']+' already exist, please edit your Pool Name',context, True)
 	
 #Go on each external pool and add into table only if globaluniq is checked  
 for index in extract_ip_pool:
@@ -97,7 +106,7 @@ for cidr in context.get('pool'):
 					context['pool']=context['pool_backup']
 				MSA_API.task_error('Overlaps detected from this current Pool Id: '+context['object_id']+' Name: '+context['name']+' and external Pool Id: '+object_id+' Name: '+name+ ', between cidr '+cidr['address']+'/'+cidr['prefix']+' and cidr '+all_ip_pools['pool'][str(i)]['address']+'/'+all_ip_pools['pool'][str(i)]['prefix']+'',context, True)
 			i+=1
-
+			
 if context['create'] == "false":
 	## Check Range update and IPsInUse
 	if context.get('IPsInUse'):
