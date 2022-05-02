@@ -11,6 +11,8 @@ dev_var.add('object_id', var_type='AutoIncrement')
 dev_var.add('name', var_type='String')
 dev_var.add('pool.0.poolStart', var_type='Integer')
 dev_var.add('pool.0.poolEnd', var_type='Integer')
+dev_var.add('pool.0.poolInUse', var_type='Integer')
+dev_var.add('pool.0.description', var_type='String')
 dev_var.add('description', var_type='String')
 context = Variables.task_call(dev_var)
 
