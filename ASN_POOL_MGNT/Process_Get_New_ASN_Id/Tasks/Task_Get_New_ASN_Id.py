@@ -93,6 +93,7 @@ for asnRange in context['pool']:
 		break
 
 context['pool_backup']=context['pool']
+context['newAssignedASNId']=newAsnId
 
 ret = MSA_API.process_content('ENDED', 'New ASN Id '+newAsnId+" has been allocated", context, True)
 print(ret)
