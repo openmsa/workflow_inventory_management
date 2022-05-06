@@ -29,7 +29,7 @@ device_id = context['device_id']
 devicelongid = device_id[3:]
 
 object_parameters = {}
-object_parameters['VLAN_POOL'] ={}
+object_parameters['VLAN_POOL'] = 0
 
 # call the CREATE for the specified MS for each device
 order = Order(devicelongid)
