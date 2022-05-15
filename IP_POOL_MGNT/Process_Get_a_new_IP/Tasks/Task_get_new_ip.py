@@ -73,6 +73,8 @@ if context.get('usedIPs'):
 usedList=usedList+"\n"+newip
 context['usedIPs']=usedList
 
+context['newAssignedIP']=newip
+
 ret = MSA_API.process_content('ENDED', 'New ip '+newip+" has been allocated", context, True)
 print(ret)
 

@@ -18,9 +18,9 @@ context = Variables.task_call(dev_var)
 if not context.get('pool'):
 	MSA_API.task_error('You need to enter at least one VNI range pool',context, True)
 
-if len(context['vniRangeList']) != len(context['vniRangeList_backup']):
-	context['vniRangeList']=context['vniRangeList_backup']
-	MSA_API.task_error('VNI Pool update cannot be done from this process',context, True)
+#if len(context['vniRangeList']) != len(context['vniRangeList_backup']):
+#	context['vniRangeList']=context['vniRangeList_backup']
+#	MSA_API.task_error('VNI Pool update cannot be done from this process',context, True)
 
 if not context.get('vnisInUse'):
   context['vnisInUse'] = []

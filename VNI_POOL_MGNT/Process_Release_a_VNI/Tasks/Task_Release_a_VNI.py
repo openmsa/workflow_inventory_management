@@ -12,9 +12,9 @@ context = Variables.task_call(dev_var)
 if "vniRangeList" not in context:
 	MSA_API.task_error('No VNI Pool found',context, True)
 
-if len(context['vniRangeList']) != len(context['vniRangeList_backup']):
-  context['vniRangeList']=context['vniRangeList_backup']
-  MSA_API.task_error('VNI Pool update cannot be done from this process',context, True)
+#if len(context['vniRangeList']) != len(context['vniRangeList_backup']):
+#  context['vniRangeList']=context['vniRangeList_backup']
+#  MSA_API.task_error('VNI Pool update cannot be done from this process',context, True)
 
 if not context.get('vnisInUse'):
   context['vnisInUse'] = []
@@ -92,6 +92,7 @@ for vniRange in context['pool']:
 		break
 	
 context['pool_backup']=context['pool']
+context['newReleasedVni']=vniIdToRelease
 
 ret = MSA_API.process_content('ENDED', 'The VNI Id '+vniIdToRelease+' has been released from Pool range '+context['SelectedVniRangeStart']+' - '+context['SelectedVniRangeEnd']+'', context, True)
 print(ret)

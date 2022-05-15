@@ -104,5 +104,7 @@ context['totalIpUsage']=str("{:.10f}".format(mean(avgPercentList)))+'%'
 context['pool_backup']=context['pool']
 context['IPsInUse_backup']=context['IPsInUse']
 
+context['newReleasedIP']=ipToRelease
+
 ret = MSA_API.process_content('ENDED', 'IP '+ipToRelease+' has been released from Cidr '+context['SelectedCidr']+'', context, True)
 print(ret)

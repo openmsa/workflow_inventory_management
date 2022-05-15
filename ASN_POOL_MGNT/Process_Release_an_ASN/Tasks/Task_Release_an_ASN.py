@@ -12,9 +12,9 @@ context = Variables.task_call(dev_var)
 if "asnRangeList" not in context:
 	MSA_API.task_error('No ASN Pool found',context, True)
 
-if len(context['asnRangeList']) != len(context['asnRangeList_backup']):
-	context['asnRangeList']=context['asnRangeList_backup']
-	MSA_API.task_error('ASN Pool update cannot be done from this process',context, True)
+#if len(context['asnRangeList']) != len(context['asnRangeList_backup']):
+#	context['asnRangeList']=context['asnRangeList_backup']
+#	MSA_API.task_error('ASN Pool update cannot be done from this process',context, True)
 
 if not context.get('asnsInUse'):
   context['asnsInUse'] = []

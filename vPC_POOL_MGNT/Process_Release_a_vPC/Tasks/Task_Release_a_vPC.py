@@ -12,9 +12,9 @@ context = Variables.task_call(dev_var)
 if "vpcRangeList" not in context:
 	MSA_API.task_error('No vPC Pool found',context, True)
 
-if len(context['vpcRangeList']) != len(context['vpcRangeList_backup']):
-  context['vpcRangeList']=context['vpcRangeList_backup']
-  MSA_API.task_error('vPC Pool update cannot be done from this process',context, True)
+#if len(context['vpcRangeList']) != len(context['vpcRangeList_backup']):
+#  context['vpcRangeList']=context['vpcRangeList_backup']
+#  MSA_API.task_error('vPC Pool update cannot be done from this process',context, True)
 
 if not context.get('vpcsInUse'):
   context['vpcsInUse'] = []
@@ -92,6 +92,7 @@ for vpcRange in context['pool']:
 		break
 
 context['pool_backup']=context['pool']
+context['newReleasedVpc']=vpcIdToRelease
 
 ret = MSA_API.process_content('ENDED', 'The vPC Id '+vpcIdToRelease+' has been released from Pool range '+context['SelectedVpcRangeStart']+' - '+context['SelectedVpcRangeEnd']+'', context, True)
 print(ret)
