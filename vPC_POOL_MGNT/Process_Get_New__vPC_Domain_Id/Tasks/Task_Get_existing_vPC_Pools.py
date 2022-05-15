@@ -18,9 +18,9 @@ context = Variables.task_call(dev_var)
 if not context.get('pool'):
 	MSA_API.task_error('You need to enter at least one vPC range pool',context, True)
 
-if len(context['vpcRangeList']) != len(context['vpcRangeList_backup']):
-  context['vpcRangeList']=context['vpcRangeList_backup']
-  MSA_API.task_error('vPC Pool update cannot be done from this process',context, True)
+#if len(context['vpcRangeList']) != len(context['vpcRangeList_backup']):
+#  context['vpcRangeList']=context['vpcRangeList_backup']
+#  MSA_API.task_error('vPC Pool update cannot be done from this process',context, True)
 
 if not context.get('vpcsInUse'):
   context['vpcsInUse'] = []

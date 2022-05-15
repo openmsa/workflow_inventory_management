@@ -12,9 +12,9 @@ context = Variables.task_call(dev_var)
 if "vlanRangeList" not in context:
 	MSA_API.task_error('No VLAN Pool found',context, True)
 
-if len(context['vlanRangeList']) != len(context['vlanRangeList_backup']):
-	context['vlanRangeList']=context['vlanRangeList_backup']
-	MSA_API.task_error('Vlan Pool update cannot be done from this process',context, True)
+#if len(context['vlanRangeList']) != len(context['vlanRangeList_backup']):
+#	context['vlanRangeList']=context['vlanRangeList_backup']
+#	MSA_API.task_error('Vlan Pool update cannot be done from this process',context, True)
 
 if not context.get('vlansInUse'):
   context['vlansInUse'] = []

@@ -17,7 +17,7 @@ dev_var.add('pool.0.prefix', var_type='Integer')
 dev_var.add('pool.0.totalIps', var_type='String')
 dev_var.add('pool.0.ipUsage', var_type='String')
 dev_var.add('pool.0.ipUsedNb', var_type='String')
-dev_var.add('pool.0.description', var_type='String')
+dev_var.add('pool.0.tag', var_type='String')
 dev_var.add('description', var_type='String')
 context = Variables.task_call(dev_var)
 

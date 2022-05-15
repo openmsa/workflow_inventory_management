@@ -39,6 +39,8 @@ object_parameters['VNI_POOL']={}
 object_parameters['VNI_POOL'] [object_id]={}
 object_parameters['VNI_POOL'] [object_id]['object_id']=object_id
 object_parameters['VNI_POOL'] [object_id]['name']=context['name']
+object_parameters['VNI_POOL'] [object_id]['SERVICEINSTANCEREFERENCE']=context['SERVICEINSTANCEREFERENCE']
+object_parameters['VNI_POOL'] [object_id]['SERVICEINSTANCEID']=context['SERVICEINSTANCEID']
 object_parameters['VNI_POOL'] [object_id]['description']=context['description']
 object_parameters['VNI_POOL'] [object_id]['pool']=context['pool']
 

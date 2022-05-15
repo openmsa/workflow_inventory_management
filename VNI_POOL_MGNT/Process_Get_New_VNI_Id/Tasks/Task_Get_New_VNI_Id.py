@@ -91,6 +91,7 @@ for vniRange in context['pool']:
 		break
 
 context['pool_backup']=context['pool']	
+context['newAssignedVni']=newVniId
 
 ret = MSA_API.process_content('ENDED', 'New VNI Id '+newVniId+" has been allocated", context, True)
 print(ret)
