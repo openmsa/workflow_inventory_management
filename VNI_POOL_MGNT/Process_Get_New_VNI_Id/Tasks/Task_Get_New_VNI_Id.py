@@ -64,17 +64,21 @@ if not newVniId:
 				break
 
 	if not newVniId:
+		context['newVniId']=''
 		MSA_API.task_error('All VNI Ids from the range '+SelectedVniRangeStart+' - '+SelectedVniRangeEnd+' have been allocated', context, True)
 else:
 	# Check if given VNI Id is include on the range
 	if int(SelectedVniRangeStart) > int(newVniId) or int(newVniId) > int(SelectedVniRangeEnd):
+		context['newVniId']=''
 		MSA_API.task_error('VNI Id '+newAsnId+" not on the available range ("+SelectedVniRangeStart+" - "+SelectedVniRangeEnd+")", context, True)	
 	# Check if given VNI Id is not starting with 0 (eg : 01)
 	if newVniId.startswith('0'):
+		context['newVniId']=''
 		MSA_API.task_error('VNI Id '+newVniId+" not valid, please retry", context, True)
 	#Check if the given VNI Id is already allocated
 	for usedVni in context['vnisInUse']:
 		if (newVniId == usedVni['vniId']) and (str(usedVni['assignment_information']) == 'From VNI Pool '+context['SelectedVniRangeStart']+' - '+context['SelectedVniRangeEnd']+''):
+			context['newVniId']=''
 			MSA_API.task_error('VNI Id '+newVniId+" is already in use", context, True)
 
 newAssignmentDescription='From VNI Pool '+SelectedVniRangeStart+' - '+SelectedVniRangeEnd+''

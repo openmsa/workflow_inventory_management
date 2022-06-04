@@ -32,8 +32,8 @@ for asnRange in context.get('pool'):
 		MSA_API.task_error('ASN ID start range value cannot be higher or equals to end range value',context, True)
 	elif poolStart <= 0 or poolEnd <= 0:
 		MSA_API.task_error('ASN ID range cannot have null or negative value',context, True)
-	elif poolStart > 64511 or poolEnd > 64511:
-		MSA_API.task_error('ASN ID range cannot exceed the value of 64511',context, True)
+	elif poolStart > 65535 or poolEnd > 65535:
+		MSA_API.task_error('ASN ID range cannot exceed the value of 65535',context, True)
 
 if len(duplicateRangeCheck) != len(set(duplicateRangeCheck)):
 	MSA_API.task_error('Duplicate of ASN range detected, please edit your ASN Pool',context, True)

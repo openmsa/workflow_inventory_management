@@ -16,6 +16,15 @@ if not context['device_id'] or not context['name'] :
 if not context.get('IPsInUse'):
 	context['IPsInUse']=[]
 	
+if not context.get('newip'):
+	context['newip']=''
+	
+if not context.get('newAssignmentDescription'):
+	context['newAssignmentDescription']=''
+
+if not context.get('newUsageInformation'):
+	context['newUsageInformation']=''
+	
 newip=context['newip']
 newAssignmentDescription=context['newAssignmentDescription']
 newUsageInformation=context['newUsageInformation']
@@ -55,15 +64,18 @@ if not newip:
 				break
 
 	if not newip:
+		context['newip']=''
 		MSA_API.task_error('All IPs from '+SelectedCidr+' have been allocated', context, True)
 else:
 	#check if the entered IP address is part of the selectec network (cidr)
 	if not address_is_in_network(newip,SelectedCidr):
+		context['newip']=''
 		MSA_API.task_error('Entered address '+newip+' is not in network '+SelectedCidr, context, True)
 
 	#Check if the ntered IP address is already allocated
 	for usedIP in context['IPsInUse']:
 		if newip == usedIP['address']:
+			context['newip']=''
 			MSA_API.task_error('IP address '+newip+" is already in use", context, True)
 
 newAssignmentDescription='From IP Pool '+SelectedCidr+''	

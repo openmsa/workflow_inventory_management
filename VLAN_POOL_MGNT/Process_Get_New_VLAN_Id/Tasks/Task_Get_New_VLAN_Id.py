@@ -65,17 +65,21 @@ if not newVlanId:
 				break
 
 	if not newVlanId:
+		context['newVlanId']=''
 		MSA_API.task_error('All Vlan Ids from the range '+SelectedVlanRangeStart+' - '+SelectedVlanRangeEnd+' have been allocated', context, True)
 else:
 	# Check if given Vlan Id is include on the range
 	if int(SelectedVlanRangeStart) > int(newVlanId) or int(newVlanId) > int(SelectedVlanRangeEnd):
+		context['newVlanId']=''
 		MSA_API.task_error('Vlan Id '+newVlanId+" not on the available range ("+SelectedVlanRangeStart+" - "+SelectedVlanRangeEnd+")", context, True)	
 			# Check if given VLAN Id is not starting with 0 (eg : 01)
 	if newVlanId.startswith('0'):
+		context['newVlanId']=''
 		MSA_API.task_error('VLAN Id '+newVlanId+" not valid, please retry", context, True)
 		#Check if the given Vlan Id is already allocated
 	for usedVlan in context['vlansInUse']:
 		if (newVlanId == usedVlan['vlanId']) and (str(usedVlan['assignment_information']) == 'From VLAN Pool '+context['SelectedVlanRangeStart']+' - '+context['SelectedVlanRangeEnd']+''):
+			context['newVlanId']=''
 			MSA_API.task_error('Vlan Id '+newVlanId+" is already in use", context, True)
 
 newAssignmentDescription='From VLAN Pool '+SelectedVlanRangeStart+' - '+SelectedVlanRangeEnd+''					

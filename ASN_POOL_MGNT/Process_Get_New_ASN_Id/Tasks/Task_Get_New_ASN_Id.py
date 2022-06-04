@@ -64,19 +64,23 @@ if not newAsnId:
 				break
 
 	if not newAsnId:
+		context['newAsnId']=''
 		MSA_API.task_error('All ASN Ids from the range '+SelectedAsnRangeStart+' - '+SelectedAsnRangeEnd+' have been allocated', context, True)
 else:
 	# Check if given ASN Id is included in the range
 	if int(SelectedAsnRangeStart) > int(newAsnId) or int(newAsnId) > int(SelectedAsnRangeEnd):
+		context['newAsnId']=''
 		MSA_API.task_error('ASN Id '+newAsnId+" not on the available range ("+SelectedAsnRangeStart+" - "+SelectedAsnRangeEnd+")", context, True)	
 	
 	# Check if given ASN Id is not starting with 0 (eg : 01)
 	if newAsnId.startswith('0'):
+		context['newAsnId']=''
 		MSA_API.task_error('ASN Id '+newAsnId+" not valid, please retry", context, True)	
 	
 	#Check if the given ASN Id is already allocated
 	for usedAsn in context['asnsInUse']:
 		if (newAsnId == usedAsn['asnId']) and (str(usedAsn['assignment_information']) == 'From ASN Pool '+context['SelectedAsnRangeStart']+' - '+context['SelectedAsnRangeEnd']+''):
+			context['newAsnId']=''
 			MSA_API.task_error('ASN Id '+newAsnId+" is already in use", context, True)
 
 newAssignmentDescription='From ASN Pool '+SelectedAsnRangeStart+' - '+SelectedAsnRangeEnd+''	
