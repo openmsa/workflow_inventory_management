@@ -28,15 +28,15 @@
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Get_existing_vPC_Pools.py">
-      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/vPC_POOL_MGNT/Process_Create_vPC_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/inventory-management/vPC_POOL_MGNT/Process_Create_vPC_Pool/Tasks</processPath>
       <displayName>Get existing vPC Pools</displayName>
     </task>
     <task name="Task_Perform_parameters_checks.py">
-      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/vPC_POOL_MGNT/Process_Create_vPC_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/inventory-management/vPC_POOL_MGNT/Process_Create_vPC_Pool/Tasks</processPath>
       <displayName>Perform parameters checks</displayName>
     </task>
     <task name="Task_Create_vPC_Pool.py">
-      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/vPC_POOL_MGNT/Process_Create_vPC_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/inventory-management/vPC_POOL_MGNT/Process_Create_vPC_Pool/Tasks</processPath>
       <displayName>Create vPC Pool</displayName>
     </task>
   </process>
@@ -50,15 +50,15 @@
       <displayName>Get existing vPC Pools</displayName>
     </task>
     <task name="Task_Get_New_vPC_Domain_Id.py">
-      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/vPC_POOL_MGNT/Process_Get_New__vPC_Domain_Id/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/inventory-management/vPC_POOL_MGNT/Process_Get_New__vPC_Domain_Id/Tasks</processPath>
       <displayName>Get New vPC Domain Id</displayName>
     </task>
     <task name="Task_Update_the_pool.py">
-      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/vPC_POOL_MGNT/Process_Get_New__vPC_Domain_Id/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/inventory-management/vPC_POOL_MGNT/Process_Get_New__vPC_Domain_Id/Tasks</processPath>
       <displayName>Update the pool</displayName>
     </task>
     <task name="Task_Final_Message_Status.py">
-      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/vPC_POOL_MGNT/Process_Get_New__vPC_Domain_Id/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/inventory-management/vPC_POOL_MGNT/Process_Get_New__vPC_Domain_Id/Tasks</processPath>
       <displayName>Final Message Status</displayName>
     </task>
   </process>
@@ -68,7 +68,7 @@
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Check_vPC_Domain_id_availability.py">
-      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/vPC_POOL_MGNT/Process_Check_vPC_Domain_Id_Availability/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/inventory-management/vPC_POOL_MGNT/Process_Check_vPC_Domain_Id_Availability/Tasks</processPath>
       <displayName>Check vPC Domain id availability</displayName>
     </task>
   </process>
@@ -78,7 +78,7 @@
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Show_used_vPC_Domain_Ids.py">
-      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/vPC_POOL_MGNT/Process_Get_vPC_Domain_Ids_Used_List/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/inventory-management/vPC_POOL_MGNT/Process_Get_vPC_Domain_Ids_Used_List/Tasks</processPath>
       <displayName>Show used vPC Domain Ids</displayName>
     </task>
   </process>
@@ -88,15 +88,15 @@
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Get_existing_vPC_Pools.py">
-      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/vPC_POOL_MGNT/Process_Edit_vPC_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/inventory-management/vPC_POOL_MGNT/Process_Edit_vPC_Pool/Tasks</processPath>
       <displayName>Get existing vPC Pools</displayName>
     </task>
     <task name="Task_Perform_parameters__checks.py">
-      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/vPC_POOL_MGNT/Process_Edit_vPC_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/inventory-management/vPC_POOL_MGNT/Process_Edit_vPC_Pool/Tasks</processPath>
       <displayName>Perform parameters  checks</displayName>
     </task>
     <task name="Task_Update_vPC_Pools.py">
-      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/vPC_POOL_MGNT/Process_Edit_vPC_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/inventory-management/vPC_POOL_MGNT/Process_Edit_vPC_Pool/Tasks</processPath>
       <displayName>Update vPC Pools</displayName>
     </task>
   </process>
@@ -106,7 +106,7 @@
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Release_a_vPC.py">
-      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/vPC_POOL_MGNT/Process_Release_a_vPC/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/inventory-management/vPC_POOL_MGNT/Process_Release_a_vPC/Tasks</processPath>
       <displayName>Release a vPC</displayName>
     </task>
     <task name="Process/workflows/workflow_inventory_management/vPC_POOL_MGNT/Process_Get_New__vPC_Domain_Id/Tasks/Task_Update_the_pool.py">
@@ -114,7 +114,7 @@
       <displayName>Update The Pool</displayName>
     </task>
     <task name="Task_Final_Message_Status.py">
-      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/vPC_POOL_MGNT/Process_Release_a_vPC/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/inventory-management/vPC_POOL_MGNT/Process_Release_a_vPC/Tasks</processPath>
       <displayName>Final Message Status</displayName>
     </task>
   </process>
@@ -124,7 +124,7 @@
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Delete_vPC_Pool.py">
-      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/vPC_POOL_MGNT/Process_Delete_vPC_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/inventory-management/vPC_POOL_MGNT/Process_Delete_vPC_Pool/Tasks</processPath>
       <displayName>Delete vPC Pool</displayName>
     </task>
   </process>

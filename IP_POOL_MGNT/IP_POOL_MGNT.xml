@@ -45,15 +45,15 @@
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="IP_POOL_IMPORT.py">
-      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/IP_POOL_MGNT/Process_Create_IP_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/inventory-management/IP_POOL_MGNT/Process_Create_IP_Pool/Tasks</processPath>
       <displayName>Get existing IP Pools</displayName>
     </task>
     <task name="Task_Perform_parameters_checks.py">
-      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/IP_POOL_MGNT/Process_Create_IP_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/inventory-management/IP_POOL_MGNT/Process_Create_IP_Pool/Tasks</processPath>
       <displayName>Perform parameters checks</displayName>
     </task>
     <task name="IP_POOL_CREATE.py">
-      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/IP_POOL_MGNT/Process_Create_IP_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/inventory-management/IP_POOL_MGNT/Process_Create_IP_Pool/Tasks</processPath>
       <displayName>Create IP pool</displayName>
     </task>
   </process>
@@ -63,19 +63,19 @@
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Get_existing_IP_Pools.py">
-      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/IP_POOL_MGNT/Process_Get_a_new_IP/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/inventory-management/IP_POOL_MGNT/Process_Get_a_new_IP/Tasks</processPath>
       <displayName>Get existing IP Pools</displayName>
     </task>
     <task name="Task_get_new_ip.py">
-      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/IP_POOL_MGNT/Process_Get_a_new_IP/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/inventory-management/IP_POOL_MGNT/Process_Get_a_new_IP/Tasks</processPath>
       <displayName>get new ip</displayName>
     </task>
     <task name="Task_Update_the_pool.py">
-      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/IP_POOL_MGNT/Process_Get_a_new_IP/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/inventory-management/IP_POOL_MGNT/Process_Get_a_new_IP/Tasks</processPath>
       <displayName>Update the pool</displayName>
     </task>
     <task name="Task_Final_Message_Status.py">
-      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/IP_POOL_MGNT/Process_Get_a_new_IP/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/inventory-management/IP_POOL_MGNT/Process_Get_a_new_IP/Tasks</processPath>
       <displayName>Final Message Status</displayName>
     </task>
   </process>
@@ -85,7 +85,7 @@
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Check_if_IP_is_avaiable.py">
-      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/IP_POOL_MGNT/Process_Check_availability/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/inventory-management/IP_POOL_MGNT/Process_Check_availability/Tasks</processPath>
       <displayName>Check if IP is avaiable</displayName>
     </task>
   </process>
@@ -95,7 +95,7 @@
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Show_used_IP_addresses.py">
-      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/IP_POOL_MGNT/Process_Get_IPs_used_list/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/inventory-management/IP_POOL_MGNT/Process_Get_IPs_used_list/Tasks</processPath>
       <displayName>Show used IP addresses</displayName>
     </task>
   </process>
@@ -113,7 +113,7 @@
       <displayName>Perform parameters checks</displayName>
     </task>
     <task name="IP_POOL_UPDATE.py">
-      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/IP_POOL_MGNT/Process_Edit_Ip_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/inventory-management/IP_POOL_MGNT/Process_Edit_Ip_Pool/Tasks</processPath>
       <displayName>Update the IP pool</displayName>
     </task>
   </process>
@@ -123,15 +123,15 @@
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Release_an_IP.py">
-      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/IP_POOL_MGNT/Process_Release_an_IP/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/inventory-management/IP_POOL_MGNT/Process_Release_an_IP/Tasks</processPath>
       <displayName>Release an IP</displayName>
     </task>
     <task name="Task_Update_The_Pool.py">
-      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/IP_POOL_MGNT/Process_Release_an_IP/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/inventory-management/IP_POOL_MGNT/Process_Release_an_IP/Tasks</processPath>
       <displayName>Update The Pool</displayName>
     </task>
     <task name="Task_Final_Message.py">
-      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/IP_POOL_MGNT/Process_Release_an_IP/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/inventory-management/IP_POOL_MGNT/Process_Release_an_IP/Tasks</processPath>
       <displayName>Final Message</displayName>
     </task>
   </process>
@@ -141,7 +141,7 @@
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="IP_POOL_DELETE.py">
-      <processPath>/opt/fmc_repository/Process/workflows/workflow_inventory_management/IP_POOL_MGNT/Process_Delete_IP_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/inventory-management/IP_POOL_MGNT/Process_Delete_IP_Pool/Tasks</processPath>
       <displayName>Delete IP Pool</displayName>
     </task>
   </process>
