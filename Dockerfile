@@ -8,9 +8,9 @@ RUN install_default_dirs.sh
 
 
 # Install repository {{{
-COPY --chown=1000:1000 . /opt/fmc_repository/inventory-management
-RUN ln -sf /opt/fmc_repository/inventory-management /opt/fmc_repository/Process/inventory-management && \
-    install_repo_deps.sh /opt/fmc_repository/Process/inventory-management/ 
+COPY --chown=1000:1000 . /opt/fmc_repository/wf-inventory-management
+RUN ln -sf /opt/fmc_repository/wf-inventory-management /opt/fmc_repository/Process/wf-inventory-management && \
+    install_repo_deps.sh /opt/fmc_repository/Process/wf-inventory-management/ 
 # }}}
 
 
