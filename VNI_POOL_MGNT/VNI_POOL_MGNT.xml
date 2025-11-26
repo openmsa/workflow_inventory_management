@@ -28,15 +28,15 @@
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Get_existing_VNI_Pools.py">
-      <processPath>/opt/fmc_repository/Process/inventory-management/VNI_POOL_MGNT/Process_Create_VNI_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/wf-inventory-management/VNI_POOL_MGNT/Process_Create_VNI_Pool/Tasks</processPath>
       <displayName>Get existing VNI Pools</displayName>
     </task>
     <task name="Task_Perform_parameters_checks.py">
-      <processPath>/opt/fmc_repository/Process/inventory-management/VNI_POOL_MGNT/Process_Create_VNI_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/wf-inventory-management/VNI_POOL_MGNT/Process_Create_VNI_Pool/Tasks</processPath>
       <displayName>Perform parameters checks</displayName>
     </task>
     <task name="Task_Create_VNI_Pool.py">
-      <processPath>/opt/fmc_repository/Process/inventory-management/VNI_POOL_MGNT/Process_Create_VNI_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/wf-inventory-management/VNI_POOL_MGNT/Process_Create_VNI_Pool/Tasks</processPath>
       <displayName>Create VNI Pool</displayName>
     </task>
   </process>
@@ -46,7 +46,7 @@
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Get_existing_VNI_Pools.py">
-      <processPath>/opt/fmc_repository/Process/inventory-management/VNI_POOL_MGNT/Process_Get_New_VNI_Id/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/wf-inventory-management/VNI_POOL_MGNT/Process_Get_New_VNI_Id/Tasks</processPath>
       <displayName>Get existing VNI Pools</displayName>
     </task>
     <task name="Task_Get_New_VNI_Id.py">
@@ -54,11 +54,11 @@
       <displayName>Get New VNI Id</displayName>
     </task>
     <task name="Task_Update_the_pool.py">
-      <processPath>/opt/fmc_repository/Process/inventory-management/VNI_POOL_MGNT/Process_Get_New_VNI_Id/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/wf-inventory-management/VNI_POOL_MGNT/Process_Get_New_VNI_Id/Tasks</processPath>
       <displayName>Update the pool</displayName>
     </task>
     <task name="Task_Final_Message_Status.py">
-      <processPath>/opt/fmc_repository/Process/inventory-management/VNI_POOL_MGNT/Process_Get_New_VNI_Id/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/wf-inventory-management/VNI_POOL_MGNT/Process_Get_New_VNI_Id/Tasks</processPath>
       <displayName>Final Message Status</displayName>
     </task>
   </process>
@@ -68,7 +68,7 @@
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Check_VNI_id_availability.py">
-      <processPath>/opt/fmc_repository/Process/inventory-management/VNI_POOL_MGNT/Process_Check_VNI_Id_Availability/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/wf-inventory-management/VNI_POOL_MGNT/Process_Check_VNI_Id_Availability/Tasks</processPath>
       <displayName>Check VNI id availability</displayName>
     </task>
   </process>
@@ -78,7 +78,7 @@
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Show_used_VNI_Ids.py">
-      <processPath>/opt/fmc_repository/Process/inventory-management/VNI_POOL_MGNT/Process_Get_VNI_Ids_Used_List/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/wf-inventory-management/VNI_POOL_MGNT/Process_Get_VNI_Ids_Used_List/Tasks</processPath>
       <displayName>Show used VNI Ids</displayName>
     </task>
   </process>
@@ -88,15 +88,15 @@
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Get_existing_VNI_Pools.py">
-      <processPath>/opt/fmc_repository/Process/inventory-management/VNI_POOL_MGNT/Process_Edit_VNI_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/wf-inventory-management/VNI_POOL_MGNT/Process_Edit_VNI_Pool/Tasks</processPath>
       <displayName>Get existing VNI Pools</displayName>
     </task>
     <task name="Task_Perform_parameters__checks.py">
-      <processPath>/opt/fmc_repository/Process/inventory-management/VNI_POOL_MGNT/Process_Edit_VNI_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/wf-inventory-management/VNI_POOL_MGNT/Process_Edit_VNI_Pool/Tasks</processPath>
       <displayName>Perform parameters  checks</displayName>
     </task>
     <task name="Task_Update_VNI_Pools.py">
-      <processPath>/opt/fmc_repository/Process/inventory-management/VNI_POOL_MGNT/Process_Edit_VNI_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/wf-inventory-management/VNI_POOL_MGNT/Process_Edit_VNI_Pool/Tasks</processPath>
       <displayName>Update VNI Pools</displayName>
     </task>
   </process>
@@ -106,15 +106,15 @@
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Release_a_VNI.py">
-      <processPath>/opt/fmc_repository/Process/inventory-management/VNI_POOL_MGNT/Process_Release_a_VNI/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/wf-inventory-management/VNI_POOL_MGNT/Process_Release_a_VNI/Tasks</processPath>
       <displayName>Release a VNI</displayName>
     </task>
     <task name="Task_Update_The_Pool.py">
-      <processPath>/opt/fmc_repository/Process/inventory-management/VNI_POOL_MGNT/Process_Release_a_VNI/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/wf-inventory-management/VNI_POOL_MGNT/Process_Release_a_VNI/Tasks</processPath>
       <displayName>Update The Pool</displayName>
     </task>
     <task name="Task_Final_Message_Status.py">
-      <processPath>/opt/fmc_repository/Process/inventory-management/VNI_POOL_MGNT/Process_Release_a_VNI/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/wf-inventory-management/VNI_POOL_MGNT/Process_Release_a_VNI/Tasks</processPath>
       <displayName>Final Message Status</displayName>
     </task>
   </process>
@@ -124,7 +124,7 @@
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Delete_VNI_Pool.py">
-      <processPath>/opt/fmc_repository/Process/inventory-management/VNI_POOL_MGNT/Process_Delete_VNI_Pool/Tasks</processPath>
+      <processPath>/opt/fmc_repository/Process/wf-inventory-management/VNI_POOL_MGNT/Process_Delete_VNI_Pool/Tasks</processPath>
       <displayName>Delete VNI Pool</displayName>
     </task>
   </process>
