@@ -20,11 +20,11 @@ dev_var.add('cidrList.0.isSelected')
 context = Variables.task_call(dev_var)
 
 if "cidrList" not in context:
-	MSA_API.task_error('No IP Pool found',context, True)
+	MSA_API.task_error('No IP Pool found', context)
 
 if len(context['cidrList']) != len(context['cidrList_backup']):
   context['cidrList']=context['cidrList_backup']
-  MSA_API.task_error('IP Pool update cannot be done from this process',context, True)
+  MSA_API.task_error('IP Pool update cannot be done from this process', context)
 
 if not context.get('IPsInUse'):
   context['IPsInUse'] = []
@@ -33,11 +33,11 @@ if not context.get('cidrList'):
   context['cidrList'] = []
   
 if not context['device_id'] or not context['name']:
-  MSA_API.task_error('Mandatory parameters required, please edit the IP pool',context, True)
+  MSA_API.task_error('Mandatory parameters required, please edit the IP pool', context)
   
 
 if not context.get('ipToRelease'):
-  MSA_API.task_error('Please enter the IP to be released', context, True)
+  MSA_API.task_error('Please enter the IP to be released', context)
   
 ipToRelease=context['ipToRelease']
 
@@ -52,16 +52,16 @@ if context.get('cidrList'):
         nbSelected+=1
 
 if nbSelected == 0:
-  MSA_API.task_error( 'You need to select one of the avaiable pool range ', context, True)
+  MSA_API.task_error( 'You need to select one of the avaiable pool range ', context)
 if nbSelected > 1:
-  MSA_API.task_error( 'You need to select only one pool range ', context, True)
+  MSA_API.task_error( 'You need to select only one pool range ', context)
 
 context['SelectedCidr']=SelectedCidr
 iptoRelease=[]
 
 #check if the entered IP address is part of the selectec network (cidr)
 if not address_is_in_network(ipToRelease,SelectedCidr):
-	MSA_API.task_error('Given address '+ipToRelease+' is not in network '+SelectedCidr, context, True)
+	MSA_API.task_error('Given address '+ipToRelease+' is not in network '+SelectedCidr, context)
 	
 ipReleased=False
 for ipInUse in context['IPsInUse']:
@@ -73,7 +73,7 @@ for ipInUse in context['IPsInUse']:
 context['iptoRelease']=iptoRelease
 
 if not ipReleased:
-  MSA_API.task_error('IP '+ipToRelease+' not found as used in Cidr '+context['SelectedCidr']+'', context, True)
+  MSA_API.task_error('IP '+ipToRelease+' not found as used in Cidr '+context['SelectedCidr']+'', context)
 
 IPsInUseTemp=[]
 for ipInUse in context['IPsInUse']:
@@ -106,5 +106,4 @@ context['IPsInUse_backup']=context['IPsInUse']
 
 context['newReleasedIP']=ipToRelease
 
-ret = MSA_API.process_content('ENDED', 'IP '+ipToRelease+' has been released from Cidr '+context['SelectedCidr']+'', context, True)
-print(ret)
+MSA_API.task_success('IP '+ipToRelease+' has been released from Cidr '+context['SelectedCidr']+'', context)

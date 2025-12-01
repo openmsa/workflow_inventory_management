@@ -6,10 +6,10 @@ dev_var = Variables()
 context = Variables.task_call(dev_var)
 
 if not context['device_id'] or not context['name']:
-	MSA_API.task_error('Mandatory parameters required, please edit the VNI pool',context, True)
+	MSA_API.task_error('Mandatory parameters required, please edit the VNI pool', context)
 
 if not context.get('pool'):
-	MSA_API.task_error('You need to enter at least one VNI pool range',context, True)
+	MSA_API.task_error('You need to enter at least one VNI pool range', context)
 	
 if not context.get('vnisInUse'):
 	context['vnisInUse']=[]
@@ -40,9 +40,9 @@ if context.get('vniRangeList'):
 				nbSelected+=1
 
 if nbSelected == 0:
-	MSA_API.task_error( 'You need to select one of the avaiable pool range ', context, True)
+	MSA_API.task_error( 'You need to select one of the avaiable pool range ', context)
 if nbSelected > 1:
-	MSA_API.task_error( 'You need to select only one pool range ', context, True)
+	MSA_API.task_error( 'You need to select only one pool range ', context)
 
 context['SelectedVniRangeStart']=SelectedVniRangeStart
 context['SelectedVniRangeEnd']=SelectedVniRangeEnd	
@@ -65,21 +65,21 @@ if not newVniId:
 
 	if not newVniId:
 		context['newVniId']=''
-		MSA_API.task_error('All VNI Ids from the range '+SelectedVniRangeStart+' - '+SelectedVniRangeEnd+' have been allocated', context, True)
+		MSA_API.task_error('All VNI Ids from the range '+SelectedVniRangeStart+' - '+SelectedVniRangeEnd+' have been allocated', context)
 else:
 	# Check if given VNI Id is include on the range
 	if int(SelectedVniRangeStart) > int(newVniId) or int(newVniId) > int(SelectedVniRangeEnd):
 		context['newVniId']=''
-		MSA_API.task_error('VNI Id '+newAsnId+" not on the available range ("+SelectedVniRangeStart+" - "+SelectedVniRangeEnd+")", context, True)	
+		MSA_API.task_error('VNI Id '+newAsnId+" not on the available range ("+SelectedVniRangeStart+" - "+SelectedVniRangeEnd+")", context)	
 	# Check if given VNI Id is not starting with 0 (eg : 01)
 	if newVniId.startswith('0'):
 		context['newVniId']=''
-		MSA_API.task_error('VNI Id '+newVniId+" not valid, please retry", context, True)
+		MSA_API.task_error('VNI Id '+newVniId+" not valid, please retry", context)
 	#Check if the given VNI Id is already allocated
 	for usedVni in context['vnisInUse']:
 		if (newVniId == usedVni['vniId']) and (str(usedVni['assignment_information']) == 'From VNI Pool '+context['SelectedVniRangeStart']+' - '+context['SelectedVniRangeEnd']+''):
 			context['newVniId']=''
-			MSA_API.task_error('VNI Id '+newVniId+" is already in use", context, True)
+			MSA_API.task_error('VNI Id '+newVniId+" is already in use", context)
 
 newAssignmentDescription='From VNI Pool '+SelectedVniRangeStart+' - '+SelectedVniRangeEnd+''
 context['vnisInUse'].append(dict(vniId=newVniId,assignment_information=newAssignmentDescription,usage_information=newUsageInformation))
@@ -97,7 +97,4 @@ for vniRange in context['pool']:
 context['pool_backup']=context['pool']	
 context['newAssignedVni']=newVniId
 
-ret = MSA_API.process_content('ENDED', 'New VNI Id '+newVniId+" has been allocated", context, True)
-print(ret)
-
-
+MSA_API.task_success('New VNI Id '+newVniId+" has been allocated", context)

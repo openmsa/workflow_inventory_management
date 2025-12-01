@@ -6,5 +6,4 @@ dev_var = Variables()
 
 context = Variables.task_call(dev_var)
 
-ret = MSA_API.process_content('ENDED', 'New VLAN '+context['newAssignedVlan']+ ' has been allocated from VLAN Pool '+ context['name']+'', context, True)
-print(ret)
+MSA_API.task_success('New VLAN '+context['newAssignedVlan']+ ' has been allocated from VLAN Pool '+ context['name']+'', context)

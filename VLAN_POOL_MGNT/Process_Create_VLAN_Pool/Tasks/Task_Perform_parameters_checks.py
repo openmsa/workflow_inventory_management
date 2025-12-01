@@ -6,7 +6,7 @@ context = Variables.task_call()
 
 #check that at least there is one VLAN range pool  defined
 if not context.get('pool'):
-	MSA_API.task_error('You need to enter at least one VLAN range pool',context, True)
+	MSA_API.task_error('You need to enter at least one VLAN range pool', context)
 
 #Get all Pool Ids
 extract_vlan_pool=[]
@@ -16,26 +16,26 @@ context['extract_vlan_pool']=extract_vlan_pool
 
 for index in extract_vlan_pool:
 	if context['import_result_vlan_pool'][index]['name'] == context['name']:
-		MSA_API.task_error(''+context['name']+' already exist, please edit your Pool Name',context, True)
+		MSA_API.task_error(''+context['name']+' already exist, please edit your Pool Name', context)
 		
 duplicateRangeCheck=[]	
 
 #check the range order
 for vlanRange in context.get('pool'):
 	if not vlanRange['poolStart'] or not vlanRange['poolEnd']:
-		MSA_API.task_error('Invalid input in your pool list, please check',context, True)
+		MSA_API.task_error('Invalid input in your pool list, please check', context)
 	poolStart=int(vlanRange['poolStart'])
 	poolEnd=int(vlanRange['poolEnd'])
 	duplicateRangeCheck.append(''+str(poolStart)+'-'+str(poolEnd)+'')	
 	if poolStart >= poolEnd:
-		MSA_API.task_error('VLAN ID start range value cannot be higher or equals to end range value',context, True)
+		MSA_API.task_error('VLAN ID start range value cannot be higher or equals to end range value', context)
 	elif poolStart <= 0 or poolEnd <= 0:
-		MSA_API.task_error('Vlan ID range cannot have null or negative value',context, True)
+		MSA_API.task_error('Vlan ID range cannot have null or negative value', context)
 	elif poolStart > 4095 or poolEnd > 4095:
-		MSA_API.task_error('Vlan ID range cannot exceed the value of 4095',context, True)
+		MSA_API.task_error('Vlan ID range cannot exceed the value of 4095', context)
 
 if len(duplicateRangeCheck) != len(set(duplicateRangeCheck)):
-	MSA_API.task_error('Duplicate of VLAN range detected, please edit your VLAN Pool',context, True)
+	MSA_API.task_error('Duplicate of VLAN range detected, please edit your VLAN Pool', context)
 
 for vlanRange in context.get('pool'):
 	poolStart=int(vlanRange['poolStart'])
@@ -49,7 +49,6 @@ for vlanRange in context.get('pool'):
 		#context['overlaps_check']=i1.overlaps(i2)
 		if (i1.overlaps(i2) == True):
 			if (poolStart != poolStart2) or (poolEnd != poolEnd2):
-				MSA_API.task_error('Overlaps detected between range '+str(poolStart)+'-'+str(poolEnd)+' and range '+str(poolStart2)+'-'+str(poolEnd2)+'',context, True)
-				
-ret=MSA_API.process_content('ENDED','',context, True)
-print(ret)
+				MSA_API.task_error('Overlaps detected between range '+str(poolStart)+'-'+str(poolEnd)+' and range '+str(poolStart2)+'-'+str(poolEnd2)+'', context)
+
+MSA_API.task_success('', context)

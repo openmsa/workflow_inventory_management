@@ -12,7 +12,7 @@ context = Variables.task_call()
 
 #check that at least there is one cidr/network defined
 if not context.get('pool'):
-	MSA_API.task_error('You need to enter at least one network',context, True)
+	MSA_API.task_error('You need to enter at least one network', context)
 
 if not context.get('object_id'):
 	context['object_id']=str(uuid.uuid4())
@@ -29,38 +29,38 @@ for cidr in context.get('pool'):
 	if not cidr['address'] or not cidr['prefix']:
 		if context['create'] == "false":
 			context['pool']=context['pool_backup']
-		MSA_API.task_error('Invalid input in your pool list, please check',context, True)
+		MSA_API.task_error('Invalid input in your pool list, please check', context)
 	duplicateCidrCheck.append(''+cidr['address']+'/'+cidr['prefix']+'')
 	if context['version'] == "ipv4" and ((int(cidr['prefix']) > 32) or (int(cidr['prefix']) <= 0)):
 		if context['create'] == "false":
 			context['pool']=context['pool_backup']
-		MSA_API.task_error('Invalid prefix for CIDR '+cidr['address']+'/'+cidr['prefix']+'',context, True)
+		MSA_API.task_error('Invalid prefix for CIDR '+cidr['address']+'/'+cidr['prefix']+'', context)
 	elif context['version'] == "ipv6" and int(cidr['prefix']) > 128:
 		if context['create'] == "false":
 			context['pool']=context['pool_backup']
-		MSA_API.task_error('Prefix for ipv46 network '+cidr['address']+'/'+cidr['prefix']+' should not exceed 128',context, True)
+		MSA_API.task_error('Prefix for ipv46 network '+cidr['address']+'/'+cidr['prefix']+' should not exceed 128', context)
 
 if len(duplicateCidrCheck) != len(set(duplicateCidrCheck)):
-	MSA_API.task_error('Duplicate of CIDR detected, please edit your IP Pool',context, True)
+	MSA_API.task_error('Duplicate of CIDR detected, please edit your IP Pool', context)
 
 
 for cidr in context.get('pool'):
 	try:
 		network = ipaddress.IPv4Network(cidr['address']+'/'+cidr['prefix'])
 	except ValueError:
-		MSA_API.task_error('address/netmask is invalid for IPv4:'+cidr['address']+'/'+cidr['prefix']+'',context, True)
+		MSA_API.task_error('address/netmask is invalid for IPv4:'+cidr['address']+'/'+cidr['prefix']+'', context)
 
 	for cidr2 in context.get('pool'):
 		try:
 			network = ipaddress.IPv4Network(cidr2['address']+'/'+cidr2['prefix'])
 		except ValueError:
-			MSA_API.task_error('address/netmask is invalid for IPv4:'+cidr2['address']+'/'+cidr2['prefix']+'',context, True)
+			MSA_API.task_error('address/netmask is invalid for IPv4:'+cidr2['address']+'/'+cidr2['prefix']+'', context)
 		
 		if (ipaddress.IPv4Network(cidr['address']+'/'+cidr['prefix']).overlaps(ipaddress.IPv4Network(cidr2['address']+'/'+cidr2['prefix'])) == True):
 			if (cidr['address']+'/'+cidr['prefix'] != cidr2['address']+'/'+cidr2['prefix'] ):
 				if context['create'] == "false":
 					context['pool']=context['pool_backup']
-				MSA_API.task_error('Overlaps detected between cidr '+cidr['address']+'/'+cidr['prefix']+' and cidr '+cidr2['address']+'/'+cidr2['prefix']+'',context, True)
+				MSA_API.task_error('Overlaps detected between cidr '+cidr['address']+'/'+cidr['prefix']+' and cidr '+cidr2['address']+'/'+cidr2['prefix']+'', context)
 
 ### Global Uniqueness check ###
 context['all_ip_pools']=[]
@@ -81,10 +81,10 @@ context['extract_ip_pool']=extract_ip_pool
 for index in extract_ip_pool:
 	if context['create'] == "true":
 		if context['import_result_ip_pool'][index]['name'] == context['name']:
-			MSA_API.task_error(''+context['name']+' already exist, please edit your Pool Name',context, True)
+			MSA_API.task_error(''+context['name']+' already exist, please edit your Pool Name', context)
 	if context['create'] == "false":
 		if context['import_result_ip_pool'][index]['name'] == context['name'] and context['import_result_ip_pool'][index]['object_id'] != context['object_id']:
-			MSA_API.task_error(''+context['name']+' already exist, please edit your Pool Name',context, True)
+			MSA_API.task_error(''+context['name']+' already exist, please edit your Pool Name', context)
 	
 #Go on each external pool and add into table only if globaluniq is checked  
 for index in extract_ip_pool:
@@ -104,7 +104,7 @@ for cidr in context.get('pool'):
 			if (ipaddress.IPv4Network(cidr['address']+'/'+cidr['prefix']).overlaps(ipaddress.IPv4Network(all_ip_pools['pool'][str(i)]['address']+'/'+all_ip_pools['pool'][str(i)]['prefix'])) == True):
 				if context['create'] == "false":
 					context['pool']=context['pool_backup']
-				MSA_API.task_error('Overlaps detected from this current Pool Id: '+context['object_id']+' Name: '+context['name']+' and external Pool Id: '+object_id+' Name: '+name+ ', between cidr '+cidr['address']+'/'+cidr['prefix']+' and cidr '+all_ip_pools['pool'][str(i)]['address']+'/'+all_ip_pools['pool'][str(i)]['prefix']+'',context, True)
+				MSA_API.task_error('Overlaps detected from this current Pool Id: '+context['object_id']+' Name: '+context['name']+' and external Pool Id: '+object_id+' Name: '+name+ ', between cidr '+cidr['address']+'/'+cidr['prefix']+' and cidr '+all_ip_pools['pool'][str(i)]['address']+'/'+all_ip_pools['pool'][str(i)]['prefix']+'', context)
 			i+=1
 			
 if context['create'] == "false":
@@ -131,7 +131,7 @@ if context['create'] == "false":
 						else:
 							context['pool']=context['pool_backup']
 							context['IPsInUse']=context['IPsInUse_backup']
-							MSA_API.task_error('IP address ' +IPsInUse['address']+ ' in use is out of the new range of Cidr ' +ipPoolUpdate['address']+'/'+ ipPoolUpdate['prefix']+'',context, True)
+							MSA_API.task_error('IP address ' +IPsInUse['address']+ ' in use is out of the new range of Cidr ' +ipPoolUpdate['address']+'/'+ ipPoolUpdate['prefix']+'', context)
 				i+=1	
 				
 				my_dict = dict(cidr=ipPoolUpdate['address']+'/'+ipPoolUpdate['prefix'],totalIps=ipPoolUpdate['totalIps'],ipUsage=ipPoolUpdate['ipUsage'],ipUsedNb=ipPoolUpdate['ipUsedNb'],isSelected='false')
@@ -141,5 +141,4 @@ if context['create'] == "false":
 			context['cidrList'] = cidrList
 			context['totalIpUsage']=str("{:.10f}".format(mean(avgPercentList)))+'%'
 
-ret=MSA_API.process_content('ENDED','',context, True)
-print(ret)
+MSA_API.task_success('', context)

@@ -10,11 +10,11 @@ dev_var.add('vniRangeList.0.isSelected',var_type='Boolean')
 context = Variables.task_call(dev_var)
 
 if "vniRangeList" not in context:
-	MSA_API.task_error('No VNI Pool found',context, True)
+	MSA_API.task_error('No VNI Pool found', context)
 
 #if len(context['vniRangeList']) != len(context['vniRangeList_backup']):
 #  context['vniRangeList']=context['vniRangeList_backup']
-#  MSA_API.task_error('VNI Pool update cannot be done from this process',context, True)
+#  MSA_API.task_error('VNI Pool update cannot be done from this process', context)
 
 if not context.get('vnisInUse'):
   context['vnisInUse'] = []
@@ -23,19 +23,19 @@ if not context.get('vniRangeList'):
   context['vniRangeList'] = []
   
 if not context['device_id'] or not context['name']:
-  MSA_API.task_error('Mandatory parameters required, please edit the VNI pool',context, True)
+  MSA_API.task_error('Mandatory parameters required, please edit the VNI pool', context)
   
 if not context.get('vnisInUse'):
   context['vnisInUse'] = []
 
 if not context.get('vniIdToRelease'):
-  MSA_API.task_error('Please enter an VNI Id to be released', context, True)
+  MSA_API.task_error('Please enter an VNI Id to be released', context)
   
 vniIdToRelease=context['vniIdToRelease']
 
 # Check if given VNI Id is not starting with 0 (eg : 01)
 if vniIdToRelease.startswith('0'):
-  MSA_API.task_error('VNI Id '+vniIdToRelease+" not valid, please retry", context, True)
+  MSA_API.task_error('VNI Id '+vniIdToRelease+" not valid, please retry", context)
 
 
 SelectedVniRangeStart=""
@@ -52,9 +52,9 @@ if context.get('vniRangeList'):
         nbSelected+=1
 
 if nbSelected == 0:
-  MSA_API.task_error( 'You need to select one of the avaiable pool range ', context, True)
+  MSA_API.task_error( 'You need to select one of the avaiable pool range ', context)
 if nbSelected > 1:
-  MSA_API.task_error( 'You need to select only one pool range ', context, True)
+  MSA_API.task_error( 'You need to select only one pool range ', context)
 
 context['SelectedVniRangeStart']=SelectedVniRangeStart
 context['SelectedVniRangeEnd']=SelectedVniRangeEnd
@@ -62,10 +62,10 @@ vnitoRelease=[]
 
 # Check if given VNI Id is include on the range
 if int(SelectedVniRangeStart) > int(vniIdToRelease) or int(vniIdToRelease) > int(SelectedVniRangeEnd):
-  MSA_API.task_error('VNI Id '+vniIdToRelease+" not on the available range ("+SelectedVniRangeStart+" - "+SelectedVniRangeEnd+")", context, True) 
+  MSA_API.task_error('VNI Id '+vniIdToRelease+" not on the available range ("+SelectedVniRangeStart+" - "+SelectedVniRangeEnd+")", context) 
 # Check if given VNI Id is not starting with 0 (eg : 01)
 if vniIdToRelease.startswith('0'):
-  MSA_API.task_error('VNI Id '+vniIdToRelease+" not valid, please retry", context, True)
+  MSA_API.task_error('VNI Id '+vniIdToRelease+" not valid, please retry", context)
 
 vniReleased=False
 for vniIdInUse in context['vnisInUse']:
@@ -77,8 +77,7 @@ for vniIdInUse in context['vnisInUse']:
 context['vnitoRelease']=vnitoRelease
 
 if not vniReleased:
-  MSA_API.task_error('VNI Id '+vniIdToRelease+' not found as used in Pool '+context['SelectedVniRangeStart']+' - '+context['SelectedVniRangeEnd']+'', context, True)
-
+  MSA_API.task_error('VNI Id '+vniIdToRelease+' not found as used in Pool '+context['SelectedVniRangeStart']+' - '+context['SelectedVniRangeEnd']+'', context)
 vnisInUseTemp=[]
 for vniIdInUse in context['vnisInUse']:
   if vniIdInUse not in context['vnitoRelease']:   
@@ -94,5 +93,4 @@ for vniRange in context['pool']:
 context['pool_backup']=context['pool']
 context['newReleasedVni']=vniIdToRelease
 
-ret = MSA_API.process_content('ENDED', 'The VNI Id '+vniIdToRelease+' has been released from Pool range '+context['SelectedVniRangeStart']+' - '+context['SelectedVniRangeEnd']+'', context, True)
-print(ret)
+MSA_API.task_success('The VNI Id '+vniIdToRelease+' has been released from Pool range '+context['SelectedVniRangeStart']+' - '+context['SelectedVniRangeEnd']+'', context)

@@ -11,5 +11,4 @@ if context.get('vnisInUse'):
 	for vniId in context['vnisInUse']:
 		usedList=usedList+"\n"+vniId['vniId']+' >> '+vniId['assignment_information']+''
 context['usedVniIds']=usedList
-ret = MSA_API.process_content('ENDED', 'Used VNI Ids :'+usedList, context, True)
-print(ret)
+MSA_API.task_success('Used VNI Ids :'+usedList, context)

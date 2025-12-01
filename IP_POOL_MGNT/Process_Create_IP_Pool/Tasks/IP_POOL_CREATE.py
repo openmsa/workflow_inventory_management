@@ -25,7 +25,7 @@ for cidr in context['pool']:
 	try:
 		network = ipaddress.IPv4Network(cidr['address']+'/'+cidr['prefix'])
 	except ValueError:
-		MSA_API.task_error('address/netmask is invalid for IPv4:'+cidr['address']+'/'+cidr['prefix']+'',context, True)
+		MSA_API.task_error('address/netmask is invalid for IPv4:'+cidr['address']+'/'+cidr['prefix']+'', context)
 		
 	cidr['ipUsedNb']="0"	
 	cidr['totalIps']=str(len(cidr_to_range(cidr['address']+'/'+cidr['prefix'])))
@@ -74,14 +74,6 @@ content = json.loads(order.content)
 
 # check if the response is OK
 if order.response.ok:
-    ret = MSA_API.process_content('ENDED',
-                                  f'STATUS: {content["status"]}, \
-                                    MESSAGE: successfull',
-                                  context, True)
+    MSA_API.task_success(f'STATUS: {content["status"]}, MESSAGE: successful', context)
 else:
-    ret = MSA_API.process_content('FAILED',
-                                  f'Import failed \
-                                  - {order.content}',
-                                  context, True)
-                                  
-print(ret)
+    MSA_API.task_error(f'Import failed - {order.content}', context)

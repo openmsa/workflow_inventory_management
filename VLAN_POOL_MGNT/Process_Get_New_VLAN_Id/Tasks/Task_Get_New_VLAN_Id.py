@@ -7,10 +7,10 @@ dev_var = Variables()
 context = Variables.task_call(dev_var)
 
 if not context['device_id'] or not context['name'] :
-	MSA_API.task_error('Mandatory parameters required, please edit the VLAN pool',context, True)
+	MSA_API.task_error('Mandatory parameters required, please edit the VLAN pool', context)
 
 if not context.get('pool'):
-	MSA_API.task_error('You need to enter at least one VLAN pool range',context, True)
+	MSA_API.task_error('You need to enter at least one VLAN pool range', context)
 
 if not context.get('vlansInUse'):
 	context['vlansInUse']=[]
@@ -40,9 +40,9 @@ if context.get('vlanRangeList'):
 				nbSelected+=1
 
 if nbSelected == 0:
-	MSA_API.task_error( 'You need to select one of the avaiable pool range ', context, True)
+	MSA_API.task_error( 'You need to select one of the avaiable pool range ', context)
 if nbSelected > 1:
-	MSA_API.task_error( 'You need to select only one pool range ', context, True)
+	MSA_API.task_error( 'You need to select only one pool range ', context)
 
 context['SelectedVlanRangeStart']=SelectedVlanRangeStart
 context['SelectedVlanRangeEnd']=SelectedVlanRangeEnd	
@@ -66,21 +66,21 @@ if not newVlanId:
 
 	if not newVlanId:
 		context['newVlanId']=''
-		MSA_API.task_error('All Vlan Ids from the range '+SelectedVlanRangeStart+' - '+SelectedVlanRangeEnd+' have been allocated', context, True)
+		MSA_API.task_error('All Vlan Ids from the range '+SelectedVlanRangeStart+' - '+SelectedVlanRangeEnd+' have been allocated', context)
 else:
 	# Check if given Vlan Id is include on the range
 	if int(SelectedVlanRangeStart) > int(newVlanId) or int(newVlanId) > int(SelectedVlanRangeEnd):
 		context['newVlanId']=''
-		MSA_API.task_error('Vlan Id '+newVlanId+" not on the available range ("+SelectedVlanRangeStart+" - "+SelectedVlanRangeEnd+")", context, True)	
+		MSA_API.task_error('Vlan Id '+newVlanId+" not on the available range ("+SelectedVlanRangeStart+" - "+SelectedVlanRangeEnd+")", context)	
 			# Check if given VLAN Id is not starting with 0 (eg : 01)
 	if newVlanId.startswith('0'):
 		context['newVlanId']=''
-		MSA_API.task_error('VLAN Id '+newVlanId+" not valid, please retry", context, True)
+		MSA_API.task_error('VLAN Id '+newVlanId+" not valid, please retry", context)
 		#Check if the given Vlan Id is already allocated
 	for usedVlan in context['vlansInUse']:
 		if (newVlanId == usedVlan['vlanId']) and (str(usedVlan['assignment_information']) == 'From VLAN Pool '+context['SelectedVlanRangeStart']+' - '+context['SelectedVlanRangeEnd']+''):
 			context['newVlanId']=''
-			MSA_API.task_error('Vlan Id '+newVlanId+" is already in use", context, True)
+			MSA_API.task_error('Vlan Id '+newVlanId+" is already in use", context)
 
 newAssignmentDescription='From VLAN Pool '+SelectedVlanRangeStart+' - '+SelectedVlanRangeEnd+''					
 context['vlansInUse'].append(dict(vlanId=newVlanId,assignment_information=newAssignmentDescription,usage_information=newUsageInformation))
@@ -97,5 +97,4 @@ for vlanRange in context['pool']:
 context['pool_backup']=context['pool']
 context['newAssignedVlan']=newVlanId
 
-ret = MSA_API.process_content('ENDED', 'New Vlan Id '+newVlanId+" has been allocated", context, True)
-print(ret)
+MSA_API.task_success('New Vlan Id '+newVlanId+" has been allocated", context)

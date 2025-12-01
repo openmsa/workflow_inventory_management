@@ -6,10 +6,10 @@ dev_var = Variables()
 context = Variables.task_call(dev_var)
 
 if not context['device_id'] or not context['name']:
-	MSA_API.task_error('Mandatory parameters required, please edit the vPC pool',context, True)
+	MSA_API.task_error('Mandatory parameters required, please edit the vPC pool', context)
 
 if not context.get('pool'):
-	MSA_API.task_error('You need to enter at least one vPC pool range',context, True)
+	MSA_API.task_error('You need to enter at least one vPC pool range', context)
   
 if not context.get('vpcsInUse'):
 	context['vpcsInUse']=[]
@@ -39,9 +39,9 @@ if context.get('vpcRangeList'):
 				nbSelected+=1
 
 if nbSelected == 0:
-	MSA_API.task_error( 'You need to select one of the avaiable pool range ', context, True)
+	MSA_API.task_error( 'You need to select one of the avaiable pool range ', context)
 if nbSelected > 1:
-	MSA_API.task_error( 'You need to select only one pool range ', context, True)
+	MSA_API.task_error( 'You need to select only one pool range ', context)
 
 context['SelectedVpcRangeStart']=SelectedVpcRangeStart
 context['SelectedVpcRangeEnd']=SelectedVpcRangeEnd  
@@ -63,21 +63,21 @@ if not newVpcId:
 
 	if not newVpcId:
 		context['newVpcId']=''
-		MSA_API.task_error('All vPC Ids from the range '+SelectedVpcRangeStart+' - '+SelectedVpcRangeEnd+' have been allocated', context, True)
+		MSA_API.task_error('All vPC Ids from the range '+SelectedVpcRangeStart+' - '+SelectedVpcRangeEnd+' have been allocated', context)
 else:
   # Check if given vPC Id is include on the range
 	if int(SelectedVpcRangeStart) > int(newVpcId) or int(newVpcId) > int(SelectedVpcRangeEnd):
 		context['newVpcId']=''
-		MSA_API.task_error('vPC Id '+newVpcId+" not on the available range ("+SelectedVpcRangeStart+" - "+SelectedVpcRangeEnd+")", context, True) 
+		MSA_API.task_error('vPC Id '+newVpcId+" not on the available range ("+SelectedVpcRangeStart+" - "+SelectedVpcRangeEnd+")", context) 
   # Check if given vPC Id is not starting with 0 (eg : 01)
 	if newVpcId.startswith('0'):
 		context['newVpcId']=''
-		MSA_API.task_error('vPC Id '+newVpcId+" not valid, please retry", context, True)
+		MSA_API.task_error('vPC Id '+newVpcId+" not valid, please retry", context)
   #Check if the given vPC Id is already allocated
 	for usedVpc in context['vpcsInUse']:
 		if (newVpcId == usedVpc['vpcId']) and (str(usedVpc['assignment_information']) == 'From vPC Pool '+context['SelectedVpcRangeStart']+' - '+context['SelectedVpcRangeEnd']+''):
 			context['newVpcId']=''	
-			MSA_API.task_error('vPC Id '+newVpcId+" is already in use", context, True)
+			MSA_API.task_error('vPC Id '+newVpcId+" is already in use", context)
 
 newAssignmentDescription='From vPC Pool '+SelectedVpcRangeStart+' - '+SelectedVpcRangeEnd+''
 context['vpcsInUse'].append(dict(vpcId=newVpcId,assignment_information=newAssignmentDescription,usage_information=newUsageInformation))
@@ -95,5 +95,4 @@ for vpcRange in context['pool']:
 context['pool_backup']=context['pool']
 context['newAssignedVpc']=newVpcId
 
-ret = MSA_API.process_content('ENDED', 'New vPC Id '+newVpcId+" has been allocated", context, True)
-print(ret)
+MSA_API.task_success('New vPC Id '+newVpcId+" has been allocated", context)
