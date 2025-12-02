@@ -10,11 +10,11 @@ dev_var.add('vlanRangeList.0.isSelected',var_type='Boolean')
 context = Variables.task_call(dev_var)
 
 if "vlanRangeList" not in context:
-	MSA_API.task_error('No VLAN Pool found',context, True)
+	MSA_API.task_error('No VLAN Pool found', context)
 
 #if len(context['vlanRangeList']) != len(context['vlanRangeList_backup']):
 #	context['vlanRangeList']=context['vlanRangeList_backup']
-#	MSA_API.task_error('Vlan Pool update cannot be done from this process',context, True)
+#	MSA_API.task_error('Vlan Pool update cannot be done from this process', context)
 
 if not context.get('vlansInUse'):
   context['vlansInUse'] = []
@@ -23,16 +23,16 @@ if not context.get('vlanRangeList'):
   context['vlanRangeList'] = []
   
 if not context['device_id'] or not context['name']:
-	MSA_API.task_error('Mandatory parameters required, please edit the VLAN pool',context, True)
+	MSA_API.task_error('Mandatory parameters required, please edit the VLAN pool', context)
 	
 if not context.get('searchedVlanId'):
-	MSA_API.task_error('Please enter an VLAN Id to search', context, True)
+	MSA_API.task_error('Please enter an VLAN Id to search', context)
 	
 searchedVlanId=context['searchedVlanId']
 
 # Check if given VLAN Id is not starting with 0 (eg : 01)
 if searchedVlanId.startswith('0'):
-	MSA_API.task_error('VLAN Id '+searchedVlanId+" not valid, please retry", context, True)
+	MSA_API.task_error('VLAN Id '+searchedVlanId+" not valid, please retry", context)
 
 
 SelectedVlanRangeStart=""
@@ -49,9 +49,9 @@ if context.get('vlanRangeList'):
 				nbSelected+=1
 
 if nbSelected == 0:
-	MSA_API.task_error( 'You need to select one of the avaiable pool range ', context, True)
+	MSA_API.task_error( 'You need to select one of the avaiable pool range ', context)
 if nbSelected > 1:
-	MSA_API.task_error( 'You need to select only one pool range ', context, True)
+	MSA_API.task_error( 'You need to select only one pool range ', context)
 
 context['SelectedVlanRangeStart']=SelectedVlanRangeStart
 context['SelectedVlanRangeEnd']=SelectedVlanRangeEnd
@@ -59,7 +59,7 @@ context['SelectedVlanRangeEnd']=SelectedVlanRangeEnd
 
 # Check if given Vlan Id is include on the range
 if int(context['SelectedVlanRangeStart']) > int(searchedVlanId) or int(searchedVlanId) > int(context['SelectedVlanRangeEnd']):
-	MSA_API.task_error('Vlan Id '+searchedVlanId+" not on the available range ("+context['SelectedVlanRangeStart']+" - "+context['SelectedVlanRangeEnd']+")", context, True)
+	MSA_API.task_error('Vlan Id '+searchedVlanId+" not on the available range ("+context['SelectedVlanRangeStart']+" - "+context['SelectedVlanRangeEnd']+")", context)
 		
 #Check if the given Vlan Id is already allocated
 freeVlanId=True
@@ -68,8 +68,6 @@ for vlanIdInUse in context['vlansInUse']:
 		freeVlanId=False
 		break
 if not freeVlanId:
-  MSA_API.task_error('VLAN Id '+searchedVlanId+' is already in use in Pool range '+context['SelectedVlanRangeStart']+' - '+context['SelectedVlanRangeEnd']+'', context, True)
+  MSA_API.task_error('VLAN Id '+searchedVlanId+' is already in use in Pool range '+context['SelectedVlanRangeStart']+' - '+context['SelectedVlanRangeEnd']+'', context)
 
-		
-ret = MSA_API.process_content('ENDED', 'The ASN Id '+searchedVlanId+' is available in Pool range '+context['SelectedVlanRangeStart']+' - '+context['SelectedVlanRangeEnd']+'', context, True)
-print(ret)
+MSA_API.task_success('The ASN Id '+searchedVlanId+' is available in Pool range '+context['SelectedVlanRangeStart']+' - '+context['SelectedVlanRangeEnd']+'', context)

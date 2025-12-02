@@ -11,14 +11,14 @@ dev_var.add('searchedip', var_type='String')
 context = Variables.task_call(dev_var)
 
 if "cidrList" not in context:
-	MSA_API.task_error('No IP Pool found',context, True)
+	MSA_API.task_error('No IP Pool found', context)
 
 if len(context['cidrList']) != len(context['cidrList_backup']):
 	context['cidrList']=context['cidrList_backup']
-	MSA_API.task_error('IP Pool update cannot be done from this process',context, True)
+	MSA_API.task_error('IP Pool update cannot be done from this process', context)
 	
 if not context['device_id'] or not context['name'] :
-	MSA_API.task_error('Mandatory parameters required',context, True)
+	MSA_API.task_error('Mandatory parameters required', context)
 
 if not context.get('IPsInUse'):
   context['IPsInUse'] = []
@@ -27,7 +27,7 @@ if not context.get('cidrList'):
   context['cidrList'] = []
 
 if not context.get('searchedip'):
-	MSA_API.task_error('Please enter an IP to search', context, True)
+	MSA_API.task_error('Please enter an IP to search', context)
 	
 searchedip=context['searchedip']
 
@@ -42,7 +42,7 @@ for cidr in context['pool']:
 		cidrFounded=cidr['address']+"/"+cidr['prefix']
 		
 if 	partOfCidrs == "no":
-	MSA_API.task_error('Given address '+searchedip+' is not in any IP pool networks', context, True)
+	MSA_API.task_error('Given address '+searchedip+' is not in any IP pool networks', context)
 
 		
 #Check if the entered IP address is already allocated
@@ -52,10 +52,6 @@ for ipInUse in context['IPsInUse']:
 		freeIP=False
 		break
 if not freeIP:
-  MSA_API.task_error('IP address '+searchedip+' is already in use in Cidr '+cidrFounded+'', context, True)
+  MSA_API.task_error('IP address '+searchedip+' is already in use in Cidr '+cidrFounded+'', context)
 
-		
-ret = MSA_API.process_content('ENDED', 'The ip '+searchedip+" is available", context, True)
-print(ret)
-
-
+MSA_API.task_success('The ip '+searchedip+" is available", context)

@@ -25,7 +25,7 @@ if not context.get('cidrList'):
   context['cidrList'] = []
 
 if not context['device_id'] or not context['name'] :
-	MSA_API.task_error('Mandatory parameters required',context, True)
+	MSA_API.task_error('Mandatory parameters required', context)
 	
 # read the ID of the selected managed entity
 device_id = context['device_id']
@@ -51,16 +51,6 @@ context['import_result']=content
 
 # check if the response is OK
 if order.response.ok:
-    ret = MSA_API.process_content('ENDED',
-                                  f'STATUS: {content["status"]}, \
-                                    MESSAGE: successfull',
-                                  context, True)
+    MSA_API.task_success(f'STATUS: {content["status"]}, MESSAGE: successful', context)
 else:
-    ret = MSA_API.process_content('FAILED',
-                                  f'Import failed \
-                                  - {order.content}',
-                                  context, True)
-
-
-print(ret)
-
+    MSA_API.task_error(f'Import failed - {order.content}', context)

@@ -28,7 +28,7 @@ if not context.get('pool_backup'):
 	context['pool_backup']=[]
 #if len(context['cidrList']) != len(context['cidrList_backup']):
 #	context['cidrList']=context['cidrList_backup']
-#	MSA_API.task_error('IP Pool update cannot be done from this process',context, True)
+#	MSA_API.task_error('IP Pool update cannot be done from this process', context)
 	
 for ipRange in context['pool']:
 	if not ipRange['ipUsage'] or ipRange['ipUsage'] == 'null':
@@ -53,7 +53,7 @@ context['ipPoolToBeDeletedSum']=sum(context['ipPoolToBeDeleted'])
 
 if context['ipPoolToBeDeletedSum'] != 0:
 	context['pool']=context['pool_backup']
-	MSA_API.task_error('Some range pool cannot be deleted, ressource still in use, please release them',context, True)
+	MSA_API.task_error('Some range pool cannot be deleted, ressource still in use, please release them', context)
 
 cidrList=[]
 
@@ -62,7 +62,7 @@ for cidr in context['pool']:
 	try:
 		network = ipaddress.IPv4Network(cidr['address']+'/'+cidr['prefix'])
 	except ValueError:
-		MSA_API.task_error('address/netmask is invalid for IPv4:'+cidr['address']+'/'+cidr['prefix']+'',context, True)
+		MSA_API.task_error('address/netmask is invalid for IPv4:'+cidr['address']+'/'+cidr['prefix']+'', context)
 	
 	cidr['totalIps']=str(len(cidr_to_range(cidr['address']+'/'+cidr['prefix'])))
 	my_dict = dict(cidr=cidr['address']+'/'+cidr['prefix'],totalIps=cidr['totalIps'],ipUsage=cidr['ipUsage'],ipUsedNb=cidr['ipUsedNb'],isSelected='false')
@@ -118,16 +118,6 @@ content = json.loads(order.content)
 
 # check if the response is OK
 if order.response.ok:
-    ret = MSA_API.process_content('ENDED',
-                                  f'STATUS: {content["status"]}, \
-                                    MESSAGE: successfull',
-                                  context, True)
+    MSA_API.task_success(f'STATUS: {content["status"]}, MESSAGE: successful', context)
 else:
-    ret = MSA_API.process_content('FAILED',
-                                  f'Import failed \
-                                  - {order.content}',
-                                  context, True)
-
-
-print(ret)
-
+    MSA_API.task_error(f'Import failed - {order.content}', context)

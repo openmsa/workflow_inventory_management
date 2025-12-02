@@ -52,14 +52,6 @@ content = json.loads(order.content)
 
 # check if the response is OK
 if order.response.ok:
-    ret = MSA_API.process_content('ENDED',
-                                  f'STATUS: {content["status"]}, \
-                                    MESSAGE: successfull',
-                                  context, True)
+    MSA_API.task_success(f'STATUS: {content["status"]}, MESSAGE: successful', context)
 else:
-    ret = MSA_API.process_content('FAILED',
-                                  f'Import failed \
-                                  - {order.content}',
-                                  context, True)
-
-print(ret)
+    MSA_API.task_error(f'Import failed - {order.content}', context)

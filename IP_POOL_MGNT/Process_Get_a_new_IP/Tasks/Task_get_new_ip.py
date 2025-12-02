@@ -11,7 +11,7 @@ dev_var = Variables()
 context = Variables.task_call(dev_var)
 
 if not context['device_id'] or not context['name'] :
-	MSA_API.task_error('Mandatory parameters required',context, True)
+	MSA_API.task_error('Mandatory parameters required', context)
 
 if not context.get('IPsInUse'):
 	context['IPsInUse']=[]
@@ -41,9 +41,9 @@ if context.get('cidrList'):
 				nbSelected+=1
 
 if nbSelected == 0:
-	MSA_API.task_error( 'You need to select one of the avaiable cidr pool', context, True)
+	MSA_API.task_error( 'You need to select one of the avaiable cidr pool', context)
 if nbSelected > 1:
-	MSA_API.task_error( 'You need to select only one cidr pool ', context, True)
+	MSA_API.task_error( 'You need to select only one cidr pool ', context)
 	
 context['SelectedCidr']=SelectedCidr
 
@@ -65,18 +65,18 @@ if not newip:
 
 	if not newip:
 		context['newip']=''
-		MSA_API.task_error('All IPs from '+SelectedCidr+' have been allocated', context, True)
+		MSA_API.task_error('All IPs from '+SelectedCidr+' have been allocated', context)
 else:
 	#check if the entered IP address is part of the selectec network (cidr)
 	if not address_is_in_network(newip,SelectedCidr):
 		context['newip']=''
-		MSA_API.task_error('Entered address '+newip+' is not in network '+SelectedCidr, context, True)
+		MSA_API.task_error('Entered address '+newip+' is not in network '+SelectedCidr, context)
 
 	#Check if the ntered IP address is already allocated
 	for usedIP in context['IPsInUse']:
 		if newip == usedIP['address']:
 			context['newip']=''
-			MSA_API.task_error('IP address '+newip+" is already in use", context, True)
+			MSA_API.task_error('IP address '+newip+" is already in use", context)
 
 newAssignmentDescription='From IP Pool '+SelectedCidr+''	
 context['IPsInUse'].append(dict(address=newip,assignment_information=newAssignmentDescription,usage_information=newUsageInformation))
@@ -87,7 +87,4 @@ context['usedIPs']=usedList
 
 context['newAssignedIP']=newip
 
-ret = MSA_API.process_content('ENDED', 'New ip '+newip+" has been allocated", context, True)
-print(ret)
-
-
+MSA_API.task_success('New ip '+newip+" has been allocated", context)

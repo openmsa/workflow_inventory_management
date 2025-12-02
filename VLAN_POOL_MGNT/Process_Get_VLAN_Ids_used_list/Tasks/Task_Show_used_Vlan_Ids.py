@@ -11,5 +11,4 @@ if context.get('vlansInUse'):
 	for vlanId in context['vlansInUse']:
 		usedList=usedList+"\n"+vlanId['vlanId']+' >> '+vlanId['assignment_information']+''
 context['usedVlanIds']=usedList
-ret = MSA_API.process_content('ENDED', 'Used Vlan Ids :'+usedList, context, True)
-print(ret)
+MSA_API.task_success('Used Vlan Ids :'+usedList, context)

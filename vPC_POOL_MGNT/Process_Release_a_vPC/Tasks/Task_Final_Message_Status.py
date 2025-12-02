@@ -6,5 +6,4 @@ dev_var = Variables()
 
 context = Variables.task_call(dev_var)
 
-ret = MSA_API.process_content('ENDED', ' '+context['newReleasedVpc']+ ' has been released from vPC Pool '+ context['name']+'', context, True)
-print(ret)
+MSA_API.task_success(' '+context['newReleasedVpc']+ ' has been released from vPC Pool '+ context['name']+'', context)

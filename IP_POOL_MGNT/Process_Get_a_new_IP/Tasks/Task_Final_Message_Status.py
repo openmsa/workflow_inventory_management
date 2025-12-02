@@ -6,5 +6,4 @@ dev_var = Variables()
 
 context = Variables.task_call(dev_var)
 
-ret = MSA_API.process_content('ENDED', 'New IP '+context['newAssignedIP']+ ' has been allocated from IP Pool '+ context['name']+'', context, True)
-print(ret)
+MSA_API.task_success('New IP '+context['newAssignedIP']+ ' has been allocated from IP Pool '+ context['name']+'', context)

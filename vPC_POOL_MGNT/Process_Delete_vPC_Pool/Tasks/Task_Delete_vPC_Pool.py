@@ -9,14 +9,13 @@ dev_var.add('Confirmation', var_type='String')
 context = Variables.task_call(dev_var)
 
 if not context['Confirmation'] == "Delete me":
-	ret=MSA_API.process_content('ERROR','You need to enter "Delete me" as a confirmation',context, True)
-	print(ret)
+	MSA_API.task_error('You need to enter "Delete me" as a confirmation', context)
 
 if not context.get('vpcsInUse'):
   context['vpcsInUse'] = []
 
 if context.get('vpcsInUse'):
-	MSA_API.task_error('vPCs still in use, please release them before deleting',context, True)
+	MSA_API.task_error('vPCs still in use, please release them before deleting', context)
 
 
 # read the ID of the selected managed entity
@@ -45,15 +44,7 @@ content = json.loads(order.content)
 
 # check if the response is OK
 if order.response.ok:
-    ret = MSA_API.process_content('ENDED',
-                                  f'STATUS: {content["status"]}, \
-                                    MESSAGE: successfull',
-                                  context, True)
+    MSA_API.task_success(f'STATUS: {content["status"]}, MESSAGE: successful', context)
 else:
-    ret = MSA_API.process_content('FAILED',
-                                  f'Import failed \
-                                  - {order.content}',
-                                  context, True)
-
-print(ret)
+    MSA_API.task_error(f'Import failed - {order.content}', context)
 
